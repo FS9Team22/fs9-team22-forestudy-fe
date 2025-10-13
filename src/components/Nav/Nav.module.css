@@ -1,0 +1,23 @@
+/*배경색 과 맞는지 확인*/
+.NavContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15.75rem;
+  height: 3.635rem;
+  background-color: #99c86e;
+  border-radius: 1rem;
+
+  /*font family*/
+  & a {
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+}
