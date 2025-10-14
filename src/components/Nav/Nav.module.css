@@ -13,11 +13,10 @@
   height: 3.635rem;
   background-color: #99c86e;
   border-radius: 1rem;
-
-  /*font family*/
   & a {
     color: #fff;
     font-size: 1.125rem;
     font-weight: 400;
+    /* font-family: EF_jejudoldam; */
   }
 }

@@ -16,6 +16,12 @@
   user-select: none;
 }
 
+.dropdownHeaderText {
+  /* font-family: Pretandard; */
+  font-weight: 400;
+  color: #b1b1b1;
+}
+
 .dropdownArrow {
   transition: transform 0.2s ease-in-out;
 }
@@ -40,10 +46,11 @@
 }
 
 .dropdownMenuItem {
-  padding: 0.75rem 0.9375rem;
   font-size: 1rem;
-  color: #333;
+  color: #414141;
   border-bottom: 1px solid #eee;
+  padding: 0.75rem 0.9375rem;
+  text-align: center;
   cursor: pointer;
 
   &:hover {

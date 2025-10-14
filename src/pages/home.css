@@ -19,8 +19,10 @@
 }
 
 .home-study-title {
+  /* font-family: Pretandard; */
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 800;
+  color: #414141;
 }
 
 .home-study-dropdown {
@@ -62,7 +64,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  /* font-family: Pretandard; */
+  font-size: 1.25rem;
   font-weight: 500;
   padding: 5rem 0;
+  color: #b1b1b1;
 }
