@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Nav } from '../components/Nav/Nav';
+import { Nav } from '../../components/Nav/Nav';
 import './create.css';
 
 // 배경을 위한 목데이타 (따로파일분리)

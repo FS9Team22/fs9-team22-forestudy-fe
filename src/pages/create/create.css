@@ -85,7 +85,7 @@
 .selected {
   width: 2rem;
   height: 2rem;
-  background-image: url('../assets/icons/ic_bg_selected.svg');
+  background-image: url('../../assets/icons/ic_bg_selected.svg');
   /* public/icons/paw.png */
   background-size: contain;
   background-repeat: no-repeat;

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { StudyCardList } from '../components/Card/StudyCardList';
-import { Nav } from '../components/Nav/Nav';
-import { DropDown } from '../components/DropDown/DropDown';
-import { SearchBar } from '../components/SearchBar/SearchBar';
+import { StudyCardList } from './components/Card/StudyCardList';
+import { Nav } from '../../components/Nav/Nav';
+import { DropDown } from './components/DropDown/DropDown';
+import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
 // TODOS: 백엔드에서 가져올 데이터를 가정 (목 데이터로 대체)
