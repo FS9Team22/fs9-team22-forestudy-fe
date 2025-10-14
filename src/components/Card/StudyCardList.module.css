@@ -1,0 +1,17 @@
+.cardListSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-family: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.cardListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}

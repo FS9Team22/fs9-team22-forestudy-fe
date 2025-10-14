@@ -1,11 +1,11 @@
 import styles from './Card.module.css';
 
-export function Card() {
+export function Card({ title, status, points, quote, likes, views, comments }) {
   return (
     <div className={styles.card}>
       <div className={styles.overlay}>
         <div className={styles.header}>
-          <h2 className={styles.title}>이유디의 UX 스터디</h2>
+          <h2 className={styles.title}>{title}</h2>
           <span className={styles.points}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,23 +34,23 @@ export function Card() {
                 </clipPath>
               </defs>
             </svg>
-            310P 획득
+            {points}P 획득
           </span>
         </div>
-        <p className={styles.status}>62일째 진행 중</p>
-        <p className={styles.quote}>Slow And Steady Wins The Race!!</p>
+        <p className={styles.status}>{status}</p>
+        <p className={styles.quote}>{quote}</p>
         <div className={styles.footer}>
           <div className={styles.reaction}>
             <span className={styles.icon}>👩🏻‍💻</span>
-            <span className={styles.count}>37</span>
+            <span className={styles.count}>{comments}</span>
           </div>
           <div className={styles.reaction}>
             <span className={styles.icon}>🔥</span>
-            <span className={styles.count}>26</span>
+            <span className={styles.count}>{views}</span>
           </div>
           <div className={styles.reaction}>
             <span className={styles.icon}>🤍️</span>
-            <span className={styles.count}>14</span>
+            <span className={styles.count}>{likes}</span>
           </div>
         </div>
       </div>
