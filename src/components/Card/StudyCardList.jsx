@@ -9,9 +9,11 @@ export function StudyCardList({ cards }) {
           <Card
             key={index}
             title={card.title}
+            nickname={card.nickname}
             status={card.status}
             points={card.points}
-            quote={card.quote}
+            description={card.description}
+            background={card.background}
             likes={card.likes}
             views={card.views}
             comments={card.comments}

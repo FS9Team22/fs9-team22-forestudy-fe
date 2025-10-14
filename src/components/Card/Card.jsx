@@ -1,12 +1,94 @@
 import styles from './Card.module.css';
 
-export function Card({ title, status, points, quote, likes, views, comments }) {
+const BACKGROUND_MAP = {
+  1: {
+    backgroundColor: '#E1EDDE',
+    nicknameColor: '#578246',
+    otherColor: '#111',
+  },
+  2: {
+    backgroundColor: '#FFF1CC',
+    nicknameColor: '#C18E1B',
+    otherColor: '#111',
+  },
+  3: {
+    backgroundColor: '#E0F1F5',
+    nicknameColor: '#22d7ff',
+    otherColor: '#111',
+  },
+  4: {
+    backgroundColor: '#FDE0E9',
+    nicknameColor: '#ff3676',
+    otherColor: '#111',
+  },
+  5: {
+    backgroundImage:
+      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/desk1.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    nicknameColor: '#fff',
+  },
+  6: {
+    background:
+      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/desk2.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    nicknameColor: '#fff',
+  },
+  7: {
+    backgroundImage:
+      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/pattern.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    nicknameColor: '#fff',
+  },
+  8: {
+    backgroundImage:
+      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/leaves.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    nicknameColor: '#fff',
+  },
+};
+export function Card({
+  title,
+  nickname,
+  status,
+  points,
+  description,
+  background,
+  likes,
+  views,
+  comments,
+}) {
+  const overlayStyle = BACKGROUND_MAP[background] || {
+    backgroundColor: '#000',
+    nicknameColor: '#fff',
+    otherColor: '#111',
+  };
+
   return (
     <div className={styles.card}>
-      <div className={styles.overlay}>
+      <div className={styles.overlay} style={overlayStyle}>
         <div className={styles.header}>
-          <h2 className={styles.title}>{title}</h2>
-          <span className={styles.points}>
+          <div className={styles.titleBox}>
+            <h2
+              className={styles.title}
+              style={{ color: overlayStyle.nicknameColor }}
+            >
+              {nickname}
+            </h2>
+            <h2
+              className={styles.title}
+              style={{ color: overlayStyle.otherColor }}
+            >
+              {title}
+            </h2>
+          </div>
+          <span
+            className={styles.points}
+            style={{ color: overlayStyle.otherColor }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -38,7 +120,9 @@ export function Card({ title, status, points, quote, likes, views, comments }) {
           </span>
         </div>
         <p className={styles.status}>{status}</p>
-        <p className={styles.quote}>{quote}</p>
+        <p className={styles.quote} style={{ color: overlayStyle.otherColor }}>
+          {description}
+        </p>
         <div className={styles.footer}>
           <div className={styles.reaction}>
             <span className={styles.icon}>👩🏻‍💻</span>
