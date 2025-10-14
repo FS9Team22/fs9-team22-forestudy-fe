@@ -1,5 +1,5 @@
 .create-main {
-  max-width: 1200px;
+  max-width: 720px;
   margin: 3rem auto;
 }
 
@@ -55,14 +55,17 @@
 .bg-options-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
 }
 
 .bg-options {
+  width: 9.375rem;
+  height: 9.375rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
+  margin-left: 8px;
+  margin-right: 8px;
 
   & input {
     display: none;
@@ -70,7 +73,6 @@
 }
 
 .bg-options .bg-preview {
-  width: 100%;
   height: 9.375rem;
   object-fit: cover;
 }

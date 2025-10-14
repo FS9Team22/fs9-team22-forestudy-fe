@@ -79,11 +79,9 @@ export function Nav() {
           />
         </svg>
       </Link>
-      <div className={styles.NavBtn}>
-        <Link className={styles.NavLink} to="/create">
-          스터디 만들기
-        </Link>
-      </div>
+      <Link className={styles.NavLink} to="/create">
+        <p>스터디 만들기</p>
+      </Link>
     </div>
   );
 }

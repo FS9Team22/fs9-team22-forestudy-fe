@@ -1,10 +1,9 @@
 import { Card } from './Card';
 import styles from './StudyCardList.module.css';
 
-export function StudyCardList({ title, cards }) {
+export function StudyCardList({ cards }) {
   return (
     <div className={styles.cardListSection}>
-      <h3 className={styles.sectionTitle}>{title}</h3>
       <div className={styles.cardListContainer}>
         {cards.map((card, index) => (
           <Card

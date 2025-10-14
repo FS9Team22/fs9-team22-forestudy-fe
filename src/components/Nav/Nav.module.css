@@ -1,11 +1,16 @@
 /*배경색 과 맞는지 확인*/
 .NavContainer {
+  max-width: 1920px;
+  height: 6.25rem;
   display: flex;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
+  margin-left: 12.5rem;
+  margin-right: 12.5rem;
 }
 
-.NavBtn {
+.NavLink {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,12 +18,17 @@
   height: 3.635rem;
   background-color: #99c86e;
   border-radius: 1rem;
-}
-
-.NavLink {
   color: #fff;
   font-size: 1.125rem;
   font-weight: 400;
   /* font-family: EF_jejudoldam; */
   text-decoration: none;
+
+  &:hover {
+    background-color: #99c86ec2;
+  }
+
+  &:active {
+    background-color: #729651;
+  }
 }

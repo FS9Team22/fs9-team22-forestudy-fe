@@ -84,8 +84,9 @@ export default function Home() {
       <Nav />
       <div className="home-main-container">
         <div className="home-main-top">
+          <h2 className="home-study-title">스터디 둘러보기</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList title="최근 조회한 스터디" cards={recentStudies} />
+            <StudyCardList cards={recentStudies} />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -94,19 +95,18 @@ export default function Home() {
         </div>
 
         <div className="home-main-center">
+          <div className="home-study-header">
+            <h2 className="home-study-title">스터디 둘러보기</h2>
+            <div className="home-study-dropdown">
+              <DropDown />
+            </div>
+          </div>
+
+          <div className="home-study-search">
+            <SearchBar />
+          </div>
           {allStudies.length > 0 ? (
             <>
-              <div className="home-study-header">
-                <h2 className="home-study-title">스터디 둘러보기</h2>
-                <div className="home-study-dropdown">
-                  <DropDown />
-                </div>
-              </div>
-
-              <div className="home-study-search">
-                <SearchBar />
-              </div>
-
               <StudyCardList cards={allStudies} />
 
               <div className="home-main-btn">
