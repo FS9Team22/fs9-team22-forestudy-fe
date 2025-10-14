@@ -4,14 +4,14 @@ import './create.css';
 
 // 배경을 위한 목데이타 (따로파일분리)
 const backgrounds = [
-  { id: 'green', type: 'color', value: '#E1EDDE' },
-  { id: 'yellow', type: 'color', value: '#FFF1CC' },
-  { id: 'blue', type: 'color', value: '#E0F1F5' },
-  { id: 'pink', type: 'color', value: '#FDE0E9' },
-  { id: 'desk1', type: 'image', value: '/images/desk1.png' },
-  { id: 'desk2', type: 'image', value: '/images/desk2.png' },
-  { id: 'pattern', type: 'image', value: '/images/pattern.png' },
-  { id: 'leaves', type: 'image', value: '/images/leaves.png' },
+  { id: 1, type: 'color', value: '#E1EDDE' },
+  { id: 2, type: 'color', value: '#FFF1CC' },
+  { id: 3, type: 'color', value: '#E0F1F5' },
+  { id: 4, type: 'color', value: '#FDE0E9' },
+  { id: 5, type: 'image', value: '/images/desk1.png' },
+  { id: 6, type: 'image', value: '/images/desk2.png' },
+  { id: 7, type: 'image', value: '/images/pattern.png' },
+  { id: 8, type: 'image', value: '/images/leaves.png' },
 ];
 export default function CreatePage() {
   const [bgSelected, setBgSelected] = useState('');
@@ -51,16 +51,18 @@ export default function CreatePage() {
             <label htmlFor="bg-label">배경 선택</label>
             <div className="bg-options-container">
               {backgrounds.map((bg) => (
-                <label
-                  key={bg.id}
-                  className={`bg-options ${bgSelected == bg.id ? 'selected' : ''}`}
-                >
+                <label key={bg.id} className={'bg-options'}>
+                  {bgSelected === bg.id && (
+                    <div className="selected-container">
+                      <div className="selected"></div>
+                    </div>
+                  )}
                   <input
                     type="radio"
                     name="background"
                     value={bg.id}
                     checked={bgSelected === bg.id}
-                    onSelect={() => setBgSelected(bg.id)}
+                    onChange={() => setBgSelected(bg.id)}
                   />
                   {bg.type === 'color' ? (
                     <div
