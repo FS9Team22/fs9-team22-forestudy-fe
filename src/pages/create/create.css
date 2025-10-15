@@ -20,6 +20,7 @@
 .create-form {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
 
   & label {
     font-family: Pretendard;
@@ -34,7 +35,7 @@
     padding: 0.75rem 1.25rem;
     border-radius: 0.9375rem;
     border: 1px solid #ddd;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   & input::placeholder {
@@ -49,7 +50,6 @@
   border: 1px solid #ddd;
   height: 6rem;
   padding: 0.75rem 1.25rem;
-  margin-bottom: 1.5rem;
 }
 
 /*------- submit 버튼 ---------*/
