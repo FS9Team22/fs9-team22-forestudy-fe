@@ -30,6 +30,7 @@
   }
 
   & input {
+    position: relative;
     padding: 0.75rem 1.25rem;
     border-radius: 0.9375rem;
     border: 1px solid #ddd;
@@ -58,7 +59,6 @@
 }
 
 .bg-options {
-  position: relative;
   width: 9.375rem;
   height: 9.375rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -117,4 +117,14 @@
 .create-btn:hover {
   background-color: #999;
   color: #fff;
+}
+
+/*------- error input -----*/
+.error {
+  z-index: 1;
+  color: #c41013;
+}
+
+.error-input {
+  border-color: #c41013;
 }

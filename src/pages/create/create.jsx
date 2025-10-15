@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import { Nav } from '../../components/Nav/Nav';
+import {
+  nicknameValidator,
+  titleValidator,
+  descriptionValidator,
+  passwordValidator,
+} from './utils/formValidate';
 import './create.css';
 
 // 배경을 위한 목데이타 (따로파일분리)
@@ -14,7 +20,38 @@ const backgrounds = [
   { id: 8, type: 'image', value: '/images/leaves.png' },
 ];
 export default function CreatePage() {
+  const [nickname, setNickname] = useState('');
+  const [nicknameError, setNicknameError] = useState('');
+  const [title, setTitle] = useState('');
+  const [titleError, setTitleError] = useState('');
+  const [description, setDescription] = useState('');
+  const [descriptionError, setDescriptionError] = useState('');
+  const [pw, setPw] = useState('');
+  const [pwError, setPwError] = useState('');
+  const [pwChecker, setPwChecker] = useState('');
+  const [pwCheckerError, setPwCheckerError] = useState('');
   const [bgSelected, setBgSelected] = useState('');
+
+  const handleOnChangeNickName = (e) => {
+    setNickname(e.target.value.trim());
+    setNicknameError(nicknameValidator(nickname));
+  };
+  const handleOnChangeTitle = (e) => {
+    setTitle(e.target.value.trim());
+    setTitleError(titleValidator(title));
+  };
+  const handleOnChangeDescription = (e) => {
+    setDescription(e.target.value.trim());
+    setDescriptionError(descriptionValidator(description));
+  };
+  const handleOnChangePw = (e) => {
+    setPw(e.target.value.trim());
+    setPwError(passwordValidator(pw));
+  };
+  const handleOnChangePwChecker = (e) => {
+    setPwChecker(e.target.value.trim());
+    setPwCheckerError(passwordValidator(pwChecker, pw));
+  };
   return (
     <>
       <Nav />
@@ -28,26 +65,37 @@ export default function CreatePage() {
               id="nickname"
               name="nickname"
               type="text"
-              value=""
+              onChange={handleOnChangeNickName}
+              value={nickname}
               placeholder="닉네임을 입력해 주세요"
+              required
             />
+            {nicknameError && <span className="error">{nicknameError}</span>}
             <label htmlFor="study-name">스터디 이름</label>
             <input
               id="study-name"
               name="study-name"
               type="text"
-              value=""
+              onChange={handleOnChangeTitle}
+              value={title}
               placeholder="스터디 이름을 입력해주세요"
+              required
             />
+            {titleError && <span className="error">{titleError}</span>}
             <label htmlFor="description">소개</label>
             <textarea
               className="description-textarea"
               id="description"
               name="description"
               type="text"
-              value=""
+              onChange={handleOnChangeDescription}
+              value={description}
               placeholder="소개 멘트를 작성해 주세요"
+              required
             />
+            {descriptionError && (
+              <span className="error">{descriptionError}</span>
+            )}
             <label htmlFor="bg-label">배경 선택</label>
             <div className="bg-options-container">
               {backgrounds.map((bg) => (
@@ -81,17 +129,23 @@ export default function CreatePage() {
               id="password"
               name="password"
               type="password"
-              value=""
+              onChange={handleOnChangePw}
+              value={pw}
               placeholder="비밀번호를 입력해 주세요"
+              required
             />
+            {pwError && <span className="error">{pwError}</span>}
             <label htmlFor="password-check">비밀번호 확인</label>
             <input
               id="password-check"
               name="password-check"
               type="password"
-              value=""
+              onChange={handleOnChangePwChecker}
+              value={pwChecker}
               placeholder="비밀번호를 입력해 주세요"
+              required
             />
+            {pwCheckerError && <span className="error">{pwCheckerError}</span>}
           </form>
 
           <div className="create-btn-container">
