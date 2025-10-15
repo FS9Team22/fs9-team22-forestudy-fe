@@ -19,7 +19,7 @@
 }
 
 .home-study-title {
-  /* font-family: Pretandard; */
+  font-family: Pretendard;
   font-size: 1.5rem;
   font-weight: 800;
   color: #414141;
@@ -50,7 +50,7 @@
   background-color: #fff;
   color: #578246;
   font-weight: 500;
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   cursor: pointer;
 }
 
@@ -64,7 +64,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* font-family: Pretandard; */
+  font-family: Pretandard;
   font-size: 1.25rem;
   font-weight: 500;
   padding: 5rem 0;

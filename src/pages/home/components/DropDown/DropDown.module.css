@@ -1,7 +1,7 @@
 .dropdownContainer {
   position: relative;
   width: 11.25rem;
-  /*TODOS font-family*/
+  font-family: Pretendard;
 }
 
 .dropdownHeader {
@@ -17,7 +17,7 @@
 }
 
 .dropdownHeaderText {
-  /* font-family: Pretandard; */
+  font-family: Pretendard;
   font-weight: 400;
   color: #b1b1b1;
 }
@@ -43,6 +43,7 @@
   border: 0.0625rem solid #ddd;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
   border-radius: 0.9375rem;
+  z-index: 1;
 }
 
 .dropdownMenuItem {

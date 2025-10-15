@@ -11,7 +11,7 @@
 }
 
 .create-title {
-  /* font-family: Pretandard; */
+  font-family: Pretendard;
   font-size: 1.5rem;
   font-weight: 800;
   color: #414141;
@@ -22,9 +22,9 @@
   flex-direction: column;
 
   & label {
-    /* font-family: Pretandard; */
+    font-family: Pretendard;
     font-size: 1.125rem;
-    font-family: 600;
+    font-weight: 600;
     margin-bottom: 1rem;
     color: #414141;
   }
@@ -111,7 +111,7 @@
   color: #fff;
   font-size: 1.125rem;
   font-weight: 400;
-  /* font-family: EF_jejudoldam; */
+  font-family: JejuDoldam;
 }
 
 .create-btn:hover {

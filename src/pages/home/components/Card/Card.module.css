@@ -1,14 +1,17 @@
 .card {
+  position: relative;
   width: 22.375rem;
   height: 15.1875rem;
   border-radius: 1.25rem;
   background: rgba(0, 0, 0, 0.5);
   color: #ffffff;
-  font-family: Arial, sans-serif;
+  font-family: Pretendard, Arial, sans-serif;
   overflow: hidden;
 }
 
 .overlay {
+  position: absolute;
+  inset: 0;
   padding: 30px;
   display: flex;
   flex-shrink: 1;
@@ -29,7 +32,7 @@
 }
 
 .title {
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   font-size: 18px;
   font-weight: bold;
   margin: 0;
@@ -43,20 +46,20 @@
   padding: 4px 8px;
   font-size: 12px;
   font-weight: bold;
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   gap: 0.25rem;
 }
 
 .status {
   color: #818181;
   font-size: 14px;
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   margin: 10px 0 0 0;
 }
 
 .quote {
   font-size: 1rem;
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   line-height: 1;
   margin: 30px 0;
 }
@@ -81,7 +84,7 @@
   width: 16px; /* 고정 크기 */
   height: 16px;
   font-size: 0.75rem;
-  /*TODOS font-family: Pretendard*/
+  font-family: Pretendard;
   font-weight: 500;
 }
 

@@ -96,7 +96,7 @@ export default function Home() {
       <Nav />
       <div className="home-main-container">
         <div className="home-main-top">
-          <h2 className="home-study-title">스터디 둘러보기</h2>
+          <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
             <StudyCardList cards={recentStudies} />
           ) : (
