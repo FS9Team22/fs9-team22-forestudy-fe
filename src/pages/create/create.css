@@ -52,52 +52,6 @@
   margin-bottom: 1.5rem;
 }
 
-/*-------- 배경 선택 ---------*/
-.bg-options-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.bg-options {
-  width: 9.375rem;
-  height: 9.375rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  overflow: hidden;
-  cursor: pointer;
-  margin-left: 8px;
-  margin-right: 8px;
-
-  & input {
-    display: none;
-  }
-}
-
-.selected-container {
-  position: absolute;
-  left: 60px;
-  bottom: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.selected {
-  width: 2rem;
-  height: 2rem;
-  background-image: url('../../assets/icons/ic_bg_selected.svg');
-  /* public/icons/paw.png */
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
-
-.bg-options .bg-preview {
-  height: 9.375rem;
-  object-fit: cover;
-  -webkit-user-drag: none;
-}
-
 /*------- 더보기 버튼 ---------*/
 .create-btn {
   display: flex;

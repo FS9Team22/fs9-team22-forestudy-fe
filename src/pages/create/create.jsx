@@ -7,6 +7,7 @@ import {
   passwordValidator,
 } from './utils/formValidate';
 import './create.css';
+import { BackgroundList } from './components/Background';
 
 // 배경을 위한 목데이타 (따로파일분리)
 const backgrounds = [
@@ -96,33 +97,13 @@ export default function CreatePage() {
             {descriptionError && (
               <span className="error">{descriptionError}</span>
             )}
+
             <label htmlFor="bg-label">배경 선택</label>
-            <div className="bg-options-container">
-              {backgrounds.map((bg) => (
-                <label key={bg.id} className={'bg-options'}>
-                  {bgSelected === bg.id && (
-                    <div className="selected-container">
-                      <div className="selected"></div>
-                    </div>
-                  )}
-                  <input
-                    type="radio"
-                    name="background"
-                    value={bg.id}
-                    checked={bgSelected === bg.id}
-                    onChange={() => setBgSelected(bg.id)}
-                  />
-                  {bg.type === 'color' ? (
-                    <div
-                      className="bg-preview"
-                      style={{ backgroundColor: bg.value }}
-                    />
-                  ) : (
-                    <img className="bg-preview" src={bg.value} alt={bg.id} />
-                  )}
-                </label>
-              ))}
-            </div>
+            <BackgroundList
+              backgrounds={backgrounds}
+              bgSelected={bgSelected}
+              setBgSelected={setBgSelected}
+            />
 
             <label htmlFor="password">비밀번호</label>
             <input
