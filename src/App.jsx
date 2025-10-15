@@ -1,7 +1,11 @@
-import './App.css';
+import { DetailPage } from './pages/detail';
 
 function App() {
-  return <>hello!</>;
+  return (
+    <>
+      <DetailPage />
+    </>
+  );
 }
 
 export default App;
