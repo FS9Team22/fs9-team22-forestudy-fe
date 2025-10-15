@@ -37,6 +37,6 @@ export const passwordValidator = (pw, pwChecker) => {
   if (!pw) return '*패스워드를 입력해주세요';
   if (pw.length < PASSWORD_MIN - 1)
     return `*패스워드는 ${PASSWORD_MIN}자리 이상입니다.`;
-  if (pw && pwChecker !== pwChecker) return '비밀번호가 일치하지 않습니다.';
+  if (pwChecker && pw !== pwChecker) return '비밀번호가 일치하지 않습니다.';
   return '';
 };

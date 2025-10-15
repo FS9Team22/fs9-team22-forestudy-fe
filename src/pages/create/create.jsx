@@ -1,5 +1,7 @@
-import { useState } from 'react';
-// import { createStudy } from '../../api/StudyService';
+import { useCallback } from 'react';
+import { Navigate } from 'react-router';
+import { useForm } from '../../hooks/useForm';
+import { createStudy } from '../../api/StudyService';
 import {
   nicknameValidator,
   titleValidator,
@@ -9,8 +11,6 @@ import {
 import { Nav } from '../../components/Nav/Nav';
 import { BackgroundList } from './components/Background';
 import './create.css';
-// import { Navigate } from 'react-router';
-import { useForm } from '../../hooks/useForm';
 
 // 배경을 위한 목데이타 (따로파일분리)
 const backgrounds = [
@@ -28,35 +28,66 @@ const initialValues = {
   nickname: '',
   title: '',
   description: '',
+  background: null,
   password: '',
   passwordChecker: '',
+};
+
+const backgroundValidator = (value) => {
+  if (!value) {
+    return '배경을 선택해주세요.';
+  }
+  return '';
 };
 
 const validator = {
   nickname: nicknameValidator,
   title: titleValidator,
   description: descriptionValidator,
+  background: backgroundValidator,
   password: (value, values) => passwordValidator(value, values.passwordChecker),
   passwordChecker: (value, values) => passwordValidator(values.password, value),
 };
 
 export default function CreatePage() {
-  const { values, errors, handleOnChange } = useForm(initialValues, validator);
-  const [bgSelected, setBgSelected] = useState('');
+  const { values, errors, handleOnChange, setValues, validateOnSubmit } =
+    useForm(initialValues, validator);
+  const setBgSelected = useCallback(
+    (id) => {
+      setValues((prev) => ({ ...prev, background: id }));
+    },
+    [setValues],
+  );
 
-  // const handleOnSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleOnSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
 
-  //   try {
-  //     const response = await createStudy(nickname, title, description, 1, pw);
+      const isValid = validateOnSubmit();
 
-  //     if (response.status === 201) {
-  //       Navigate('/');
-  //     }
-  //   } catch (err) {
-  //     console.error('failed', err);
-  //   }
-  // };
+      if (isValid) {
+        try {
+          const response = await createStudy(
+            values.nickname,
+            values.title,
+            values.description,
+            values.background,
+            values.password,
+          );
+          if (response.status === 201) {
+            alert('스터디가 성공적으로 생성되었습니다!');
+            Navigate('/');
+          }
+        } catch (err) {
+          alert(`스터디 생성 실패: ${err.message}`);
+        }
+      } else {
+        console.log('폼 유효성 검사 실패:', errors);
+      }
+    },
+    [values, validateOnSubmit, errors],
+  );
+
   return (
     <>
       <Nav />
@@ -64,7 +95,7 @@ export default function CreatePage() {
         <div className="create-container">
           <h2 className="create-title">스터디 만들기</h2>
 
-          <form className="create-form" method="post">
+          <form className="create-form" method="post" onSubmit={handleOnSubmit}>
             <label htmlFor="nickname">닉네임</label>
             <input
               id="nickname"
@@ -107,7 +138,7 @@ export default function CreatePage() {
             <label htmlFor="bg-label">배경 선택</label>
             <BackgroundList
               backgrounds={backgrounds}
-              bgSelected={bgSelected}
+              bgSelected={values.background}
               setBgSelected={setBgSelected}
             />
 
