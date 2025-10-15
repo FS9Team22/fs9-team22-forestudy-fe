@@ -1,13 +1,16 @@
-import { useState } from 'react';
-import { Nav } from '../../components/Nav/Nav';
+import { useEffect, useState } from 'react';
+import { createStudy } from '../../api/StudyService';
 import {
   nicknameValidator,
   titleValidator,
   descriptionValidator,
   passwordValidator,
+  PasswordCheckValidator,
 } from './utils/formValidate';
-import './create.css';
+import { Nav } from '../../components/Nav/Nav';
 import { BackgroundList } from './components/Background';
+import './create.css';
+import { Navigate } from 'react-router';
 
 // 배경을 위한 목데이타 (따로파일분리)
 const backgrounds = [
@@ -31,7 +34,39 @@ export default function CreatePage() {
   const [pwError, setPwError] = useState('');
   const [pwChecker, setPwChecker] = useState('');
   const [pwCheckerError, setPwCheckerError] = useState('');
+
+  const [toggleBtn, setToggleBtn] = useState(true);
   const [bgSelected, setBgSelected] = useState('');
+
+  useEffect(() => {
+    const valid =
+      nickname &&
+      title &&
+      description &&
+      pw &&
+      pwChecker &&
+      !nicknameError &&
+      !descriptionError &&
+      !pwError &&
+      !pwCheckerError;
+
+    if (valid) {
+      setToggleBtn(false);
+    } else {
+      setToggleBtn(true);
+    }
+  }, [
+    nickname,
+    description,
+    title,
+    pw,
+    pwChecker,
+    nicknameError,
+    descriptionError,
+    pwCheckerError,
+    pwError,
+    titleError,
+  ]);
 
   const handleOnChangeNickName = (e) => {
     setNickname(e.target.value.trim());
@@ -51,7 +86,25 @@ export default function CreatePage() {
   };
   const handleOnChangePwChecker = (e) => {
     setPwChecker(e.target.value.trim());
-    setPwCheckerError(passwordValidator(pwChecker, pw));
+    setPwCheckerError(PasswordCheckValidator(pwChecker, pw));
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    if (toggleBtn) {
+      alert('입력 필드를 확인해주세요!');
+      return;
+    }
+    try {
+      const response = await createStudy(nickname, title, description, 1, pw);
+
+      if (response.status === 201) {
+        Navigate('/');
+      }
+    } catch (err) {
+      console.error('failed', err);
+    }
   };
   return (
     <>
@@ -60,7 +113,7 @@ export default function CreatePage() {
         <div className="create-container">
           <h2 className="create-title">스터디 만들기</h2>
 
-          <form className="create-form" method="post">
+          <form className="create-form" method="post" onSubmit={handleOnSubmit}>
             <label htmlFor="nickname">닉네임</label>
             <input
               id="nickname"
@@ -127,11 +180,11 @@ export default function CreatePage() {
               required
             />
             {pwCheckerError && <span className="error">{pwCheckerError}</span>}
-          </form>
 
-          <div className="create-btn-container">
-            <button className="create-btn">만들기</button>
-          </div>
+            <button className="create-btn" type="submit" disabled={toggleBtn}>
+              만들기
+            </button>
+          </form>
         </div>
       </main>
     </>

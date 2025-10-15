@@ -35,13 +35,13 @@ export const descriptionValidator = (quote) => {
 
 export const passwordValidator = (pw) => {
   if (!pw) return '*패스워드를 입력해주세요';
-  if (pw.length <= PASSWORD_MIN)
+  if (pw.length < PASSWORD_MIN - 1)
     return `*패스워드는 ${PASSWORD_MIN}자리 이상입니다.`;
   return '';
 };
 
-export const PasswordCheckValidator = (pw, compare) => {
-  if (!pw) return '*비밀번호를 입력해주세요.';
-  if (pw !== compare) return '*비밀번호가 일치하지 않습니다.';
+export const PasswordCheckValidator = (pwchecker, compare) => {
+  if (!pwchecker) return '*비밀번호를 입력해주세요.';
+  if (pwchecker && compare !== compare) return '*비밀번호가 일치하지 않습니다.';
   return '';
 };

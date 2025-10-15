@@ -52,7 +52,7 @@
   margin-bottom: 1.5rem;
 }
 
-/*------- 더보기 버튼 ---------*/
+/*------- submit 버튼 ---------*/
 .create-btn {
   display: flex;
   justify-content: center;
@@ -66,6 +66,7 @@
   font-size: 1.125rem;
   font-weight: 400;
   font-family: JejuDoldam;
+  cursor: pointer;
 }
 
 .create-btn:hover {
