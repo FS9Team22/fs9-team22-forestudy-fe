@@ -11,7 +11,7 @@ export function StudyCardList({ cards }) {
             title={card.title}
             nickname={card.nickname}
             status={card.status}
-            points={card.points}
+            point={card.point}
             description={card.description}
             background={card.background}
             likes={card.likes}

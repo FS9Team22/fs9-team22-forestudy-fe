@@ -3,13 +3,13 @@ import styles from './DropDown.module.css';
 
 // mock
 const sortOptions = [
-  '최근 순',
-  '오래된 순',
-  '많은 포인트 순',
-  '적은 포인트 순',
+  { id: 1, name: '최근 순', value: 'latest' },
+  { id: 2, name: '오래된 순', value: 'oldest' },
+  { id: 3, name: '많은 포인트 순', value: 'mostPoint' },
+  { id: 4, name: '적은 포인트 순', value: 'fewerPoint' },
 ];
 
-export function DropDown() {
+export function DropDown({ onSortType }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(sortOptions[0]);
 
@@ -21,6 +21,7 @@ export function DropDown() {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    onSortType(option.value);
     setIsOpen(false);
   };
 
@@ -32,7 +33,7 @@ export function DropDown() {
         onClick={toggleDropDown}
         aria-label="드롭다운버튼"
       >
-        <span className={styles.dropdownHeaderText}>{selectedOption}</span>
+        <span className={styles.dropdownHeaderText}>{selectedOption.name}</span>
         <svg
           className={styles.dropdownArrow}
           width="10"
@@ -51,13 +52,13 @@ export function DropDown() {
 
       {isOpen && (
         <ul className={styles.dropdownMenu}>
-          {sortOptions.map((option, idx) => (
+          {sortOptions.map((option) => (
             <li
-              key={idx}
+              key={option.id}
               className={styles.dropdownMenuItem}
               onClick={() => handleOptionClick(option)}
             >
-              {option}
+              {option.name}
             </li>
           ))}
         </ul>

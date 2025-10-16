@@ -54,7 +54,7 @@ export function Card({
   title,
   nickname,
   status,
-  points,
+  point,
   description,
   background,
   likes,
@@ -116,7 +116,7 @@ export function Card({
                 </clipPath>
               </defs>
             </svg>
-            {points}P 획득
+            {point}P 획득
           </span>
         </div>
         <p className={styles.status}>{status}</p>

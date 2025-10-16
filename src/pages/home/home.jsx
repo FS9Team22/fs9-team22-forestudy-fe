@@ -1,95 +1,52 @@
 import { useEffect, useState } from 'react';
+import { getStudy } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
-// TODOS: 백엔드에서 가져올 데이터를 가정 (목 데이터로 대체)
-const allStudies = [
-  {
-    id: 1,
-    title: '의 UX 스터디',
-    nickname: '이유디',
-    status: '62일째 진행 중',
-    description: 'Slow And Steady Wins The Race!!',
-    points: 310,
-    likes: 37,
-    views: 26,
-    comments: 14,
-    background: 6,
-  },
-  {
-    id: 2,
-    title: '의 UX 스터디',
-    nickname: 'K.K.',
-    status: '62일째 진행 중',
-    points: 310,
-    description: '나비보벳따우',
-    likes: 37,
-    views: 26,
-    comments: 14,
-    background: 1,
-  },
-  {
-    id: 3,
-    title: '의 개발공장',
-    nickname: '연우',
-    status: '10일째 진행 중',
-    points: 50,
-    description: 'Slow And Steady Wins The Race! 다들 오늘 하루도 화이팅 :)',
-    likes: 12,
-    views: 11,
-    comments: 9,
-    background: 2,
-  },
-  {
-    id: 4,
-    title: '의 개발공장',
-    nickname: '연우',
-    status: '10일째 진행 중',
-    points: 50,
-    description: 'Slow And Steady Wins The Race! 다들 오늘 하루도 화이팅 :)',
-    likes: 12,
-    views: 11,
-    comments: 9,
-    background: 6,
-  },
-  {
-    id: 5,
-    title: '의 개발공장',
-    nickname: '연우',
-    status: '10일째 진행 중',
-    points: 50,
-    description: 'Slow And Steady Wins The Race! 다들 오늘 하루도 화이팅 :)',
-    likes: 12,
-    views: 11,
-    comments: 9,
-    background: 1,
-  },
-  {
-    id: 6,
-    title: '의 개발공장',
-    nickname: '연우',
-    status: '10일째 진행 중',
-    points: 50,
-    description: 'Slow And Steady Wins The Race! 다들 오늘 하루도 화이팅 :)',
-    likes: 12,
-    views: 11,
-    comments: 9,
-    background: 2,
-  },
-];
+const LIMIT = 6;
 
 export default function Home() {
   const [recentStudies, setRecentStudies] = useState([]);
+  const [studies, setStudies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const [sortType, setSortType] = useState('latest');
+
+  const [page, setPage] = useState(1);
+
+  const moreBtnPaging = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  // sortType이나 keyword가 바뀌면 page 초기화
+  useEffect(() => {
+    setPage(1);
+  }, [sortType, keyword]);
 
   useEffect(() => {
     const savedRecent = localStorage.getItem('recentStudies');
     if (savedRecent) {
       setRecentStudies(JSON.parse(savedRecent));
     }
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const studyData = await getStudy(sortType, keyword, page, LIMIT);
+        // 기존 데이터 이어 붙이기
+        if (page === 1)
+          setStudies(studyData.data); //첫페이지는 그대로 내려오고 > 이후 이어붙이기
+        else setStudies((prev) => [...prev, ...studyData.data]);
+      } catch (err) {
+        console.error('스터디 가져오기에 실패하였습니다.', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [sortType, keyword, page]);
 
   return (
     <>
@@ -110,19 +67,21 @@ export default function Home() {
           <div className="home-study-header">
             <h2 className="home-study-title">스터디 둘러보기</h2>
             <div className="home-study-dropdown">
-              <DropDown />
+              <DropDown onSortType={setSortType} />
             </div>
           </div>
 
           <div className="home-study-search">
-            <SearchBar />
+            <SearchBar onSearch={setKeyword} />
           </div>
-          {allStudies.length > 0 ? (
+          {!loading && studies.length > 0 ? (
             <>
-              <StudyCardList cards={allStudies} />
+              <StudyCardList cards={studies} />
 
               <div className="home-main-btn">
-                <button className="home-card-more">더보기</button>
+                <button className="home-card-more" onClick={moreBtnPaging}>
+                  더보기
+                </button>
               </div>
             </>
           ) : (
