@@ -5,10 +5,12 @@ import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
+import { useBreakPoint } from '../../hooks/useBreakPoint';
 
 const LIMIT = 6;
 
 export default function Home() {
+  const { mobile, tablet } = useBreakPoint();
   const [recentStudies, setRecentStudies] = useState([]);
   const [studies, setStudies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -70,12 +72,16 @@ export default function Home() {
           <div className="home-study-header">
             <h2 className="home-study-title">스터디 둘러보기</h2>
             <div className="home-study-dropdown">
-              <DropDown onSortType={setSortType} />
+              {!tablet || (!mobile && <DropDown onSortType={setSortType} />)}
             </div>
           </div>
 
           <div className="home-study-search">
-            <SearchBar onSearch={setKeyword} />
+            <SearchBar
+              className={mobile && 'home-study-for-mobile'}
+              onSearch={setKeyword}
+            />
+            {tablet || (mobile && <DropDown onSortType={setSortType} />)}
           </div>
           {!loading && studies.length > 0 ? (
             <>

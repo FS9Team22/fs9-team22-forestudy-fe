@@ -75,13 +75,21 @@
   .home-main-container {
     margin: 1.5rem;
   }
+
+  .home-study-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0 1.25rem 0;
+  }
+
   /* @TODO if localhost*/
   .home-study-on-tablet {
     overflow-x: scroll;
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 768px) {
   .home-study-title {
     font-size: 1rem;
   }
@@ -89,8 +97,12 @@
   .home-study-header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  }
+
+  .home-study-search {
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
   }
 
   .no-studies-message {
