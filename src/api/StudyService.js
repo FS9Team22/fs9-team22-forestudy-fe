@@ -30,3 +30,21 @@ export async function createStudy(
     throw err;
   }
 }
+
+export async function getStudy(orderBy, keyword, page, limit) {
+  try {
+    const res = await fetch(
+      `${BASE_URL}?orderBy=${orderBy}&keyword=${keyword}&page=${page}&limit=${limit}`,
+      {
+        method: 'GET',
+      },
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err.status);
+    console.log(err.message);
+    console.error('get... error');
+    throw err;
+  }
+}
