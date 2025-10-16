@@ -55,7 +55,10 @@ export default function Home() {
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList cards={recentStudies} />
+            <StudyCardList
+              className={'home-study-on-tablet'}
+              cards={recentStudies}
+            />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
