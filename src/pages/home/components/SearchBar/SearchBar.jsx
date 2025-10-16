@@ -1,6 +1,18 @@
+import { useState } from 'react';
 import styles from './SearchBar.module.css';
 
-export function SearchBar() {
+export function SearchBar({ onSearch }) {
+  const [keyword, setKeyword] = useState('');
+
+  const handleOnKeyDown = (e) => {
+    if (e.key === 'Enter') return onSearch(keyword);
+  };
+
+  const handleOnChange = (e) => {
+    const trimmed = e.target.value.trim();
+    setKeyword(trimmed);
+  };
+
   return (
     <div className={styles.inputContainer}>
       <svg
@@ -25,7 +37,13 @@ export function SearchBar() {
           </clipPath>
         </defs>
       </svg>
-      <input type="text" placeholder="검색" aria-label="검색어 입력" />
+      <input
+        type="text"
+        placeholder="검색"
+        onChange={handleOnChange}
+        onKeyDown={handleOnKeyDown}
+        aria-label="검색어 입력"
+      />
     </div>
   );
 }
