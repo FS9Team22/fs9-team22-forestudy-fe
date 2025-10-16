@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useForm } from '../../hooks/useForm';
 import { createStudy } from '../../api/StudyService';
 import {
@@ -52,6 +52,7 @@ const validator = {
 export default function CreatePage() {
   const { values, errors, handleOnChange, setValues, validateOnSubmit } =
     useForm(initialValues, validator);
+  const navigate = useNavigate();
   const setBgSelected = useCallback(
     (id) => {
       setValues((prev) => ({ ...prev, background: id }));
@@ -74,18 +75,18 @@ export default function CreatePage() {
             values.background,
             values.password,
           );
-          if (response.status === 201) {
+          if (response.success) {
             alert('스터디가 성공적으로 생성되었습니다!');
-            Navigate('/');
+            navigate('/');
           }
         } catch (err) {
           alert(`스터디 생성 실패: ${err.message}`);
         }
       } else {
-        console.log('폼 유효성 검사 실패:', errors);
+        alert(`필수칸을 확인주세요`);
       }
     },
-    [values, validateOnSubmit, errors],
+    [values, validateOnSubmit, navigate],
   );
 
   return (
