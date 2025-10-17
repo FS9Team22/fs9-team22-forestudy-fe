@@ -1,0 +1,1 @@
+GET  http://localhost:3000/study?orderBy=latest&keyword=&page=1&limit=6;
