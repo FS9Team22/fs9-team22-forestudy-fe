@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getStudy } from '../../api/StudyService';
+import { getStudyList } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
@@ -34,7 +34,7 @@ export default function Home() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const studyData = await getStudy(sortType, keyword, page, LIMIT);
+        const studyData = await getStudyList(sortType, keyword, page, LIMIT);
         // 기존 데이터 이어 붙이기
         if (page === 1)
           setStudies(studyData.data); //첫페이지는 그대로 내려오고 > 이후 이어붙이기
