@@ -20,5 +20,5 @@ http://scripts.sil.org/OFL
   font-display: swap;
   src:
     url('/EF_jejudoldam.woff2') format('woff2'),
-    url('/EF_jejudoldam.woff2') format('woff');
+    url('/EF_jejudoldam.woff') format('woff');
 }
