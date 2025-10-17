@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { getStudy } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
-import { useBreakPoint } from '../../hooks/useBreakPoint';
 
 const LIMIT = 6;
 
@@ -86,7 +86,6 @@ export default function Home() {
           {!loading && studies.length > 0 ? (
             <>
               <StudyCardList cards={studies} />
-
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기
