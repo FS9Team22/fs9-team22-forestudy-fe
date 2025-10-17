@@ -1,7 +1,7 @@
 import './detail.css';
 import { WeeklyHabitTable } from './weeklyHabitTable';
 
-export function DetailPage() {
+export default function DetailPage() {
   return (
     <main className="detail-main">
       <section className="detail-section">
