@@ -39,10 +39,10 @@ export function WeeklyHabitTable() {
         <li>일</li>
       </ul>
       <div className="habit-list-box">
-        {habits.map((habit, rowIndex) => (
+        {habits.map((habit, index) => (
           <WeeklyHabitRow
             key={habit.id}
-            index={rowIndex}
+            rowIndex={index}
             habitName={habit.name}
             weeklyData={habit.data}
           />
