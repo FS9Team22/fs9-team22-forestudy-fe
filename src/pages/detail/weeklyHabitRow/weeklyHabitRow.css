@@ -1,0 +1,28 @@
+.habit-data-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+}
+
+.habit-name {
+  width: 15.375rem;
+  padding: 0 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: end;
+}
+
+.habit-log-list {
+  display: flex;
+  text-align: center;
+}
+
+.habit-log {
+  width: 7.375rem;
+}
+
+.habit-sticker {
+  width: 2.25rem;
+  height: 2.25rem;
+}
