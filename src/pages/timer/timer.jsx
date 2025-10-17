@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import './timer.css';
+import Toast from './components/Toast';
 
 const TimerCard = () => {
   const { studyId } = useParams();
-  console.log('studyId from URL:', studyId);
-
+  const API_URL = import.meta.env.VITE_API_URL;
   const [time, setTime] = useState(25 * 60);
   const [running, setRunning] = useState(false);
   const [paused, setPaused] = useState(false);
@@ -44,22 +44,21 @@ const TimerCard = () => {
   useEffect(() => {
     if (!savePointTrigger) return;
 
-    // TODO: PR 시 실제 백엔드 호출 주석 처리
-    // const savePoint = async () => {
-    //   try {
-    //     if (!studyId) return;
-    //     const response = await fetch(`http://localhost:5000/study/${studyId}/point`, {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify({ point }),
-    //     });
-    //     const data = await response.json();
-    //     console.log("포인트 저장 완료:", data);
-    //   } catch (err) {
-    //     console.error("포인트 저장 에러:", err);
-    //   }
-    // };
-    // savePoint();
+    const savePoint = async () => {
+      try {
+        if (!studyId) return;
+        const response = await fetch(`${API_URL}/study/${studyId}/point`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ point }),
+        });
+        const data = await response.json();
+        console.log('포인트 저장 완료:', data);
+      } catch (err) {
+        console.error('포인트 저장 에러:', err);
+      }
+    };
+    savePoint();
 
     setShowSuccessToast(true);
     const timer = setTimeout(() => {
@@ -69,7 +68,7 @@ const TimerCard = () => {
     }, 2500);
 
     return () => clearTimeout(timer);
-  }, [savePointTrigger, studyId, handleReset]);
+  }, [savePointTrigger, studyId, handleReset, API_URL]);
 
   useEffect(() => {
     let timer;
@@ -163,9 +162,20 @@ const TimerCard = () => {
         </div>
       )}
 
-      {showPauseToast && <div className="toast">🚨 집중이 중단되었습니다.</div>}
+      {showPauseToast && (
+        <Toast
+          message="🚨 집중이 중단되었습니다."
+          type="error"
+          onClose={() => setShowPauseToast(false)}
+        />
+      )}
+
       {showSuccessToast && (
-        <div className="toast success">🎉{point}포인트를 획득했습니다!</div>
+        <Toast
+          message={`🎉${point}포인트를 획득했습니다!`}
+          type="success"
+          onClose={() => setShowSuccessToast(false)}
+        />
       )}
     </div>
   );

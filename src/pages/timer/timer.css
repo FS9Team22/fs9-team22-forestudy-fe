@@ -212,24 +212,3 @@ button.round-btn.reset {
   border-radius: 0.1875rem; /* 3px -> 0.1875rem */
   margin: 0 0.125rem; /* 2px -> 0.125rem */
 }
-
-.toast {
-  position: fixed;
-  bottom: 3.125rem; /* 50px -> 3.125rem */
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.625rem 1.25rem; /* 10px 20px -> 0.625rem 1.25rem */
-  border-radius: 0.5rem; /* 8px -> 0.5rem */
-  font-size: 0.875rem; /* 14px -> 0.875rem */
-  z-index: 1000;
-  opacity: 0.95;
-  background-color: #fde0e9;
-  color: red;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.toast.success {
-  background-color: #e1edde;
-  color: green;
-}
