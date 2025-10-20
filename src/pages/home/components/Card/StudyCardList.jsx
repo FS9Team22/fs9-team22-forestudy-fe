@@ -28,19 +28,12 @@ export function StudyCardList({ className, cards }) {
         }
       >
         {cards.map((card) => (
-          <Link to={`/ study / ${card.id}`} onClick={() => handleOnClick(card)}>
-            <Card
-              key={card.id}
-              title={card.title}
-              nickname={card.nickname}
-              status={card.status}
-              point={card.point}
-              description={card.description}
-              background={card.background}
-              likes={card.likes}
-              views={card.views}
-              comments={card.comments}
-            />
+          <Link
+            key={card.id}
+            to={`/study/${card.id}`}
+            onClick={() => handleOnClick(card)}
+          >
+            <Card card={card} />
           </Link>
         ))}
       </div>
