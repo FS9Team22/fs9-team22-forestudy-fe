@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import './weeklyHabitRow.css';
+import { getHabitCurrentWeekLogListByHabitId } from '../../../api/HabitLogService';
 
 const STICKER_COLOR = [
   '#D2E869',
@@ -20,7 +22,37 @@ const STICKER_COLOR = [
   '#E26575',
 ];
 
-export function WeeklyHabitRow({ rowIndex, habitName, weeklyData }) {
+export function WeeklyHabitRow({ rowIndex, habitId, habitName }) {
+  const [weeklyData, setWeeklyData] = useState(Array(7).fill(false));
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchWeeklyHabitLog = async () => {
+      try {
+        setLoading(true);
+        const response = await getHabitCurrentWeekLogListByHabitId({ habitId });
+        const logs = response.data;
+        const newWeeklyData = Array(7).fill(false);
+        logs.forEach((log) => {
+          const day = new Date(log.loggingDate);
+          const dayIndex = day.getDay() - 1;
+          if (dayIndex !== -1) {
+            newWeeklyData[dayIndex] = true;
+          }
+        });
+        setWeeklyData(newWeeklyData);
+      } catch (err) {
+        setError(err.message);
+        console.error('주간 습관 로그를 불러오는 데 실패했습니다.', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWeeklyHabitLog();
+  }, [habitId]);
+
   const Sticker = ({ fill = '#EEEEEE' }) => (
     <svg
       width="36"
@@ -28,7 +60,7 @@ export function WeeklyHabitRow({ rowIndex, habitName, weeklyData }) {
       viewBox="0 0 36 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="habit-sticker" // CSS 클래스를 직접 적용할 수 있습니다.
+      className="habit-sticker"
     >
       <path
         fillRule="evenodd"
@@ -39,15 +71,34 @@ export function WeeklyHabitRow({ rowIndex, habitName, weeklyData }) {
     </svg>
   );
 
+  if (error) {
+    return (
+      <div className="habit-data-row">
+        <h4 className="habit-name">{`${habitName}`}</h4>
+        <div className="habit-log-list">
+          데이터를 불러오는 중 에러가 발생했습니다.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="habit-data-row">
       <h4 className="habit-name">{`${habitName}`}</h4>
       <ul className="habit-log-list">
-        {weeklyData.map((done, logIndex) => (
-          <li key={logIndex} className="habit-log">
-            {done ? <Sticker fill={STICKER_COLOR[rowIndex]} /> : <Sticker />}
-          </li>
-        ))}
+        {loading && '로딩 중...'}
+        {!loading &&
+          weeklyData.map((done, logIndex) => (
+            <li key={logIndex} className="habit-log">
+              {done ? (
+                <Sticker
+                  fill={STICKER_COLOR[rowIndex % STICKER_COLOR.length]}
+                />
+              ) : (
+                <Sticker />
+              )}
+            </li>
+          ))}
       </ul>
     </div>
   );
