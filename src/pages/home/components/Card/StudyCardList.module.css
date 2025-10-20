@@ -10,16 +10,18 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 1200px) {
-  .cardListContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
+.recentStudies {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.625rem;
+}
 
+@media screen and (max-width: 1200px) {
   .recentStudies {
     display: flex;
     overflow-x: scroll;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 0.625rem;
   }
 }
 
