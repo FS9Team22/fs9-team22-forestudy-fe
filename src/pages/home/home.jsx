@@ -9,10 +9,15 @@ import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
 const ONE_HOUR = 60 * 60 * 1000;
+const MAX_STUDIES_LENGTH = 3;
 const LIMIT = 6;
 
 export default function Home() {
-  const [recentStudies] = useLocalStorage('recentStudies', [], ONE_HOUR);
+  const [recentStudies, setRecentStudies] = useLocalStorage(
+    'recentStudies',
+    [],
+    ONE_HOUR,
+  );
   const { mobile, tablet } = useBreakPoint();
   const [keyword, setKeyword] = useState('');
   const [sortType, setSortType] = useState('latest');
@@ -22,6 +27,17 @@ export default function Home() {
 
   const moreBtnPaging = () => {
     setPage((prev) => prev + 1);
+  };
+
+  const handleOnClick = (study) => {
+    const filteredStudies = recentStudies.filter(
+      (item) => item.id !== study.id,
+    );
+    const updatedStudies = [study, ...filteredStudies].slice(
+      0,
+      MAX_STUDIES_LENGTH,
+    );
+    setRecentStudies(updatedStudies);
   };
 
   // sortType이나 keyword가 바뀌면 page 초기화
@@ -36,7 +52,11 @@ export default function Home() {
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList className={true} cards={recentStudies} />
+            <StudyCardList
+              className={true}
+              cards={recentStudies}
+              listType="recent"
+            />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -61,7 +81,7 @@ export default function Home() {
           </div>
           {!loading && studies.length > 0 ? (
             <>
-              <StudyCardList cards={studies} />
+              <StudyCardList cards={studies} onClick={handleOnClick} />
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기

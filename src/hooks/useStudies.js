@@ -12,6 +12,8 @@ export function useStudies(sortType, keyword, page, LIMIT) {
       try {
         const studyData = await getStudyList(sortType, keyword, page, LIMIT);
         if (page === 1) {
+          setStudies(studyData.data);
+        } else {
           setStudies((prev) => [...prev, ...studyData.data]);
         }
       } catch (err) {
