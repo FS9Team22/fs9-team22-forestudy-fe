@@ -40,7 +40,7 @@ export default function CreatePage() {
   const navigate = useNavigate();
   const setBgSelected = useCallback(
     (id) => {
-      setValues((prev) => ({ ...prev, BACKGROUNDS: id }));
+      setValues((prev) => ({ ...prev, background: id }));
     },
     [setValues],
   );
