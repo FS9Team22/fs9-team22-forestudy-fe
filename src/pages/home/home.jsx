@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useStudies } from '../../hooks/useStudies';
 import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { getStudyList } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
@@ -7,17 +9,17 @@ import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
+const ONE_HOUR = 60 * 60 * 1000;
 const LIMIT = 6;
 
 export default function Home() {
+  const [recentStudies] = useLocalStorage('recentStudies', [], ONE_HOUR);
   const { mobile, tablet } = useBreakPoint();
-  const [recentStudies, setRecentStudies] = useState([]);
-  const [studies, setStudies] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [sortType, setSortType] = useState('latest');
-
   const [page, setPage] = useState(1);
+
+  const { studies, loading } = useStudies(sortType, keyword, page, LIMIT);
 
   const moreBtnPaging = () => {
     setPage((prev) => prev + 1);
@@ -27,28 +29,6 @@ export default function Home() {
   useEffect(() => {
     setPage(1);
   }, [sortType, keyword]);
-
-  useEffect(() => {
-    const savedRecent = localStorage.getItem('recentStudies');
-    if (savedRecent) {
-      setRecentStudies(JSON.parse(savedRecent));
-    }
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const studyData = await getStudyList(sortType, keyword, page, LIMIT);
-        // 기존 데이터 이어 붙이기
-        if (page === 1)
-          setStudies(studyData.data); //첫페이지는 그대로 내려오고 > 이후 이어붙이기
-        else setStudies((prev) => [...prev, ...studyData.data]);
-      } catch (err) {
-        console.error('스터디 가져오기에 실패하였습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [sortType, keyword, page]);
 
   return (
     <>
