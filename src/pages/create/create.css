@@ -45,6 +45,27 @@
   }
 }
 
+.password-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.password-check-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.eye-icons {
+  position: absolute;
+  display: inline-block;
+  top: -5%;
+  left: 93%;
+  margin: 12px 24px 0 0;
+  height: 24px;
+}
+
 .description-textarea {
   resize: none;
   border-radius: 0.9375rem;
