@@ -31,7 +31,7 @@ export async function createStudy(
   }
 }
 
-export async function getStudy(orderBy, keyword, page, limit) {
+export async function getStudyList(orderBy, keyword, page, limit) {
   try {
     const res = await fetch(
       `${BASE_URL}?orderBy=${orderBy}&keyword=${keyword}&page=${page}&limit=${limit}`,
