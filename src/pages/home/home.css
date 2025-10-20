@@ -73,6 +73,7 @@
 
 @media screen and (max-width: 1200px) {
   .home-main-container {
+    max-width: 768px;
     margin: 1.5rem;
   }
 
@@ -82,14 +83,13 @@
     align-items: center;
     margin: 1.25rem 0 1.25rem 0;
   }
-
-  /* @TODO if localhost*/
-  .home-study-on-tablet {
-    overflow-x: scroll;
-  }
 }
 
 @media screen and (max-width: 768px) {
+  .home-main-container {
+    max-width: 375px;
+  }
+
   .home-study-title {
     font-size: 1rem;
   }

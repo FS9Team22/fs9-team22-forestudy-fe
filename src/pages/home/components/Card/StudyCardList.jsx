@@ -5,7 +5,7 @@ import styles from './StudyCardList.module.css';
 
 const ONE_HOUR = 60 * 60 * 1000;
 const MAX_STUDIES_LENGTH = 3;
-export function StudyCardList({ cards }) {
+export function StudyCardList({ className, cards }) {
   const [recentStudies, setRecentStudies] = useLocalStorage(
     'recentStudies',
     [],
@@ -22,9 +22,13 @@ export function StudyCardList({ cards }) {
 
   return (
     <div className={styles.cardListSection}>
-      <div className={styles.cardListContainer}>
+      <div
+        className={
+          className ? `${styles.recentStudies}` : `${styles.cardListContainer}`
+        }
+      >
         {cards.map((card) => (
-          <Link to={`/study/${card.id}`} onClick={() => handleOnClick(card)}>
+          <Link to={`/ study / ${card.id}`} onClick={() => handleOnClick(card)}>
             <Card
               key={card.id}
               title={card.title}

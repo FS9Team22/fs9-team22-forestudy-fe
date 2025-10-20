@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useStudies } from '../../hooks/useStudies';
 import { useBreakPoint } from '../../hooks/useBreakPoint';
-import { getStudyList } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
@@ -37,10 +36,7 @@ export default function Home() {
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList
-              className={'home-study-on-tablet'}
-              cards={recentStudies}
-            />
+            <StudyCardList className={true} cards={recentStudies} />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
