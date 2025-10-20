@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useForm } from '../../hooks/useForm';
 import { createStudy } from '../../api/StudyService';
@@ -10,28 +10,10 @@ import {
 } from './utils/formValidate';
 import { Nav } from '../../components/Nav/Nav';
 import { BackgroundList } from './components/Background';
+import { BACKGROUNDS, INITIAL_VALUE } from './utils/constants';
+import closeEye from '../../assets/icons/btn_visibility_off.svg';
+import openEye from '../../assets/icons/btn_visibility_on.svg';
 import './create.css';
-
-// 배경을 위한 목데이타 (따로파일분리)
-const backgrounds = [
-  { id: 1, type: 'color', value: '#E1EDDE' },
-  { id: 2, type: 'color', value: '#FFF1CC' },
-  { id: 3, type: 'color', value: '#E0F1F5' },
-  { id: 4, type: 'color', value: '#FDE0E9' },
-  { id: 5, type: 'image', value: '/images/desk1.png' },
-  { id: 6, type: 'image', value: '/images/desk2.png' },
-  { id: 7, type: 'image', value: '/images/pattern.png' },
-  { id: 8, type: 'image', value: '/images/leaves.png' },
-];
-
-const initialValues = {
-  nickname: '',
-  title: '',
-  description: '',
-  background: null,
-  password: '',
-  passwordChecker: '',
-};
 
 const backgroundValidator = (value) => {
   if (!value) {
@@ -51,14 +33,25 @@ const validator = {
 
 export default function CreatePage() {
   const { values, errors, handleOnChange, setValues, validateOnSubmit } =
-    useForm(initialValues, validator);
+    useForm(INITIAL_VALUE, validator);
+  const [passwordVisible, setPasswordVisible] = useState(true);
+  const [passwordCheckerVisible, setPasswordCheckerVisible] = useState(true);
+
   const navigate = useNavigate();
   const setBgSelected = useCallback(
     (id) => {
-      setValues((prev) => ({ ...prev, background: id }));
+      setValues((prev) => ({ ...prev, BACKGROUNDS: id }));
     },
     [setValues],
   );
+
+  const handlePasswordVisible = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const handlePasswordCheckerVisible = () => {
+    setPasswordCheckerVisible(!passwordCheckerVisible);
+  };
 
   const handleOnSubmit = useCallback(
     async (e) => {
@@ -105,6 +98,7 @@ export default function CreatePage() {
               onChange={handleOnChange}
               value={values.nickname}
               placeholder="닉네임을 입력해 주세요"
+              aria-label="닉네임을 입력해 주세요"
               required
             />
             {errors.nickname && (
@@ -118,6 +112,7 @@ export default function CreatePage() {
               onChange={handleOnChange}
               value={values.title}
               placeholder="스터디 이름을 입력해주세요"
+              aria-label="스터디 이름을 입력해주세요"
               required
             />
             {errors.title && <span className="error">{errors.title}</span>}
@@ -130,6 +125,7 @@ export default function CreatePage() {
               onChange={handleOnChange}
               value={values.description}
               placeholder="소개 멘트를 작성해 주세요"
+              aria-label="소개 멘트를 작성해 주세요"
               required
             />
             {errors.description && (
@@ -138,34 +134,52 @@ export default function CreatePage() {
 
             <label htmlFor="bg-label">배경 선택</label>
             <BackgroundList
-              backgrounds={backgrounds}
+              backgrounds={BACKGROUNDS}
               bgSelected={values.background}
               setBgSelected={setBgSelected}
             />
 
             <label htmlFor="password">비밀번호</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              onChange={handleOnChange}
-              value={values.password}
-              placeholder="비밀번호를 입력해 주세요"
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                id="password"
+                name="password"
+                type={passwordVisible ? 'password' : 'text'}
+                onChange={handleOnChange}
+                value={values.password}
+                placeholder="비밀번호를 입력해 주세요"
+                aria-label="비밀번호를 입력해 주세요"
+                required
+              />
+              <img
+                src={passwordVisible ? closeEye : openEye}
+                className="eye-icons"
+                alt="비밀번호 표시"
+                onClick={handlePasswordVisible}
+              />
+            </div>
             {errors.password && (
               <span className="error">{errors.password}</span>
             )}
             <label htmlFor="password-check">비밀번호 확인</label>
-            <input
-              id="passwordChecker"
-              name="passwordChecker"
-              type="password"
-              onChange={handleOnChange}
-              value={values.passwordChecker}
-              placeholder="비밀번호를 입력해 주세요"
-              required
-            />
+            <div className="password-check-wrapper">
+              <input
+                id="passwordChecker"
+                name="passwordChecker"
+                type={passwordCheckerVisible ? 'password' : 'text'}
+                onChange={handleOnChange}
+                value={values.passwordChecker}
+                placeholder="비밀번호를 입력해 주세요"
+                aria-label="비밀번호를 입력해 주세요"
+                required
+              />
+              <img
+                src={passwordCheckerVisible ? closeEye : openEye}
+                className="eye-icons"
+                alt="비밀번호확인 표시"
+                onClick={handlePasswordCheckerVisible}
+              />
+            </div>
             {errors.passwordChecker && (
               <span className="error">{errors.passwordChecker}</span>
             )}
