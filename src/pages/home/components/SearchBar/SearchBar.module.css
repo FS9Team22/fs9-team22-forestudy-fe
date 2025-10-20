@@ -26,3 +26,9 @@
     outline: none;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .inputContainer {
+    width: 100%;
+  }
+}

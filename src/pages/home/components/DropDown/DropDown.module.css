@@ -1,6 +1,5 @@
 .dropdownContainer {
   position: relative;
-  width: 11.25rem;
   font-family: Pretendard;
 }
 
@@ -8,6 +7,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 11.25rem;
+  height: 2.625rem;
   padding: 0.5625rem 1.625rem;
   border: 1px solid #ddd;
   border-radius: 0.9375rem;
@@ -19,7 +20,7 @@
 .dropdownHeaderText {
   font-family: Pretendard;
   font-weight: 400;
-  color: #b1b1b1;
+  color: #818181;
 }
 
 .dropdownArrow {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { getStudyList } from '../../api/StudyService';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
@@ -9,6 +10,7 @@ import './home.css';
 const LIMIT = 6;
 
 export default function Home() {
+  const { mobile, tablet } = useBreakPoint();
   const [recentStudies, setRecentStudies] = useState([]);
   const [studies, setStudies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,7 +57,10 @@ export default function Home() {
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList cards={recentStudies} />
+            <StudyCardList
+              className={'home-study-on-tablet'}
+              cards={recentStudies}
+            />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -67,17 +72,20 @@ export default function Home() {
           <div className="home-study-header">
             <h2 className="home-study-title">스터디 둘러보기</h2>
             <div className="home-study-dropdown">
-              <DropDown onSortType={setSortType} />
+              {!tablet || (!mobile && <DropDown onSortType={setSortType} />)}
             </div>
           </div>
 
           <div className="home-study-search">
-            <SearchBar onSearch={setKeyword} />
+            <SearchBar
+              className={mobile && 'home-study-for-mobile'}
+              onSearch={setKeyword}
+            />
+            {tablet || (mobile && <DropDown onSortType={setSortType} />)}
           </div>
           {!loading && studies.length > 0 ? (
             <>
               <StudyCardList cards={studies} />
-
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기
