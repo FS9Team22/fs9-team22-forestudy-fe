@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './TimerCard.module.css';
-import Toast from '../Toast/Toast';
-import { savePoint } from '../../../../api/Point';
+import Toast from '../../../../components/Toast/Toast';
+import { savePoint } from '../../../../api/PointService/PointService';
 
 const TimerCard = ({ setPoints }) => {
   const { studyId } = useParams();

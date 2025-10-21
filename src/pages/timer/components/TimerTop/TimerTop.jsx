@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Reaction from '../Reaction/Reaction';
+import Reaction from '../../../../components/Reaction/Reaction';
 import styles from './TimerTop.module.css';
 
 const TimerTop = ({ studyId, points: externalPoints }) => {
@@ -35,7 +35,7 @@ const TimerTop = ({ studyId, points: externalPoints }) => {
 
   return (
     <div className={styles.timerTop}>
-      <Reaction />
+      <Reaction studyId={studyId} />
       <div className={styles.topRow}>
         <h2 className={styles.title}>{title}</h2>
       </div>
