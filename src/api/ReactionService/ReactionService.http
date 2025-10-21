@@ -1,0 +1,16 @@
+@baseUrl = http://localhost:5000
+@study = cmgu5mynd000eultc1yowvf4d
+@emoji = "❤️"
+
+### 리액션 목록 조회
+GET {{baseUrl}}/study/{{study}}/reaction
+Accept: application/json
+
+
+### 리액션 추가 테스트
+POST {{baseUrl}}/study/{{study}}/reaction
+Content-Type: application/json
+
+{
+  "emoji": {{emoji}}
+}
