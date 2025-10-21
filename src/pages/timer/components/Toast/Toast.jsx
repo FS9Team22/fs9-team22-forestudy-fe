@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './Toast.module.css'; // <-- 여기 꼭 styles로 import
+import styles from './Toast.module.css';
 
 const Toast = ({ message, type = 'info', onClose, duration = 2500 }) => {
   useEffect(() => {

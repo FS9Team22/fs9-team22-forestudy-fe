@@ -1,12 +1,11 @@
 .toast {
   position: fixed;
-  bottom: 3.125rem; /* 50px -> 3.125rem */
+  bottom: 3.125rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 0.625rem 1.25rem; /* 10px 20px -> 0.625rem 1.25rem */
-  border-radius: 0.5rem; /* 8px -> 0.5rem */
-  font-size: 0.875rem; /* 14px -> 0.875rem */
-  z-index: 1000;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
   opacity: 0.95;
   background-color: #fde0e9;
   color: red;
