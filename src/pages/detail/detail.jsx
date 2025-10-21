@@ -7,6 +7,8 @@ import { getStudyById } from '../../api/StudyService';
 import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
 
+const WEB_URL = import.meta.env.VITE_WEB_URL;
+
 export default function DetailPage() {
   const { studyId } = useParams();
   const [study, setStudy] = useState(null);
@@ -41,6 +43,10 @@ export default function DetailPage() {
 
   return (
     <>
+      <title>{'공부의 숲 | ' + study.nickname + '의 ' + study.title}</title>
+      <meta property="og:title" content={'공부의 숲 | ' + study.title} />
+      <meta property="og:url" content={WEB_URL + '/study/' + study.id} />
+      <meta property="og:description" content={study.description} />
       <Nav />
       <main className="detail-main">
         <section className="detail-section">
