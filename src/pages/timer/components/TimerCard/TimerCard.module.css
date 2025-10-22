@@ -1,0 +1,214 @@
+html {
+  font-size: 16px;
+}
+
+/* 페이지 전체 배경 및 중앙 배치 */
+.timerPage {
+  background-color: #f6f4ef;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TimerHeader 박스 */
+.timerHeader {
+  width: 73rem;
+  height: 43.5rem;
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 상단 텍스트 */
+.timerHeader h2 {
+  color: #414141;
+  font-family: Pretendard;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.timerHeader .description {
+  color: #818181;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin: 1.25rem 0 0.625rem;
+}
+
+/* 알약 모양 배지 */
+.pointBadge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.75rem;
+  height: 1.9375rem;
+  padding: 0 0.75rem;
+  border-radius: 3.125rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pointBadge .icon {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #007bff;
+  margin-right: 0.375rem;
+}
+
+.pointBadge .pointBadgeText {
+  color: #414141;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* TimerCard 박스 */
+.timerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  width: 70rem;
+  height: 40rem;
+  padding: 2.5rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 0.0625rem solid #ddd;
+  background: #fff;
+  margin: 1.5rem auto 0 auto;
+}
+
+/* 오늘의 집중 텍스트 */
+.timerCard h3 {
+  color: #414141;
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+/* 타이머 숫자 */
+.time {
+  color: #414141;
+  font-family: Pretendard;
+  font-size: 9.375rem;
+  font-weight: 800;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.time[contenteditable] {
+  outline: none;
+}
+
+.timerBadge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6.75rem;
+  height: 1.9375rem;
+  border-radius: 3.125rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #414141;
+  margin-top: 1rem;
+}
+
+.running {
+  color: red;
+}
+
+.negative {
+  color: #414141 !important;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 1.5rem;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* 버튼 색상별 클래스 */
+.start,
+.stop {
+  width: 20.813rem;
+  height: 3.75rem;
+  border-radius: 3.125rem;
+  background: #99c08e;
+  color: white;
+  font-family: Pretendard;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+/* 버튼 그룹 전체 */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.start.running {
+  background-color: #999;
+}
+
+.time.paused {
+  color: red;
+}
+
+.start.paused {
+  background-color: #999;
+  color: #fff;
+}
+
+.roundBtn {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  background-color: #99c08e;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0;
+}
+
+.roundBtn.pause {
+  background-color: #99c08e;
+}
+
+.roundBtn.reset {
+  background-color: #99c08e;
+  color: white;
+}
+
+.pauseLine {
+  display: inline-block;
+  width: 0.375rem;
+  height: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.1875rem;
+  margin: 0 0.125rem;
+}

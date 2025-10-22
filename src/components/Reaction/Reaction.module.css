@@ -1,0 +1,49 @@
+.reactionContainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.reactionButton {
+  display: flex;
+  justify-content: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  background-color: #505050;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.reactionButton:hover {
+  background-color: #e0e0e0;
+}
+.emojiPickerWrapper {
+  position: absolute;
+  z-index: 100;
+  margin-top: 0.5rem;
+}
+
+.pickerToggle {
+  white-space: nowrap;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  background-color: #505050;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.pickerToggle:hover {
+  background-color: #e0e0e0;
+}
+
+.pickerIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  filter: invert(100%);
+}
