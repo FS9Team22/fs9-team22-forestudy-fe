@@ -1,3 +1,16 @@
+/* 비밀번호 입력 필드의 기본 눈모양 아이콘 숨기기 */
+input[type='password']::-ms-reveal,
+input[type='text']::-ms-clear {
+  display: none;
+}
+
+.input::-webkit-contact-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+/* create page */
 .create-main {
   max-width: 720px;
   margin: 3rem auto;
