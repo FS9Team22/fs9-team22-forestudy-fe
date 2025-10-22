@@ -41,6 +41,16 @@ export default function DetailPage() {
   if (error) return <div>에러: {error}</div>;
   if (!study) return <div>스터디 정보를 찾을 수 없습니다.</div>;
 
+  const handleShare = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      alert('주소가 복사되었습니다!');
+    } catch (err) {
+      console.error('클립보드 복사 실패:', err);
+      alert('주소 복사에 실패했습니다. 다시 시도해주세요.');
+    }
+  };
+
   return (
     <>
       <title>{'공부의 숲 | ' + study.nickname + '의 ' + study.title}</title>
@@ -53,11 +63,23 @@ export default function DetailPage() {
           <div className="section-top-wrap">
             <div className="study-reaction">리액션컴포넌트</div>
             <ul className="top-btn-list">
-              <li>공유하기</li>
+              <li>
+                <button type="button" onClick={handleShare} className="top-btn">
+                  공유하기
+                </button>
+              </li>
               <span>|</span>
-              <li>수정하기</li>
+              <li>
+                <button type="button" className="top-btn">
+                  수정하기
+                </button>
+              </li>
               <span>|</span>
-              <li>삭제하기</li>
+              <li>
+                <button type="button" className="top-btn">
+                  삭제하기
+                </button>
+              </li>
             </ul>
           </div>
           <StudyInfo study={study} />
