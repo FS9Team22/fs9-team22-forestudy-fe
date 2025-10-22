@@ -43,3 +43,10 @@
   object-fit: cover;
   -webkit-user-drag: none;
 }
+
+@media screen and (max-width: 768px) {
+  .bgOptionsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
