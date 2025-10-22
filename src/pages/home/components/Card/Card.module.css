@@ -92,3 +92,10 @@
   font-size: 0.75rem;
   font-weight: bold;
 }
+
+@media screen and (max-width: 1200px) {
+  .card {
+    width: 19.5rem;
+    height: 15.1875rem;
+  }
+}

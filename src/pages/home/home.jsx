@@ -1,52 +1,49 @@
 import { useEffect, useState } from 'react';
-import { getStudyList } from '../../api/StudyService';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useStudies } from '../../hooks/useStudies';
+import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
+const ONE_HOUR = 60 * 60 * 1000;
+const MAX_STUDIES_LENGTH = 3;
 const LIMIT = 6;
 
 export default function Home() {
-  const [recentStudies, setRecentStudies] = useState([]);
-  const [studies, setStudies] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [recentStudies, setRecentStudies] = useLocalStorage(
+    'recentStudies',
+    [],
+    ONE_HOUR,
+  );
+  const { mobile, tablet } = useBreakPoint();
   const [keyword, setKeyword] = useState('');
   const [sortType, setSortType] = useState('latest');
-
   const [page, setPage] = useState(1);
+
+  const { studies, loading } = useStudies(sortType, keyword, page, LIMIT);
 
   const moreBtnPaging = () => {
     setPage((prev) => prev + 1);
+  };
+
+  const handleOnClick = (study) => {
+    const filteredStudies = recentStudies.filter(
+      (item) => item.id !== study.id,
+    );
+    const updatedStudies = [study, ...filteredStudies].slice(
+      0,
+      MAX_STUDIES_LENGTH,
+    );
+    setRecentStudies(updatedStudies);
   };
 
   // sortType이나 keyword가 바뀌면 page 초기화
   useEffect(() => {
     setPage(1);
   }, [sortType, keyword]);
-
-  useEffect(() => {
-    const savedRecent = localStorage.getItem('recentStudies');
-    if (savedRecent) {
-      setRecentStudies(JSON.parse(savedRecent));
-    }
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const studyData = await getStudyList(sortType, keyword, page, LIMIT);
-        // 기존 데이터 이어 붙이기
-        if (page === 1)
-          setStudies(studyData.data); //첫페이지는 그대로 내려오고 > 이후 이어붙이기
-        else setStudies((prev) => [...prev, ...studyData.data]);
-      } catch (err) {
-        console.error('스터디 가져오기에 실패하였습니다.', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [sortType, keyword, page]);
 
   return (
     <>
@@ -55,7 +52,11 @@ export default function Home() {
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList cards={recentStudies} />
+            <StudyCardList
+              className={true}
+              cards={recentStudies}
+              listType="recent"
+            />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -67,17 +68,20 @@ export default function Home() {
           <div className="home-study-header">
             <h2 className="home-study-title">스터디 둘러보기</h2>
             <div className="home-study-dropdown">
-              <DropDown onSortType={setSortType} />
+              {!tablet || (!mobile && <DropDown onSortType={setSortType} />)}
             </div>
           </div>
 
           <div className="home-study-search">
-            <SearchBar onSearch={setKeyword} />
+            <SearchBar
+              className={mobile && 'home-study-for-mobile'}
+              onSearch={setKeyword}
+            />
+            {tablet || (mobile && <DropDown onSortType={setSortType} />)}
           </div>
           {!loading && studies.length > 0 ? (
             <>
-              <StudyCardList cards={studies} />
-
+              <StudyCardList cards={studies} onClick={handleOnClick} />
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기

@@ -15,6 +15,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   color: #414141;
+  margin-bottom: 2rem;
 }
 
 .create-form {
@@ -42,6 +43,27 @@
     font-weight: 400;
     color: #818181;
   }
+}
+
+.password-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.password-check-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.eye-icons {
+  position: absolute;
+  display: inline-block;
+  top: -5%;
+  left: 93%;
+  margin: 12px 24px 0 0;
+  height: 24px;
 }
 
 .description-textarea {
