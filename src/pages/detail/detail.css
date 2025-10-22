@@ -41,8 +41,15 @@
   color: #578246;
 }
 
+.top-btn {
+  border: none;
+  background: none;
+  padding: 0 0;
+  color: #578246;
+}
+
 .top-btn-list > span:last-of-type,
-.top-btn-list > li:last-of-type {
+.top-btn-list > li:last-of-type > .top-btn {
   color: #818181;
 }
 
