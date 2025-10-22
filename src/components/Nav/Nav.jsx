@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import { Link } from 'react-router';
 import styles from './Nav.module.css';
 
-export function Nav() {
+export function Nav({ showBtn }) {
   return (
     <div className={styles.NavContainer}>
       <Link to="/">
@@ -79,7 +80,10 @@ export function Nav() {
           />
         </svg>
       </Link>
-      <Link className={styles.NavLink} to="/create">
+      <Link
+        className={clsx(styles.NavLink, { [styles.show]: showBtn })}
+        to="/create"
+      >
         <p>스터디 만들기</p>
       </Link>
     </div>

@@ -18,7 +18,7 @@ export default function Home() {
     [],
     ONE_HOUR,
   );
-  const { mobile, tablet } = useBreakPoint();
+  const { mobile } = useBreakPoint();
   const [keyword, setKeyword] = useState('');
   const [sortType, setSortType] = useState('latest');
   const [page, setPage] = useState(1);
@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <>
-      <Nav />
+      <Nav showBtn={true} />
       <div className="home-main-container">
         <div className="home-main-top">
           <h2 className="home-study-title">최근 조회한 스터디</h2>
@@ -68,7 +68,7 @@ export default function Home() {
           <div className="home-study-header">
             <h2 className="home-study-title">스터디 둘러보기</h2>
             <div className="home-study-dropdown">
-              {!tablet || (!mobile && <DropDown onSortType={setSortType} />)}
+              {!mobile && <DropDown onSortType={setSortType} />}
             </div>
           </div>
 
@@ -77,7 +77,7 @@ export default function Home() {
               className={mobile && 'home-study-for-mobile'}
               onSearch={setKeyword}
             />
-            {tablet || (mobile && <DropDown onSortType={setSortType} />)}
+            {mobile && <DropDown onSortType={setSortType} />}
           </div>
           {!loading && studies.length > 0 ? (
             <>
