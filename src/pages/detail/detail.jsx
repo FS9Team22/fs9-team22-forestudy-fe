@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Nav } from '../../components/Nav/Nav';
-import './detail.css';
 import { WeeklyHabitTable } from './weeklyHabitTable';
 import { getStudyById } from '../../api/StudyService';
 import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
+import Toast from '../../components/Toast/Toast';
+import './detail.css';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
 
@@ -15,6 +16,8 @@ export default function DetailPage() {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,10 +47,10 @@ export default function DetailPage() {
   const handleShare = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      alert('주소가 복사되었습니다!');
+      setShowSuccessToast(true);
     } catch (err) {
       console.error('클립보드 복사 실패:', err);
-      alert('주소 복사에 실패했습니다. 다시 시도해주세요.');
+      setShowErrorToast(true);
     }
   };
 
@@ -86,6 +89,20 @@ export default function DetailPage() {
           <WeeklyHabitTable habits={habits} />
         </section>
       </main>
+      {showSuccessToast && (
+        <Toast
+          message="주소가 복사되었습니다!"
+          type="success"
+          onClose={() => setShowSuccessToast(false)}
+        />
+      )}
+      {showErrorToast && (
+        <Toast
+          message="주소 복사에 실패했습니다. 다시 시도해주세요."
+          type="error"
+          onClose={() => setShowErrorToast(false)}
+        />
+      )}
     </>
   );
 }
