@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import './NavButton.css';
 
 function NavButton({ children, to, size = 'default' }) {

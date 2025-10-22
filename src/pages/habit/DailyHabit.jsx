@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './DailyHabit.css';
 import { HomeButton, TimerButton } from '../../components/Button/NavButton';
 
 const TIME_UPDATE_INTERVAL = 1000;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export default function DailyHabit() {
+  const { studyId } = useParams();
   const [goalList, setGoalList] = useState([]);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editGoalList, setEditGoalList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timeUpdate = setInterval(() => {
@@ -17,6 +21,26 @@ export default function DailyHabit() {
 
     return () => clearInterval(timeUpdate);
   }, []);
+
+  useEffect(() => {
+    const fetchHabits = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${API_URL}/study/${studyId}/habits`);
+        const data = await response.json();
+
+        if (data.success) {
+          setGoalList(data.data);
+        }
+      } catch (error) {
+        console.error('습관 조회 실패:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHabits();
+  }, [studyId]);
 
   const formatTimeString = (time) => {
     const year = time.getFullYear();
@@ -31,12 +55,24 @@ export default function DailyHabit() {
     return `${year}-${month}-${day} ${period} ${displayHour}:${minute}:${second}`;
   };
 
-  const handleGoalStatusChange = (id) => {
-    setGoalList(
-      goalList.map((goal) =>
-        goal.id === id ? { ...goal, isDone: !goal.isDone } : goal,
-      ),
-    );
+  const handleGoalStatusChange = async (id) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/study/${studyId}/habits/${id}/status`,
+        { method: 'PATCH' },
+      );
+      const data = await response.json();
+
+      if (data.success) {
+        setGoalList(
+          goalList.map((goal) =>
+            goal.id === id ? { ...goal, isDone: !goal.isDone } : goal,
+          ),
+        );
+      }
+    } catch (error) {
+      console.error('상태 변경 실패:', error);
+    }
   };
 
   const handleModalOpen = () => {
@@ -48,9 +84,47 @@ export default function DailyHabit() {
     setIsModalOpen(false);
   };
 
-  const handleGoalListSave = () => {
-    setGoalList([...editGoalList]);
-    setIsModalOpen(false);
+  const handleGoalListSave = async () => {
+    try {
+      const deletedGoals = goalList.filter(
+        (goal) => !editGoalList.find((edit) => edit.id === goal.id),
+      );
+
+      for (const goal of deletedGoals) {
+        await fetch(`${API_URL}/study/${studyId}/habits/${goal.id}`, {
+          method: 'DELETE',
+        });
+      }
+
+      for (const goal of editGoalList) {
+        const originalGoal = goalList.find((g) => g.id === goal.id);
+
+        if (!originalGoal) {
+          await fetch(`${API_URL}/study/${studyId}/habits`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: goal.text }),
+          });
+        } else if (originalGoal.text !== goal.text) {
+          await fetch(`${API_URL}/study/${studyId}/habits/${goal.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: goal.text }),
+          });
+        }
+      }
+
+      const response = await fetch(`${API_URL}/study/${studyId}/habits`);
+      const data = await response.json();
+
+      if (data.success) {
+        setGoalList(data.data);
+      }
+
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('저장 실패:', error);
+    }
   };
 
   const handleGoalDelete = (id) => {
@@ -58,10 +132,7 @@ export default function DailyHabit() {
   };
 
   const handleGoalAdd = () => {
-    const newId =
-      editGoalList.length > 0
-        ? Math.max(...editGoalList.map((goal) => goal.id)) + 1
-        : 1;
+    const newId = Date.now();
     setEditGoalList([...editGoalList, { id: newId, text: '', isDone: false }]);
   };
 
@@ -73,11 +144,15 @@ export default function DailyHabit() {
     );
   };
 
+  if (isLoading) {
+    return <div className="habit-container">로딩 중...</div>;
+  }
+
   return (
     <div className="habit-container">
       <div className="logo-section">
         <div className="logo-box">
-          <img src="/your-logo.png" className="logo-image" />
+          <img src="/your-logo.png" className="logo-image" alt="logo" />
         </div>
       </div>
 
@@ -86,7 +161,7 @@ export default function DailyHabit() {
           <div className="header">
             <h1 className="title">2팀</h1>
             <div className="nav-buttons">
-              <TimerButton />
+              <TimerButton studyId={studyId} />
               <HomeButton />
             </div>
           </div>
