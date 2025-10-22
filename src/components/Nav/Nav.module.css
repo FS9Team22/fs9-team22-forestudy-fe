@@ -22,6 +22,7 @@
   font-size: 1.125rem;
   font-family: JejuDoldam, serif !important;
   text-decoration: none;
+  visibility: hidden;
 
   &:hover {
     background-color: #99c86ec2;
@@ -30,6 +31,10 @@
   &:active {
     background-color: #729651;
   }
+}
+
+.show {
+  visibility: visible;
 }
 
 @media screen and (max-width: 1200px) {
