@@ -51,6 +51,7 @@ const BACKGROUND_MAP = {
   },
 };
 export function Card({ card }) {
+  console.log(card);
   const overlayStyle = BACKGROUND_MAP[card.background] || {
     backgroundColor: '#000',
     nicknameColor: '#fff',
@@ -109,7 +110,7 @@ export function Card({ card }) {
             {card.point}P 획득
           </span>
         </div>
-        <p className={styles.status}>{status}</p>
+        {/* <p className={styles.status}>{status}</p> */}
         <p className={styles.quote} style={{ color: overlayStyle.otherColor }}>
           {card.description}
         </p>
