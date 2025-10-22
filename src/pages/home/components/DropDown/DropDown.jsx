@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import styles from './DropDown.module.css';
 
-// mock
 const sortOptions = [
   { id: 1, name: '최근 순', value: 'latest' },
   { id: 2, name: '오래된 순', value: 'oldest' },

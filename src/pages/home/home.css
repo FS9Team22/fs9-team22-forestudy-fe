@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 19px 119px;
+  padding: 1.1875rem;
   background-color: #fff;
 }
 
@@ -69,4 +69,51 @@
   font-weight: 500;
   padding: 5rem 0;
   color: #b1b1b1;
+}
+
+@media screen and (max-width: 1200px) {
+  .home-main-container {
+    max-width: 768px;
+    margin: 1.5rem;
+  }
+
+  .home-study-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0 1.25rem 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-main-container {
+    max-width: 375px;
+  }
+
+  .home-study-title {
+    font-size: 1rem;
+  }
+
+  .home-study-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-study-search {
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
+  }
+
+  .no-studies-message {
+    font-size: 1rem;
+  }
+
+  .home-main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem;
+    background-color: #fff;
+  }
 }
