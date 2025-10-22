@@ -50,18 +50,9 @@ const BACKGROUND_MAP = {
     nicknameColor: '#fff',
   },
 };
-export function Card({
-  title,
-  nickname,
-  status,
-  point,
-  description,
-  background,
-  likes,
-  views,
-  comments,
-}) {
-  const overlayStyle = BACKGROUND_MAP[background] || {
+export function Card({ card }) {
+  console.log(card);
+  const overlayStyle = BACKGROUND_MAP[card.background] || {
     backgroundColor: '#000',
     nicknameColor: '#fff',
     otherColor: '#111',
@@ -76,13 +67,13 @@ export function Card({
               className={styles.title}
               style={{ color: overlayStyle.nicknameColor }}
             >
-              {nickname}
+              {card.nickname}
             </h2>
             <h2
               className={styles.title}
               style={{ color: overlayStyle.otherColor }}
             >
-              {title}
+              {card.title}
             </h2>
           </div>
           <span
@@ -116,25 +107,25 @@ export function Card({
                 </clipPath>
               </defs>
             </svg>
-            {point}P 획득
+            {card.point}P 획득
           </span>
         </div>
-        <p className={styles.status}>{status}</p>
+        {/* <p className={styles.status}>{status}</p> */}
         <p className={styles.quote} style={{ color: overlayStyle.otherColor }}>
-          {description}
+          {card.description}
         </p>
         <div className={styles.footer}>
           <div className={styles.reaction}>
             <span className={styles.icon}>👩🏻‍💻</span>
-            <span className={styles.count}>{comments}</span>
+            <span className={styles.count}>{card.comments}</span>
           </div>
           <div className={styles.reaction}>
             <span className={styles.icon}>🔥</span>
-            <span className={styles.count}>{views}</span>
+            <span className={styles.count}>{card.views}</span>
           </div>
           <div className={styles.reaction}>
             <span className={styles.icon}>🤍️</span>
-            <span className={styles.count}>{likes}</span>
+            <span className={styles.count}>{card.likes}</span>
           </div>
         </div>
       </div>
