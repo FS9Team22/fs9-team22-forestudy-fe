@@ -51,7 +51,6 @@ const BACKGROUND_MAP = {
   },
 };
 export function Card({ card }) {
-  console.log(card);
   const overlayStyle = BACKGROUND_MAP[card.background] || {
     backgroundColor: '#000',
     nicknameColor: '#fff',
@@ -67,7 +66,7 @@ export function Card({ card }) {
               className={styles.title}
               style={{ color: overlayStyle.nicknameColor }}
             >
-              {card.nickname}
+              {card.nickname}의
             </h2>
             <h2
               className={styles.title}

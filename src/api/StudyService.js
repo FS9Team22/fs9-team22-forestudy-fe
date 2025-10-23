@@ -22,11 +22,11 @@ export async function createStudy(
       }),
     });
 
-    if (!res.ok) throw new Error('HTTP error!');
+    if (!res.ok) throw new Error(`에러코드: ${res.status} / ${res.statusText}`);
     const data = await res.json();
     return data;
   } catch (err) {
-    console.error('create.... error');
+    console.error('API 요청 실패:', err);
     throw err;
   }
 }
@@ -34,17 +34,13 @@ export async function createStudy(
 export async function getStudyList(orderBy, keyword, page, limit) {
   try {
     const res = await fetch(
-      `${BASE_URL}?orderBy=${orderBy}&keyword=${keyword}&page=${page}&limit=${limit}`,
-      {
-        method: 'GET',
-      },
+      `${BASE_URL}?orderBy=${orderBy}&keyword=${encodeURIComponent(keyword)}&page=${page}&limit=${limit}`,
     );
+    if (!res.ok) throw new Error(`에러코드: ${res.status} / ${res.statusText}`);
     const data = await res.json();
     return data;
   } catch (err) {
-    console.log(err.status);
-    console.log(err.message);
-    console.error('get... error');
+    console.error('점검중 입니다.', err);
     throw err;
   }
 }

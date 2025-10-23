@@ -14,8 +14,7 @@
 /* ------ 스터디 둘러보기 + 드롭다운   ------*/
 .home-study-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  place-items: center;
 }
 
 .home-study-title {
@@ -25,12 +24,16 @@
   color: #414141;
 }
 
+.home-study-title-recent {
+  margin-bottom: 1.875rem;
+}
+
 .home-study-dropdown {
   margin-left: auto;
 }
 
 .home-study-search {
-  margin: 12px 0 20px;
+  margin: 1.5rem 0 1.5rem;
 }
 
 /*------- 더보기 버튼 ---------*/
@@ -92,17 +95,20 @@
 
   .home-study-title {
     font-size: 1rem;
+    font-weight: 800;
   }
 
   .home-study-header {
     display: flex;
     flex-direction: column;
+    place-items: flex-start;
   }
 
   .home-study-search {
     display: flex;
     flex-direction: column;
     align-items: self-end;
+    gap: 0.75rem;
   }
 
   .no-studies-message {
