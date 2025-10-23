@@ -17,7 +17,7 @@ export function useStudies(sortType, keyword, page, LIMIT) {
           setStudies((prev) => [...prev, ...studyData.data]);
         }
       } catch (err) {
-        console.error('스터디 가져오기에 실패하였습니다.', err);
+        alert(`스터디 가져오기에 실패하였습니다: ${err.message}`);
       } finally {
         if (!ignore) setLoading(false);
       }
