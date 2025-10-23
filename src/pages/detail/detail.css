@@ -53,25 +53,7 @@
   color: #818181;
 }
 
-.section-title-wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
-  height: 3rem;
-}
-
 .link-btn-list {
   display: flex;
   gap: 1rem;
-}
-
-.section-mid-wrap {
-  margin-top: 1rem;
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-
-.point-box {
-  margin-top: 1.5rem;
 }
