@@ -29,7 +29,7 @@ export default function Home() {
     setPage((prev) => prev + 1);
   };
 
-  const handleOnClick = (study) => {
+  const handleOnLocalStorage = (study) => {
     const filteredStudies = recentStudies.filter(
       (item) => item.id !== study.id,
     );
@@ -54,11 +54,7 @@ export default function Home() {
             최근 조회한 스터디
           </h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList
-              className={true}
-              cards={recentStudies}
-              listType="recent"
-            />
+            <StudyCardList className={true} cards={recentStudies} />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -83,7 +79,7 @@ export default function Home() {
           </div>
           {!loading && studies.length > 0 ? (
             <>
-              <StudyCardList cards={studies} onClick={handleOnClick} />
+              <StudyCardList cards={studies} setLocal={handleOnLocalStorage} />
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기
