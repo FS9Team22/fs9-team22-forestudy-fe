@@ -19,3 +19,18 @@
 .weekname > li {
   width: 7.375rem;
 }
+
+@media screen and (max-width: 1200px) {
+  .weekname > li {
+    width: 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-weeklyhabit-wrap {
+    overflow-x: auto;
+  }
+  .weekname {
+    width: 34.5rem;
+  }
+}
