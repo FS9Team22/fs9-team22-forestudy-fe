@@ -1,19 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router';
+import { useState, useEffect, useCallback } from 'react';
 import styles from './TimerCard.module.css';
 import Toast from '../../../../components/Toast/Toast';
 import { savePoint } from '../../../../api/PointService/PointService';
 
-const TimerCard = ({ setPoints }) => {
-  const { studyId } = useParams();
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  const [time, setTime] = useState(25 * 60);
+const TimerCard = ({ study, setStudy }) => {
+  const studyId = study.id;
+  const TIMER_MIN = 25;
+  const [time, setTime] = useState(TIMER_MIN * 60);
   const [running, setRunning] = useState(false);
   const [paused, setPaused] = useState(false);
   const [started, setStarted] = useState(false);
   const [fixedTime, setFixedTime] = useState(null);
-  const [inputTimeStr, setInputTimeStr] = useState('25:00');
+  const [inputTimeStr, setInputTimeStr] = useState(`${TIMER_MIN}:00`);
   const point = 100;
 
   const [showPauseToast, setShowPauseToast] = useState(false);
@@ -27,14 +25,14 @@ const TimerCard = ({ setPoints }) => {
 
   useEffect(() => {
     if (showPauseToast) {
-      const timer = setTimeout(() => setShowPauseToast(false), 2500);
+      const timer = setTimeout(() => setShowPauseToast(false), TIMER_MIN * 100);
       return () => clearTimeout(timer);
     }
   }, [showPauseToast]);
 
   const handleReset = useCallback(() => {
     const [m, s] = inputTimeStr.split(':').map(Number);
-    setTime(!isNaN(m) && !isNaN(s) ? m * 60 + s : 25 * 60);
+    setTime(!isNaN(m) && !isNaN(s) ? m * 60 + s : TIMER_MIN * 60);
     setRunning(false);
     setPaused(false);
     setStarted(false);
@@ -72,21 +70,22 @@ const TimerCard = ({ setPoints }) => {
   };
 
   const handleStop = async () => {
-    if (!running) return;
     setRunning(false);
-    setStarted(false);
     console.log('Stop 클릭', { studyId, point });
     try {
       const data = await savePoint(studyId, point);
       console.log('포인트 저장 성공', { data });
 
-      setPoints((prev) => prev + point);
+      setStudy((prevStudy) => ({
+        ...prevStudy,
+        point: prevStudy.point + point,
+      }));
 
       setShowSuccessToast(true);
       const timer = setTimeout(() => {
         setShowSuccessToast(false);
         handleReset();
-      }, 2500);
+      }, TIMER_MIN * 100);
       return () => clearTimeout(timer);
     } catch (err) {
       console.error('포인트 저장 실패:', err);
