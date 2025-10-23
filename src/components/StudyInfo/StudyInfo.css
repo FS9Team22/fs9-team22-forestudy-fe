@@ -11,3 +11,12 @@
   font-size: 1.125rem;
   font-weight: 500;
 }
+
+@media screen and (max-width: 768px) {
+  .section-title-wrap {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    height: auto;
+  }
+}
