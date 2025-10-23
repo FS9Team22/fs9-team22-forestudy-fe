@@ -50,7 +50,9 @@ export default function Home() {
       <Nav showBtn={true} />
       <div className="home-main-container">
         <div className="home-main-top">
-          <h2 className="home-study-title">최근 조회한 스터디</h2>
+          <h2 className="home-study-title home-study-title-recent">
+            최근 조회한 스터디
+          </h2>
           {recentStudies.length > 0 ? (
             <StudyCardList
               className={true}
@@ -74,7 +76,7 @@ export default function Home() {
 
           <div className="home-study-search">
             <SearchBar
-              className={mobile && 'home-study-for-mobile'}
+              className={mobile ? 'home-study-for-mobile' : 'home-study-search'}
               onSearch={setKeyword}
             />
             {mobile && <DropDown onSortType={setSortType} />}
