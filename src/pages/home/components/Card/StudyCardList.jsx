@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { Card } from './Card';
 import styles from './StudyCardList.module.css';
 
-export function StudyCardList({ className, cards, onClick }) {
+export function StudyCardList({ className, cards, setLocal }) {
   return (
     <div className={styles.cardListSection}>
       <div
@@ -14,7 +14,7 @@ export function StudyCardList({ className, cards, onClick }) {
           <Link
             key={card.id}
             to={`/study/${card.id}`}
-            onClick={() => onClick(card)}
+            onClick={() => setLocal(card)}
           >
             <Card card={card} />
           </Link>
