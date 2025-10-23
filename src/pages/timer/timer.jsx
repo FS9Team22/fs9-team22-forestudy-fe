@@ -4,6 +4,7 @@ import { getStudyById } from '../../api/StudyService';
 import TimerCard from './components/TimerCard/TimerCard';
 import TimerBox from './components/TimerBox/TimerBox';
 import TimerTop from './components/TimerTop/TimerTop';
+import { Nav } from '../../components/Nav/Nav';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);
@@ -27,19 +28,22 @@ export default function TimerPage() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div
-      className="timer-page"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        marginTop: '5rem',
-      }}
-    >
-      <TimerBox>
-        <TimerTop study={study} />
-        <TimerCard study={study} setStudy={setStudy} />
-      </TimerBox>
-    </div>
+    <>
+      <Nav />
+      <div
+        className="timer-page"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginTop: '5rem',
+        }}
+      >
+        <TimerBox>
+          <TimerTop study={study} />
+          <TimerCard study={study} setStudy={setStudy} />
+        </TimerBox>
+      </div>
+    </>
   );
 }
