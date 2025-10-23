@@ -111,5 +111,6 @@ export const logoutStudy = async function ({ id, token }) {
     );
   }
 
-  return res.json();
+  const data = await res.json();
+  return data;
 };
