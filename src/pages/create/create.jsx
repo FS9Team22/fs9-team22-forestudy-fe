@@ -96,7 +96,7 @@ export default function CreatePage() {
             {errors.nickname && (
               <span className="error">{errors.nickname}</span>
             )}
-            <label htmlFor="study-name">스터디 이름</label>
+            <label htmlFor="title">스터디 이름</label>
             <input
               id="title"
               name="title"
@@ -153,7 +153,7 @@ export default function CreatePage() {
             {errors.password && (
               <span className="error">{errors.password}</span>
             )}
-            <label htmlFor="password-check">비밀번호 확인</label>
+            <label htmlFor="passwordChecker">비밀번호 확인</label>
             <div className="password-check-wrapper">
               <input
                 id="passwordChecker"
