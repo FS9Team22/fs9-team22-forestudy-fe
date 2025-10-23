@@ -26,3 +26,18 @@
   width: 2.25rem;
   height: 2.25rem;
 }
+
+@media screen and (max-width: 1200px) {
+  .habit-name {
+    padding: 0 0.8rem;
+  }
+  .habit-log {
+    width: 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .habit-data-row {
+    width: 34.5rem;
+  }
+}
