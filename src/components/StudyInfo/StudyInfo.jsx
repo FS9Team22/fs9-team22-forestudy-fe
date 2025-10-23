@@ -1,3 +1,6 @@
+import './StudyInfo.css';
+import Point from '../Point/Point';
+
 export function StudyInfo({ study }) {
   return (
     <>
@@ -17,10 +20,7 @@ export function StudyInfo({ study }) {
           <h3 className="small-header">소개</h3>
           <p className="study-description">{study.description}</p>
         </div>
-        <div className="point-box">
-          <h3 className="small-header">현재까지 획득한 포인트</h3>
-          <div>포인트알약컴포넌트</div>
-        </div>
+        <Point points={study.point} />
       </div>
     </>
   );

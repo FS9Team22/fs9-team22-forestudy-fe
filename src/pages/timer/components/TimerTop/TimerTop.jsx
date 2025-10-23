@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Reaction from '../../../../components/Reaction/Reaction';
 import styles from './TimerTop.module.css';
+import Point from '../../../../components/Point/Point';
 
 const TimerTop = ({ studyId, points: externalPoints }) => {
   const [title, setTitle] = useState('');
@@ -41,17 +42,7 @@ const TimerTop = ({ studyId, points: externalPoints }) => {
         <h2 className={styles.title}>{title}</h2>
       </div>
 
-      <div className={styles.pointsSection}>
-        <p>현재까지 획득한 포인트</p>
-        <span className={styles.point}>
-          <img
-            src="/images/ic_point.png"
-            alt="point"
-            className={styles.pointIcon}
-          />
-          {points}P 획득
-        </span>
-      </div>
+      <Point points={points} />
     </div>
   );
 };
