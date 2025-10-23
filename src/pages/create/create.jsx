@@ -45,14 +45,6 @@ export default function CreatePage() {
     [setValues],
   );
 
-  const handlePasswordVisible = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const handlePasswordCheckerVisible = () => {
-    setPasswordCheckerVisible(!passwordCheckerVisible);
-  };
-
   const handleOnSubmit = useCallback(
     async (e) => {
       e.preventDefault();
@@ -132,7 +124,7 @@ export default function CreatePage() {
               <span className="error">{errors.description}</span>
             )}
 
-            <label htmlFor="bg-label">배경 선택</label>
+            <label htmlFor="bg-label">배경을 선택해주세요</label>
             <BackgroundList
               backgrounds={BACKGROUNDS}
               bgSelected={values.background}
@@ -155,7 +147,7 @@ export default function CreatePage() {
                 src={passwordVisible ? closeEye : openEye}
                 className="eye-icons"
                 alt="비밀번호 표시"
-                onClick={handlePasswordVisible}
+                onClick={() => setPasswordVisible((prev) => !prev)}
               />
             </div>
             {errors.password && (
@@ -177,7 +169,7 @@ export default function CreatePage() {
                 src={passwordCheckerVisible ? closeEye : openEye}
                 className="eye-icons"
                 alt="비밀번호확인 표시"
-                onClick={handlePasswordCheckerVisible}
+                onClick={() => setPasswordCheckerVisible((prev) => !prev)}
               />
             </div>
             {errors.passwordChecker && (
