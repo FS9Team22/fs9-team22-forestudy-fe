@@ -1,3 +1,7 @@
+import workspaceWindowDeskImg from '../../../../assets/card/images/desk1.png';
+import workspaceDetailDeskImg from '../../../../assets/card/images/desk2.png';
+import patternImg from '../../../../assets/card/images/pattern.png';
+import leavesImg from '../../../../assets/card/images/leaves.png';
 import styles from './Card.module.css';
 
 const BACKGROUND_MAP = {
@@ -22,29 +26,25 @@ const BACKGROUND_MAP = {
     otherColor: '#111',
   },
   5: {
-    backgroundImage:
-      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/desk1.png)',
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${workspaceWindowDeskImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     nicknameColor: '#fff',
   },
   6: {
-    background:
-      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/desk2.png)',
+    background: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${workspaceDetailDeskImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     nicknameColor: '#fff',
   },
   7: {
-    backgroundImage:
-      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/pattern.png)',
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${patternImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     nicknameColor: '#fff',
   },
   8: {
-    backgroundImage:
-      'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(/images/leaves.png)',
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${leavesImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     nicknameColor: '#fff',
