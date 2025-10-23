@@ -7,6 +7,7 @@ import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
 import Toast from '../../components/Toast/Toast';
 import './detail.css';
+import Reaction from '../../components/Reaction/Reaction';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
 
@@ -64,7 +65,9 @@ export default function DetailPage() {
       <main className="detail-main">
         <section className="detail-section">
           <div className="section-top-wrap">
-            <div className="study-reaction">리액션컴포넌트</div>
+            <div className="study-reaction">
+              <Reaction studyId={study.id} />
+            </div>
             <ul className="top-btn-list">
               <li>
                 <button type="button" onClick={handleShare} className="top-btn">

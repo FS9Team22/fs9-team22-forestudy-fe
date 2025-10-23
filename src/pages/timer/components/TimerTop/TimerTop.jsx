@@ -37,7 +37,6 @@ const TimerTop = ({ studyId, points: externalPoints }) => {
 
   return (
     <div className={styles.timerTop}>
-      <Reaction studyId={studyId} />
       <div className={styles.topRow}>
         <h2 className={styles.title}>{title}</h2>
       </div>
