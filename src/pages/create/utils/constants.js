@@ -13,7 +13,7 @@ const INITIAL_VALUE = {
   nickname: '',
   title: '',
   description: '',
-  background: null,
+  background: 1,
   password: '',
   passwordChecker: '',
 };
