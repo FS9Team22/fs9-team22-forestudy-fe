@@ -56,3 +56,60 @@ export const getStudyById = async function ({ id }) {
   const data = await res.json();
   return data;
 };
+
+export const deleteStudyById = async function ({ id, password }) {
+  const url = `${BASE_URL}/${id}`;
+  const res = await fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      password,
+    }),
+  });
+  if (!res.ok) {
+    throw new Error(
+      `리퀘스트 에러: ${res.status}, 에러 메시지: ${res.statusText}`,
+    );
+  }
+  const data = await res.json();
+  return data;
+};
+
+export const loginStudy = async function ({ id, password }) {
+  const url = `${BASE_URL}/${id}/login`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ password }),
+  });
+  if (!res.ok) {
+    throw new Error(
+      `리퀘스트 에러: ${res.status}, 에러 메시지: ${res.statusText}`,
+    );
+  }
+  const data = await res.json();
+  return data;
+};
+
+export const logoutStudy = async function ({ id, token }) {
+  const url = `${BASE_URL}/${id}/logout`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(
+      `리퀘스트 에러: ${res.status}, 에러 메시지: ${res.statusText}`,
+    );
+  }
+
+  return res.json();
+};
