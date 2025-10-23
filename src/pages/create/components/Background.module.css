@@ -2,6 +2,7 @@
 .bgOptionsContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
 }
 
 .bgOptions {
@@ -12,8 +13,6 @@
   border-radius: 1rem;
   overflow: hidden;
   cursor: pointer;
-  margin-left: 8px;
-  margin-right: 8px;
 
   & input {
     display: none;
@@ -38,7 +37,9 @@
   z-index: 1;
 }
 
-.bgOptions .bgPreview {
+.bgPreview {
+  position: absolute;
+  width: 9.375rem;
   height: 9.375rem;
   object-fit: cover;
   -webkit-user-drag: none;
