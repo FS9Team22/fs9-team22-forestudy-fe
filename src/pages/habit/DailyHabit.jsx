@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import './DailyHabit.css';
 import { HomeButton, TimerButton } from '../../components/Button/NavButton';
-import Nav from '../../components/Nav/Nav';
+import { Nav } from '../../components/Nav/Nav';
 
 const TIME_UPDATE_INTERVAL = 1000;
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
