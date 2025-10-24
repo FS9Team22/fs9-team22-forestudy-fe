@@ -2,12 +2,17 @@
 .NavContainer {
   max-width: 1920px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 12.5rem;
   width: 100%;
   height: 6.25rem;
   margin: 0 auto;
+  padding: 0 13.75rem;
+}
+
+.NavMainLogo > img {
+  width: 11.35rem;
 }
 
 .NavLink {
@@ -22,7 +27,6 @@
   font-size: 1.125rem;
   font-family: JejuDoldam, serif !important;
   text-decoration: none;
-  visibility: hidden;
 
   &:hover {
     background-color: #99c86ec2;
@@ -35,10 +39,6 @@
   & p {
     text-shadow: 1px -1px 3px rgba(0, 0, 0, 7);
   }
-}
-
-.show {
-  visibility: visible;
 }
 
 @media screen and (max-width: 1200px) {
@@ -59,9 +59,8 @@
 }
 
 @media screen and (max-width: 376px) {
-  .NavContainer svg {
+  .NavMainLogo > img {
     width: 6.625rem;
-    height: 2.1875rem;
   }
 
   .NavLink {
