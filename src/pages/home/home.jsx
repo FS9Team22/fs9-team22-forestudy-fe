@@ -3,7 +3,6 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useStudies } from '../../hooks/useStudies';
 import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { StudyCardList } from './components/Card/StudyCardList';
-import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
@@ -29,7 +28,7 @@ export default function Home() {
     setPage((prev) => prev + 1);
   };
 
-  const handleOnClick = (study) => {
+  const handleOnLocalStorage = (study) => {
     const filteredStudies = recentStudies.filter(
       (item) => item.id !== study.id,
     );
@@ -47,16 +46,13 @@ export default function Home() {
 
   return (
     <>
-      <Nav showBtn={true} />
       <div className="home-main-container">
         <div className="home-main-top">
-          <h2 className="home-study-title">최근 조회한 스터디</h2>
+          <h2 className="home-study-title home-study-title-recent">
+            최근 조회한 스터디
+          </h2>
           {recentStudies.length > 0 ? (
-            <StudyCardList
-              className={true}
-              cards={recentStudies}
-              listType="recent"
-            />
+            <StudyCardList className={true} cards={recentStudies} />
           ) : (
             <div className="no-studies-message">
               아직 조회한 스터디가 없어요
@@ -74,14 +70,14 @@ export default function Home() {
 
           <div className="home-study-search">
             <SearchBar
-              className={mobile && 'home-study-for-mobile'}
+              className={mobile ? 'home-study-for-mobile' : 'home-study-search'}
               onSearch={setKeyword}
             />
             {mobile && <DropDown onSortType={setSortType} />}
           </div>
           {!loading && studies.length > 0 ? (
             <>
-              <StudyCardList cards={studies} onClick={handleOnClick} />
+              <StudyCardList cards={studies} setLocal={handleOnLocalStorage} />
               <div className="home-main-btn">
                 <button className="home-card-more" onClick={moreBtnPaging}>
                   더보기

@@ -8,7 +8,6 @@ import {
   descriptionValidator,
   passwordValidator,
 } from './utils/formValidate';
-import { Nav } from '../../components/Nav/Nav';
 import { BackgroundList } from './components/Background';
 import { BACKGROUNDS, INITIAL_VALUE } from './utils/constants';
 import closeEye from '../../assets/icons/btn_visibility_off.svg';
@@ -45,14 +44,6 @@ export default function CreatePage() {
     [setValues],
   );
 
-  const handlePasswordVisible = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const handlePasswordCheckerVisible = () => {
-    setPasswordCheckerVisible(!passwordCheckerVisible);
-  };
-
   const handleOnSubmit = useCallback(
     async (e) => {
       e.preventDefault();
@@ -84,7 +75,6 @@ export default function CreatePage() {
 
   return (
     <>
-      <Nav />
       <main className="create-main">
         <div className="create-container">
           <h2 className="create-title">스터디 만들기</h2>
@@ -104,7 +94,7 @@ export default function CreatePage() {
             {errors.nickname && (
               <span className="error">{errors.nickname}</span>
             )}
-            <label htmlFor="study-name">스터디 이름</label>
+            <label htmlFor="title">스터디 이름</label>
             <input
               id="title"
               name="title"
@@ -132,7 +122,7 @@ export default function CreatePage() {
               <span className="error">{errors.description}</span>
             )}
 
-            <label htmlFor="bg-label">배경 선택</label>
+            <label htmlFor="bg-label">배경을 선택해주세요</label>
             <BackgroundList
               backgrounds={BACKGROUNDS}
               bgSelected={values.background}
@@ -155,13 +145,13 @@ export default function CreatePage() {
                 src={passwordVisible ? closeEye : openEye}
                 className="eye-icons"
                 alt="비밀번호 표시"
-                onClick={handlePasswordVisible}
+                onClick={() => setPasswordVisible((prev) => !prev)}
               />
             </div>
             {errors.password && (
               <span className="error">{errors.password}</span>
             )}
-            <label htmlFor="password-check">비밀번호 확인</label>
+            <label htmlFor="passwordChecker">비밀번호 확인</label>
             <div className="password-check-wrapper">
               <input
                 id="passwordChecker"
@@ -177,7 +167,7 @@ export default function CreatePage() {
                 src={passwordCheckerVisible ? closeEye : openEye}
                 className="eye-icons"
                 alt="비밀번호확인 표시"
-                onClick={handlePasswordCheckerVisible}
+                onClick={() => setPasswordCheckerVisible((prev) => !prev)}
               />
             </div>
             {errors.passwordChecker && (

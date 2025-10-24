@@ -8,7 +8,10 @@ export function useForm(initialValues, validators) {
     (e) => {
       /** @see https://elecch.tistory.com/563  */
       const { name, value } = e.target;
-      const trimmed = value.trim();
+      const trimmed =
+        name === 'password' || name === 'passwordChecker'
+          ? value.trim()
+          : value;
 
       // 밸류 공백제거
       setValues((prev) => ({

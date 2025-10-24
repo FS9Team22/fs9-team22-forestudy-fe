@@ -1,4 +1,12 @@
+import './StudyInfo.css';
+import Point from '../Point/Point';
+import { useMatch } from 'react-router';
+
 export function StudyInfo({ study }) {
+  const isDetail = useMatch('/study/:studyId');
+  const isTimer = useMatch('/study/:studyId/timer');
+  const isHabit = useMatch('/study/:studyId/habit');
+
   return (
     <>
       <div className="section-title-wrap">
@@ -8,19 +16,20 @@ export function StudyInfo({ study }) {
           <span className="study-title">{study.title}</span>
         </h1>
         <ul className="link-btn-list">
-          <li>습관버튼컴포넌트</li>
-          <li>집중버튼컴포넌트</li>
+          {(isHabit || isTimer) && <li>홈버튼컴포넌트</li>}
+          {(isDetail || isTimer) && <li>습관버튼컴포넌트</li>}
+          {(isDetail || isHabit) && <li>집중버튼컴포넌트</li>}
         </ul>
       </div>
       <div className="section-mid-wrap">
-        <div className="description-box">
-          <h3 className="small-header">소개</h3>
-          <p className="study-description">{study.description}</p>
-        </div>
-        <div className="point-box">
-          <h3 className="small-header">현재까지 획득한 포인트</h3>
-          <div>포인트알약컴포넌트</div>
-        </div>
+        {isDetail && (
+          <div className="description-box">
+            <h3 className="small-header">소개</h3>
+            <p className="study-description">{study.description}</p>
+          </div>
+        )}
+        {(isDetail || isTimer) && <Point points={study.point} />}
+        {isHabit && <>현재 시간 컴포넌트</>}
       </div>
     </>
   );

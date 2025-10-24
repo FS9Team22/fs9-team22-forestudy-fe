@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Nav } from '../../components/Nav/Nav';
 import { WeeklyHabitTable } from './weeklyHabitTable';
 import { getStudyById } from '../../api/StudyService';
 import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
 import Toast from '../../components/Toast/Toast';
 import './detail.css';
+import Reaction from '../../components/Reaction/Reaction';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
 
@@ -60,11 +60,12 @@ export default function DetailPage() {
       <meta property="og:title" content={'공부의 숲 | ' + study.title} />
       <meta property="og:url" content={WEB_URL + '/study/' + study.id} />
       <meta property="og:description" content={study.description} />
-      <Nav />
       <main className="detail-main">
         <section className="detail-section">
           <div className="section-top-wrap">
-            <div className="study-reaction">리액션컴포넌트</div>
+            <div className="study-reaction">
+              <Reaction studyId={study.id} />
+            </div>
             <ul className="top-btn-list">
               <li>
                 <button type="button" onClick={handleShare} className="top-btn">

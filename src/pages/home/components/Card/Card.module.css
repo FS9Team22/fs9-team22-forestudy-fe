@@ -50,6 +50,11 @@
   gap: 0.25rem;
 }
 
+.pointIcon {
+  height: 14px;
+  width: 14px;
+}
+
 .status {
   color: #818181;
   font-size: 14px;
