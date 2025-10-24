@@ -1,6 +1,6 @@
 .habit-container {
   min-height: 100vh;
-  background-color: #f3f4f6;
+  background-color: #f6f4ef;
   padding: 2rem;
 }
 
@@ -74,7 +74,7 @@
   border: 0.0625rem solid #e5e7eb;
   border-radius: 1.125rem;
   padding: 1.75rem;
-  background-color: #fafafa;
+  background-color: White;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -302,8 +302,8 @@
 
 @media (max-width: 1400px) {
   .content-card {
-    width: 90%;
-    min-height: 50rem;
+    width: 92%;
+    min-height: 52rem;
   }
 
   .logo-section {
@@ -311,8 +311,26 @@
   }
 
   .logo-section svg {
-    width: 9rem;
-    height: 3rem;
+    width: 10rem;
+    height: 3.3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-card {
+    width: 90%;
+    min-height: 50rem;
+  }
+
+  .logo-section {
+    padding-left: 50%;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .logo-section svg {
+    width: 9.5rem;
+    height: 3.1rem;
   }
 }
 
@@ -322,39 +340,52 @@
   }
 
   .content-card {
-    width: 95%;
-    min-height: 45rem;
-    padding: 1.5rem;
+    width: 88%;
+    min-height: 48rem;
+    padding: 2rem;
   }
 
   .logo-section {
-    padding-left: 25%;
-    margin-bottom: 2rem;
+    padding-left: 50%;
+    margin-bottom: 2.5rem;
+    text-align: center;
   }
 
   .logo-section svg {
-    width: 8rem;
-    height: 2.6rem;
+    width: 9rem;
+    height: 3rem;
   }
 
   .title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .habit-title {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .content-card {
+    width: 85%;
+    padding: 1.75rem;
+  }
+
+  .logo-section svg {
+    width: 8.5rem;
+    height: 2.8rem;
   }
 }
 
 @media (max-width: 768px) {
   .habit-container {
-    padding: 1rem;
+    padding: 1.25rem;
   }
 
   .content-card {
-    width: 100%;
+    width: 90%;
     min-height: auto;
-    padding: 1.5rem;
+    padding: 1.75rem;
   }
 
   .main-content {
@@ -362,13 +393,13 @@
   }
 
   .logo-section {
-    padding-left: 20%;
-    margin-bottom: 1.5rem;
+    padding-left: 50%;
+    margin-bottom: 2rem;
   }
 
   .logo-section svg {
-    width: 6.625rem;
-    height: 2.1875rem;
+    width: 7.5rem;
+    height: 2.5rem;
   }
 
   .header {
@@ -383,11 +414,11 @@
   }
 
   .title {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   .habit-title {
-    font-size: 1rem;
+    font-size: 1.125rem;
   }
 
   .goal-list {
@@ -405,24 +436,37 @@
   }
 }
 
+@media (max-width: 640px) {
+  .content-card {
+    width: 92%;
+    padding: 1.5rem;
+  }
+
+  .logo-section svg {
+    width: 7rem;
+    height: 2.3rem;
+  }
+}
+
 @media (max-width: 480px) {
   .habit-container {
-    padding: 0.5rem;
+    padding: 1rem;
   }
 
   .content-card {
-    padding: 1rem;
+    width: 95%;
+    padding: 1.25rem;
     border-radius: 1rem;
   }
 
   .logo-section {
-    padding-left: 18%;
-    margin-bottom: 1rem;
+    padding-left: 50%;
+    margin-bottom: 1.5rem;
   }
 
   .logo-section svg {
-    width: 5.5rem;
-    height: 1.8rem;
+    width: 6rem;
+    height: 2rem;
   }
 
   .time-section {
@@ -431,17 +475,17 @@
 
   .time-label,
   .time-display {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .goal-button {
     padding: 1rem 1.5rem;
-    font-size: 0.875rem;
+    font-size: 1rem;
     border-radius: 1.375rem;
   }
 
   .edit-button {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .modal-body {
@@ -454,12 +498,13 @@
 }
 
 @media (max-width: 360px) {
-  .logo-section {
-    padding-left: 15%;
+  .content-card {
+    width: 98%;
+    padding: 1rem;
   }
 
   .logo-section svg {
-    width: 4.5rem;
-    height: 1.5rem;
+    width: 5rem;
+    height: 1.65rem;
   }
 }
