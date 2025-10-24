@@ -88,20 +88,16 @@ export function Card({ card }) {
         <p className={styles.quote} style={{ color: overlayStyle.otherColor }}>
           {card.description}
         </p>
-        <div className={styles.footer}>
-          <div className={styles.reaction}>
-            <span className={styles.icon}>👩🏻‍💻</span>
-            <span className={styles.count}>{card.comments}</span>
-          </div>
-          <div className={styles.reaction}>
-            <span className={styles.icon}>🔥</span>
-            <span className={styles.count}>{card.views}</span>
-          </div>
-          <div className={styles.reaction}>
-            <span className={styles.icon}>🤍️</span>
-            <span className={styles.count}>{card.likes}</span>
-          </div>
-        </div>
+        {card.reactions?.length > 0 && (
+          <ul className={styles.footer}>
+            {card.reactions.map((reaction) => (
+              <li key={reaction.id} className={styles.reaction}>
+                <span className={styles.icon}>{reaction.emoji}</span>
+                <span className={styles.count}>{reaction.count}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
