@@ -5,6 +5,7 @@ import {
   addReaction,
 } from '../../api/ReactionService/ReactionService';
 import styles from './Reaction.module.css';
+import smileIcon from '../../assets/icons/ic_smile.svg';
 
 const Reaction = ({ studyId }) => {
   const [reactions, setReactions] = useState({});
@@ -47,8 +48,8 @@ const Reaction = ({ studyId }) => {
           className={styles.pickerToggle}
         >
           <img
-            src="/images/ic_smile.png"
-            alt="smile"
+            src={smileIcon}
+            alt="반응 추가 버튼"
             className={styles.pickerIcon}
           />{' '}
           추가

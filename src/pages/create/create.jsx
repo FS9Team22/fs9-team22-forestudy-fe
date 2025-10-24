@@ -8,7 +8,6 @@ import {
   descriptionValidator,
   passwordValidator,
 } from './utils/formValidate';
-import { Nav } from '../../components/Nav/Nav';
 import { BackgroundList } from './components/Background';
 import { BACKGROUNDS, INITIAL_VALUE } from './utils/constants';
 import closeEye from '../../assets/icons/btn_visibility_off.svg';
@@ -76,7 +75,6 @@ export default function CreatePage() {
 
   return (
     <>
-      <Nav />
       <main className="create-main">
         <div className="create-container">
           <h2 className="create-title">스터디 만들기</h2>
