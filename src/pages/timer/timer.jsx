@@ -4,7 +4,6 @@ import { getStudyById } from '../../api/StudyService';
 import TimerCard from './components/TimerCard/TimerCard';
 import TimerBox from './components/TimerBox/TimerBox';
 import TimerTop from './components/TimerTop/TimerTop';
-import { Nav } from '../../components/Nav/Nav';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);
@@ -29,7 +28,6 @@ export default function TimerPage() {
 
   return (
     <>
-      <Nav />
       <div
         className="timer-page"
         style={{

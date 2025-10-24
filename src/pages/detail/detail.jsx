@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Nav } from '../../components/Nav/Nav';
 import { WeeklyHabitTable } from './weeklyHabitTable';
 import { getStudyById } from '../../api/StudyService';
 import { getHabitListByStudyId } from '../../api/HabitService';
@@ -61,7 +60,6 @@ export default function DetailPage() {
       <meta property="og:title" content={'공부의 숲 | ' + study.title} />
       <meta property="og:url" content={WEB_URL + '/study/' + study.id} />
       <meta property="og:description" content={study.description} />
-      <Nav />
       <main className="detail-main">
         <section className="detail-section">
           <div className="section-top-wrap">

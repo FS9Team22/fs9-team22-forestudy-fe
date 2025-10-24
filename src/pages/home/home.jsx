@@ -3,7 +3,6 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useStudies } from '../../hooks/useStudies';
 import { useBreakPoint } from '../../hooks/useBreakPoint';
 import { StudyCardList } from './components/Card/StudyCardList';
-import { Nav } from '../../components/Nav/Nav';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
@@ -47,7 +46,6 @@ export default function Home() {
 
   return (
     <>
-      <Nav showBtn={true} />
       <div className="home-main-container">
         <div className="home-main-top">
           <h2 className="home-study-title home-study-title-recent">
