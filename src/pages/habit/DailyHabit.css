@@ -6,12 +6,14 @@
 
 .logo-section {
   margin-bottom: 3rem;
-  padding-left: 6.25rem;
+  padding-left: 30%;
+  transform: translateX(-50%);
 }
 
 .logo-section svg {
   width: 11.3125rem;
   height: 3.75rem;
+  display: block;
 }
 
 .main-content {
@@ -303,6 +305,15 @@
     width: 90%;
     min-height: 50rem;
   }
+
+  .logo-section {
+    padding-left: 28%;
+  }
+
+  .logo-section svg {
+    width: 9rem;
+    height: 3rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -317,7 +328,8 @@
   }
 
   .logo-section {
-    padding-left: 3.125rem;
+    padding-left: 25%;
+    margin-bottom: 2rem;
   }
 
   .logo-section svg {
@@ -350,7 +362,8 @@
   }
 
   .logo-section {
-    padding-left: 0;
+    padding-left: 20%;
+    margin-bottom: 1.5rem;
   }
 
   .logo-section svg {
@@ -403,13 +416,13 @@
   }
 
   .logo-section {
+    padding-left: 18%;
     margin-bottom: 1rem;
-    padding-left: 0;
   }
 
   .logo-section svg {
-    width: 5rem;
-    height: 1.65rem;
+    width: 5.5rem;
+    height: 1.8rem;
   }
 
   .time-section {
@@ -437,5 +450,16 @@
 
   .modal-footer {
     padding: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-section {
+    padding-left: 15%;
+  }
+
+  .logo-section svg {
+    width: 4.5rem;
+    height: 1.5rem;
   }
 }
