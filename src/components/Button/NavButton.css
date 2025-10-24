@@ -1,0 +1,33 @@
+.nav-button {
+  padding: 8px 20px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  color: #374151;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 100px;
+}
+
+.nav-button:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.nav-button-default {
+  min-width: 140px;
+}
+
+.nav-button-small {
+  min-width: 80px;
+}
+
+.nav-arrow {
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
