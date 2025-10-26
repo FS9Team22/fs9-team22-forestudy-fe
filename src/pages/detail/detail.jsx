@@ -4,9 +4,9 @@ import { WeeklyHabitTable } from './weeklyHabitTable';
 import { getStudyById } from '../../api/StudyService';
 import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
-import Toast from '../../components/Toast/Toast';
-import './detail.css';
+import { Toast } from '../../components/ui';
 import Reaction from '../../components/Reaction/Reaction';
+import './detail.css';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
 

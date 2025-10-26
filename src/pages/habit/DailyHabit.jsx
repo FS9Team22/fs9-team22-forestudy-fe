@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { HomeButton, TimerButton } from '../../components/ui';
 import './DailyHabit.css';
-import { HomeButton, TimerButton } from '../../components/Button/NavButton';
-import { Nav } from '../../components/Nav/Nav';
 
 const TIME_UPDATE_INTERVAL = 1000;
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -151,9 +150,7 @@ export default function DailyHabit() {
 
   return (
     <div className="habit-container">
-      <div className="logo-section">
-        <Nav />
-      </div>
+      <div className="logo-section"></div>
 
       <div className="main-content">
         <div className="content-card">

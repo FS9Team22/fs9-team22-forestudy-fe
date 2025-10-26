@@ -1,6 +1,6 @@
 import { Link, useMatch, useLocation } from 'react-router';
 import styles from './Nav.module.css';
-import mainLogo from '../../assets/icons/img_logo.svg';
+import mainLogo from '../../../assets/icons/img_logo.svg';
 
 export function Nav() {
   const isHome = useMatch('/');

@@ -1,7 +1,6 @@
-import React from 'react';
 import './PasswordModal.css';
 
-export default function PasswordModal({ isOpen, onClose, children }) {
+export function PasswordModal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (

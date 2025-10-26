@@ -6,7 +6,7 @@ import DetailPage from './pages/detail/detail';
 import HabitPage from './pages/habit/DailyHabit';
 import TimerPage from './pages/timer/timer';
 import NotFoundRoute from './pages/not-found';
-import { Nav } from './components/Nav/Nav';
+import { Nav } from './components/ui';
 
 function App() {
   return (

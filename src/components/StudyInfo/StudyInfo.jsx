@@ -1,6 +1,6 @@
-import './StudyInfo.css';
-import Point from '../Point/Point';
 import { useMatch } from 'react-router';
+import { Point } from '../ui';
+import './StudyInfo.css';
 
 export function StudyInfo({ study }) {
   const isDetail = useMatch('/study/:studyId');
