@@ -66,7 +66,6 @@ export default function DailyHabit() {
                 목록 수정
               </button>
             </div>
-
             {goalList.length > 0 ? (
               <div className="goal-list">
                 {goalList.map((goal) => (
