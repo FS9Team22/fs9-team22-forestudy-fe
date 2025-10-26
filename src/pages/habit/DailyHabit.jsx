@@ -10,7 +10,7 @@ const TIME_UPDATE_INTERVAL = 1000;
 
 export default function DailyHabit() {
   const { studyId } = useParams();
-  const { goalList, isLoading, handleGoalStatusChange, saveHabitList } =
+  const { goalList, isLoading, error, handleGoalStatusChange, saveHabitList } =
     useHabits(studyId);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,9 +31,8 @@ export default function DailyHabit() {
     setIsModalOpen(false);
   };
 
-  if (isLoading) {
-    return <div className="habit-container">로딩 중...</div>;
-  }
+  if (isLoading) return <div className="habit-container">로딩 중...</div>;
+  if (error) return <div className="habit-container">에러...</div>;
 
   return (
     <div className="habit-container">
