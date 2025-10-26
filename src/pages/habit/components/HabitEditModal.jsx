@@ -43,7 +43,7 @@ export function HabitEditModal({ isOpen, onClose, initialHabits, onSave }) {
               <div key={goal.id} className="edit-goal-item">
                 <input
                   type="text"
-                  value={goal.text}
+                  value={goal.name}
                   onChange={(e) =>
                     handleGoalTextChange(goal.id, e.target.value)
                   }

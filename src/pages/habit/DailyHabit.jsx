@@ -21,6 +21,7 @@ export default function DailyHabit() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(goalList);
   useEffect(() => {
     const timeUpdate = setInterval(() => {
       setCurrentTime(new Date());
