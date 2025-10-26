@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { deleteStudyById } from '../../api/StudyService';
+import { deleteStudyById } from '@/api/StudyService';
 import './Modals.css';
 
-export default function DeleteStudyModal({ studyId, onClose }) {
+export function DeleteStudyModal({ studyId, onClose }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();

@@ -1,12 +1,13 @@
-import './StudyInfo.css';
-import Point from '../Point/Point';
 import { useMatch } from 'react-router';
-import { HabitButton, HomeButton, TimerButton } from '../Button/NavButton';
+import { Point } from '../ui';
+import './StudyInfo.css';
+import { HabitButton, HomeButton, TimerButton } from '../ui/Button/NavButton';
 
 export function StudyInfo({ study }) {
   const isDetail = useMatch('/study/:studyId');
   const isTimer = useMatch('/study/:studyId/timer');
   const isHabit = useMatch('/study/:studyId/habit');
+  console.log(study);
 
   return (
     <>

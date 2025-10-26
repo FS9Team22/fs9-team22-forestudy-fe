@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { getStudyById } from '../../api/StudyService';
+import { getStudyById } from '@/api/StudyService';
 import TimerCard from './components/TimerCard/TimerCard';
 import TimerBox from './components/TimerBox/TimerBox';
 import TimerTop from './components/TimerTop/TimerTop';
 import { useStudyAuth } from '../../hooks/useStudyAuth';
-import PasswordModal from '../../components/Modals/PasswordModal';
+import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);

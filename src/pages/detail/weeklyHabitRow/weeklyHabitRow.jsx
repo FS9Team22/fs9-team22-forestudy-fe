@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import './weeklyHabitRow.css';
-import { getHabitCurrentWeekLogListByHabitId } from '../../../api/HabitLogService';
+import { getHabitCurrentWeekLogListByHabitId } from '@/api/HabitLogService';
 import { Sticker } from './sticker';
+import './weeklyHabitRow.css';
 
 const STICKER_COLOR = [
   '#D2E869',

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Modals.css';
-import { loginStudy } from '../../api/StudyService';
+import { loginStudy } from '@/api/StudyService';
 
-export default function PasswordModal({ studyId, onClose, onSuccess }) {
+export function PasswordModal({ studyId, onClose, onSuccess }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 

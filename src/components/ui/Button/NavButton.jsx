@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import './NavButton.css';
-import PasswordModal from '../Modals/PasswordModal.jsx';
-import { useStudyAuth } from '../../hooks/useStudyAuth.js';
+import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
+import { useStudyAuth } from '@/hooks/useStudyAuth.js';
 
 function NavButton({ children, to, size = 'default' }) {
   const navigate = useNavigate();
