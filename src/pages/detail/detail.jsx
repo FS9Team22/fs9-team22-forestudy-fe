@@ -6,6 +6,7 @@ import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
 import Toast from '../../components/Toast/Toast';
 import './detail.css';
+import DeleteStudyModal from './DeleteStudyModal.jsx';
 import Reaction from '../../components/Reaction/Reaction';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
@@ -18,6 +19,7 @@ export default function DetailPage() {
   const [error, setError] = useState(null);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [showErrorToast, setShowErrorToast] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,7 +82,11 @@ export default function DetailPage() {
               </li>
               <span>|</span>
               <li>
-                <button type="button" className="top-btn">
+                <button
+                  type="button"
+                  className="top-btn"
+                  onClick={() => setIsDeleteModalOpen(true)}
+                >
                   삭제하기
                 </button>
               </li>
@@ -102,6 +108,12 @@ export default function DetailPage() {
           message="주소 복사에 실패했습니다. 다시 시도해주세요."
           type="error"
           onClose={() => setShowErrorToast(false)}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteStudyModal
+          studyId={studyId}
+          onClose={() => setIsDeleteModalOpen(false)}
         />
       )}
     </>
