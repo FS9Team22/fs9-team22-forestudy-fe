@@ -5,7 +5,7 @@ import TimerCard from './components/TimerCard/TimerCard';
 import TimerBox from './components/TimerBox/TimerBox';
 import TimerTop from './components/TimerTop/TimerTop';
 import { useStudyAuth } from '../../hooks/useStudyAuth';
-import PasswordModal from '../../components/Button/PasswordModal';
+import PasswordModal from '../../components/Modals/PasswordModal';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);

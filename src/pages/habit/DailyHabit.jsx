@@ -4,7 +4,7 @@ import './DailyHabit.css';
 import { TimerButton, HomeButton } from '../../components/Button/NavButton';
 import { Nav } from '../../components/Nav/Nav';
 import { useStudyAuth } from '../../hooks/useStudyAuth';
-import PasswordModal from '../../components/Button/PasswordModal';
+import PasswordModal from '../../components/Modals/PasswordModal';
 
 const TIME_UPDATE_INTERVAL = 1000;
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
