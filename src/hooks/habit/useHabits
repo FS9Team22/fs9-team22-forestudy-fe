@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getHabitListByStudyId } from '@/api/HabitService.js';
+import { getHabitListByStudyId, updateHabit } from '@/api/HabitService.js';
 import { getStudyById } from '@/api/StudyService.js';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
@@ -11,6 +11,7 @@ export function useHabits(studyId) {
   const [error, setError] = useState(null);
 
   const fetchHabits = async () => {
+    if (!studyId) return null;
     try {
       setIsLoading(true);
       const [studyData, habitData] = await Promise.all([
@@ -40,10 +41,9 @@ export function useHabits(studyId) {
         ),
       );
 
-      const response = await fetch(
-        `${API_URL}/study/${studyId}/habits/${id}/status`,
-        { method: 'PATCH' },
-      );
+      const response = await fetch(`${API_URL}/${studyId}/habit/${id}/status`, {
+        method: 'PATCH',
+      });
 
       if (!response.ok) {
         fetchHabits();
@@ -54,44 +54,13 @@ export function useHabits(studyId) {
     }
   };
 
-  const saveHabitList = async (originList, newList) => {
+  const saveHabitList = async (newList) => {
     try {
-      const deletedGoals = originList.filter(
-        (goal) => !newList.find((edit) => edit.id === goal.id),
-      );
-
-      for (const goal of deletedGoals) {
-        await fetch(`${API_URL}/study/${studyId}/habits/${goal.id}`, {
-          method: 'DELETE',
-        });
-      }
-
-      for (const goal of originList) {
-        const originalGoal = goalList.find((g) => g.id === goal.id);
-
-        if (!originalGoal) {
-          await fetch(`${API_URL}/study/${studyId}/habits`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: goal.text }),
-          });
-        } else if (originalGoal.text !== goal.text) {
-          await fetch(`${API_URL}/study/${studyId}/habits/${goal.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: goal.text }),
-          });
-        }
-      }
-
-      const response = await fetch(`${API_URL}/study/${studyId}/habits`);
-      const data = await response.json();
-
+      const data = await updateHabit(studyId, newList);
+      console.log(data)
       if (data.success) {
         setGoalList(data.data);
       }
-
-      setIsModalOpen(false);
     } catch (error) {
       console.error('저장 실패:', error);
     }
