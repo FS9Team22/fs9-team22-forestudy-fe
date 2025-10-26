@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import './PasswordModal.css';
-import { loginStudy } from '../../api/StudyService';
+import { useNavigate } from 'react-router';
+import { deleteStudyById } from '../../api/StudyService';
+import './Modals.css';
 
-export default function PasswordModal({ studyId, onClose, onSuccess }) {
+export default function DeleteStudyModal({ studyId, onClose }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    setError(''); // 비밀번호 입력 시 에러 메시지 초기화
+    setError('');
   };
 
   const handleSubmit = async (e) => {
@@ -19,18 +21,12 @@ export default function PasswordModal({ studyId, onClose, onSuccess }) {
     }
 
     try {
-      const res = await loginStudy({ id: studyId, password });
-
-      if (res.ok) {
-        sessionStorage.setItem(`study-${studyId}-auth`, 'true');
-        onSuccess();
-      } else {
-        const data = await res.json();
-        setError(data.message || '비밀번호가 일치하지 않습니다.');
-      }
+      await deleteStudyById({ id: studyId, password });
+      alert('스터디가 삭제되었습니다.');
+      navigate('/');
     } catch (err) {
-      setError('로그인 중 오류가 발생했습니다. 다시 시도해주세요.');
-      console.error('로그인 실패:', err);
+      setError('비밀번호가 일치하지 않거나 오류가 발생했습니다.');
+      console.error('스터디 삭제 실패:', err);
     }
   };
 
@@ -40,7 +36,10 @@ export default function PasswordModal({ studyId, onClose, onSuccess }) {
         className="password-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="modal-title">비밀번호 입력</h2>
+        <h2 className="modal-title">스터디 삭제</h2>
+        <p className="modal-description">
+          삭제하시려면 비밀번호를 입력해주세요.
+        </p>
         <form onSubmit={handleSubmit}>
           <input
             type="password"
@@ -50,10 +49,12 @@ export default function PasswordModal({ studyId, onClose, onSuccess }) {
             autoFocus
           />
           {error && <p className="error-message">{error}</p>}
-          <button type="button" onClick={onClose}>
-            취소
-          </button>
-          <button type="submit">확인</button>
+          <div className="modal-buttons">
+            <button type="button" onClick={onClose}>
+              취소
+            </button>
+            <button type="submit">삭제</button>
+          </div>
         </form>
       </div>
     </div>

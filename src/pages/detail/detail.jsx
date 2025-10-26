@@ -6,7 +6,7 @@ import { getHabitListByStudyId } from '../../api/HabitService';
 import { StudyInfo } from '../../components/StudyInfo';
 import Toast from '../../components/Toast/Toast';
 import './detail.css';
-import DeleteStudyModal from './DeleteStudyModal.jsx';
+import DeleteStudyModal from '../../components/Modals/DeleteStudyModal.jsx';
 import Reaction from '../../components/Reaction/Reaction';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
