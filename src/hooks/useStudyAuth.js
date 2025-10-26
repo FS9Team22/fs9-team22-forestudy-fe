@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router';
 
 /**
@@ -11,6 +11,12 @@ export function useStudyAuth(studyId, pageType) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const destination = `/study/${studyId}/${pageType}`;
+
+  const checkAuth = useCallback(() => {
+    const isAuthenticated =
+      sessionStorage.getItem(`study-${studyId}-auth`) === 'true';
+    if (!isAuthenticated) setIsModalOpen(true);
+  }, [studyId]);
 
   const handleClick = () => {
     const isAuthenticated =
@@ -27,6 +33,7 @@ export function useStudyAuth(studyId, pageType) {
     isModalOpen,
     setIsModalOpen,
     destination,
+    checkAuth,
     handleClick,
   };
 }
