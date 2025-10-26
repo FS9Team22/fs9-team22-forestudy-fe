@@ -1,4 +1,4 @@
-import pointIcon from '../../../assets/icons/ic_point.svg';
+import pointIcon from '@/assets/icons/ic_point.svg';
 import styles from './Point.module.css';
 
 export const Point = ({ points }) => {

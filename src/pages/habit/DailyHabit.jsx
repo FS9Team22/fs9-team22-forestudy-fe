@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { HomeButton, TimerButton } from '../../components/ui';
-import { formatTimeString } from '../../utils/format';
+import { HomeButton, TimerButton } from '@/components/ui';
+import { formatTimeString } from '@/utils/format';
 import './DailyHabit.css';
 
 const TIME_UPDATE_INTERVAL = 1000;

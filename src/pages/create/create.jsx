@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useForm } from '../../hooks/useForm';
-import { createStudy } from '../../api/StudyService';
+import { useForm } from '@/hooks/useForm';
+import { createStudy } from '@/api/StudyService';
 import {
   nicknameValidator,
   titleValidator,
@@ -10,8 +10,8 @@ import {
 } from './utils/formValidate';
 import { BackgroundList } from './components/Background';
 import { BACKGROUNDS, INITIAL_VALUE } from './utils/constants';
-import closeEye from '../../assets/icons/btn_visibility_off.svg';
-import openEye from '../../assets/icons/btn_visibility_on.svg';
+import closeEye from '@/assets/icons/btn_visibility_off.svg';
+import openEye from '@/assets/icons/btn_visibility_on.svg';
 import './create.css';
 
 const backgroundValidator = (value) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Toast } from '../../../../components/ui';
-import { savePoint } from '../../../../api/PointService/PointService';
+import { Toast } from '@/components/ui';
+import { savePoint } from '@/api/PointService/PointService';
 import styles from './TimerCard.module.css';
 
 const TimerCard = ({ study, setStudy }) => {

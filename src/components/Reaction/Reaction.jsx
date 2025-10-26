@@ -3,8 +3,8 @@ import Picker from 'emoji-picker-react';
 import {
   fetchReactions,
   addReaction,
-} from '../../api/ReactionService/ReactionService';
-import smileIcon from '../../assets/icons/ic_smile.svg';
+} from '@/api/ReactionService/ReactionService';
+import smileIcon from '@/assets/icons/ic_smile.svg';
 import styles from './Reaction.module.css';
 
 const Reaction = ({ studyId }) => {

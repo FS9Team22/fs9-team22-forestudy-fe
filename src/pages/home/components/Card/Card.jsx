@@ -1,9 +1,9 @@
-import workspaceWindowDeskImg from '../../../../assets/card/images/desk1.png';
-import workspaceDetailDeskImg from '../../../../assets/card/images/desk2.png';
-import patternImg from '../../../../assets/card/images/pattern.png';
-import leavesImg from '../../../../assets/card/images/leaves.png';
+import workspaceWindowDeskImg from '@/assets/card/images/desk1.png';
+import workspaceDetailDeskImg from '@/assets/card/images/desk2.png';
+import patternImg from '@/assets/card/images/pattern.png';
+import leavesImg from '@/assets/card/images/leaves.png';
+import pointIcon from '@/assets/icons/ic_point.svg';
 import styles from './Card.module.css';
-import pointIcon from '../../../../assets/icons/ic_point.svg';
 
 const BACKGROUND_MAP = {
   1: {
