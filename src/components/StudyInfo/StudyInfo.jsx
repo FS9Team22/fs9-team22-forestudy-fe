@@ -1,4 +1,4 @@
-import { useMatch } from 'react-router';
+import { useMatch, Link } from 'react-router';
 import { Point } from '../ui';
 import './StudyInfo.css';
 
@@ -6,6 +6,7 @@ export function StudyInfo({ study }) {
   const isDetail = useMatch('/study/:studyId');
   const isTimer = useMatch('/study/:studyId/timer');
   const isHabit = useMatch('/study/:studyId/habit');
+  console.log(study);
 
   return (
     <>
@@ -19,6 +20,7 @@ export function StudyInfo({ study }) {
           {(isHabit || isTimer) && <li>홈버튼컴포넌트</li>}
           {(isDetail || isTimer) && <li>습관버튼컴포넌트</li>}
           {(isDetail || isHabit) && <li>집중버튼컴포넌트</li>}
+          <Link to="habit">습관</Link>
         </ul>
       </div>
       <div className="section-mid-wrap">

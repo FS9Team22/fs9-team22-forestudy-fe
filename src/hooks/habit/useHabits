@@ -1,21 +1,24 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { getHabitListByStudyId } from '@/api/HabitService.js';
+import { getStudyById } from '@/api/StudyService.js';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export function useHabits(studyId) {
   const [goalList, setGoalList] = useState([]);
+  const [study, setStudy] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchHabits = async () => {
     try {
       setIsLoading(true);
-      const data = await getHabitListByStudyId(studyId);
-      console.log(data);
-      if (data.success) {
-        setGoalList(data.data);
-      }
+      const [studyData, habitData] = await Promise.all([
+        getStudyById({ id: studyId }),
+        getHabitListByStudyId({ studyId }),
+      ]);
+      setStudy(studyData.data);
+      setGoalList(habitData.data);
     } catch (error) {
       console.error('습관 조회 실패:', error);
       setError(error);
@@ -96,6 +99,7 @@ export function useHabits(studyId) {
 
   return {
     goalList,
+    study,
     isLoading,
     error,
     handleGoalStatusChange,

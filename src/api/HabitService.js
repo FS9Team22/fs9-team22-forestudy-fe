@@ -1,6 +1,6 @@
 const API_URL = import.meta.env.VITE_API_URL + '/study';
 
-export const getHabitListByStudyId = async function ({ studyId }) {
+export const getHabitListByStudyId = async ({ studyId }) => {
   const url = `${API_URL}/${studyId}/habit`;
   const res = await fetch(url);
   if (!res.ok) {

@@ -10,8 +10,14 @@ const TIME_UPDATE_INTERVAL = 1000;
 
 export default function DailyHabit() {
   const { studyId } = useParams();
-  const { goalList, isLoading, error, handleGoalStatusChange, saveHabitList } =
-    useHabits(studyId);
+  const {
+    goalList,
+    study,
+    isLoading,
+    error,
+    handleGoalStatusChange,
+    saveHabitList,
+  } = useHabits(studyId);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +47,7 @@ export default function DailyHabit() {
       <div className="main-content">
         <div className="content-card">
           <div className="header">
-            <h1 className="title">2팀</h1>
+            <h1 className="title">{study.title}</h1>
             <div className="nav-buttons">
               <TimerButton studyId={studyId} />
               <HomeButton />
@@ -69,7 +75,7 @@ export default function DailyHabit() {
                     onClick={() => handleGoalStatusChange(goal.id)}
                     className={`goal-button ${goal.isDone ? 'completed' : ''}`}
                   >
-                    {goal.text}
+                    {goal.name}
                   </button>
                 ))}
               </div>
