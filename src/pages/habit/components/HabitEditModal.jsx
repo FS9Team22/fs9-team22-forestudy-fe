@@ -13,13 +13,13 @@ export function HabitEditModal({ isOpen, onClose, initialHabits, onSave }) {
 
   const handleGoalAdd = () => {
     const newId = Date.now();
-    setEditGoalList([...editGoalList, { id: newId, text: '', isDone: false }]);
+    setEditGoalList([...editGoalList, { id: newId, name: '', isDone: false }]);
   };
 
   const handleGoalTextChange = (id, newText) => {
     setEditGoalList(
       editGoalList.map((goal) =>
-        goal.id === id ? { ...goal, text: newText } : goal,
+        goal.id === id ? { ...goal, name: newText } : goal,
       ),
     );
   };
