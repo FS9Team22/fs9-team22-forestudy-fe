@@ -39,10 +39,10 @@ export default function Home() {
     setRecentStudies(updatedStudies);
   };
 
-  // sortType이나 keyword가 바뀌면 page 초기화
+  // sortType, keyword시 사용자 스크린무브
   useEffect(() => {
     listScreenRef.current.scrollIntoView({ behavior: 'instant' });
-  }, [sortType, keyword]); // studies가 업데이트될 때 실행
+  }, [sortType, keyword]);
 
   return (
     <>
