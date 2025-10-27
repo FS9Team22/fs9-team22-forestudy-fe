@@ -2,7 +2,14 @@ import { useState } from 'react';
 import './Modals.css';
 import { loginStudy } from '@/api/StudyService';
 
-export function PasswordModal({ studyId, onClose, onSuccess }) {
+export function PasswordModal({
+  studyId,
+  studyNickname,
+  studyTitle,
+  toGo,
+  onClose,
+  onSuccess,
+}) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -40,7 +47,15 @@ export function PasswordModal({ studyId, onClose, onSuccess }) {
         className="password-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="modal-title">비밀번호 입력</h2>
+        <div className="modal-top">
+          <h2 className="modal-title">
+            {studyNickname}의 {studyTitle}
+          </h2>
+          <button type="button" onClick={onClose}>
+            나가기
+          </button>
+        </div>
+        <p className="modal-description">권한이 필요합니다.</p>
         <form onSubmit={handleSubmit}>
           <input
             type="password"
@@ -50,10 +65,9 @@ export function PasswordModal({ studyId, onClose, onSuccess }) {
             autoFocus
           />
           {error && <p className="error-message">{error}</p>}
-          <button type="button" onClick={onClose}>
-            취소
-          </button>
-          <button type="submit">확인</button>
+          <div className="modal-buttons">
+            <button type="submit">{toGo ? toGo : '현재 페이지'}로 가기</button>
+          </div>
         </form>
       </div>
     </div>

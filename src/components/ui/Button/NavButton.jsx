@@ -25,7 +25,8 @@ export function HomeButton() {
   );
 }
 
-export function HabitButton({ studyId }) {
+export function HabitButton({ study }) {
+  const studyId = study.id;
   const { isModalOpen, setIsModalOpen, destination, handleClick } =
     useStudyAuth(studyId, 'habit');
   const navigate = useNavigate();
@@ -39,6 +40,9 @@ export function HabitButton({ studyId }) {
       {isModalOpen && (
         <PasswordModal
           studyId={studyId}
+          studyNickname={study.nickname}
+          studyTitle={study.title}
+          toGo={'오늘의 습관'}
           onClose={() => setIsModalOpen(false)}
           onSuccess={() => navigate(destination)}
         />
@@ -47,7 +51,8 @@ export function HabitButton({ studyId }) {
   );
 }
 
-export function TimerButton({ studyId }) {
+export function TimerButton({ study }) {
+  const studyId = study.id;
   const { isModalOpen, setIsModalOpen, destination, handleClick } =
     useStudyAuth(studyId, 'timer');
   const navigate = useNavigate();
@@ -61,6 +66,9 @@ export function TimerButton({ studyId }) {
       {isModalOpen && (
         <PasswordModal
           studyId={studyId}
+          studyNickname={study.nickname}
+          studyTitle={study.title}
+          toGo={'오늘의 집중'}
           onClose={() => setIsModalOpen(false)}
           onSuccess={() => navigate(destination)}
         />

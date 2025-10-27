@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useHabits } from '@/hooks/habit/useHabits';
-import { HomeButton, TimerButton } from '@/components/ui';
-import { formatTimeString } from '@/utils/format';
 import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { HabitEditModal } from './components/HabitEditModal';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
 import './DailyHabit.css';
-
-const TIME_UPDATE_INTERVAL = 1000;
+import { StudyInfo } from '@/components/StudyInfo';
 
 export default function DailyHabit() {
   const { studyId } = useParams();
@@ -27,20 +24,11 @@ export default function DailyHabit() {
     handleGoalStatusChange,
     saveHabitList,
   } = useHabits(studyId);
-  const [currentTime, setCurrentTime] = useState(new Date());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  useEffect(() => {
-    const timeUpdate = setInterval(() => {
-      setCurrentTime(new Date());
-    }, TIME_UPDATE_INTERVAL);
-
-    return () => clearInterval(timeUpdate);
-  }, []);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -63,24 +51,9 @@ export default function DailyHabit() {
         />
       )}
       <div className="habit-container">
-        <div className="logo-section"></div>
-
         <div className="main-content">
           <div className="content-card">
-            <div className="header">
-              <h1 className="title">{study.title}</h1>
-              <div className="nav-buttons">
-                <TimerButton studyId={studyId} />
-                <HomeButton />
-              </div>
-            </div>
-
-            <div className="time-section">
-              <p className="time-label">현재 시간</p>
-              <div className="time-display">
-                {formatTimeString(currentTime)}
-              </div>
-            </div>
+            <StudyInfo study={study} />
 
             <div className="habit-section">
               <div className="habit-header">

@@ -36,10 +36,13 @@ export function DeleteStudyModal({ studyId, onClose }) {
         className="password-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="modal-title">스터디 삭제</h2>
-        <p className="modal-description">
-          삭제하시려면 비밀번호를 입력해주세요.
-        </p>
+        <div className="modal-top">
+          <h2 className="modal-title">스터디 삭제</h2>
+          <button type="button" onClick={onClose}>
+            나가기
+          </button>
+        </div>
+        <p className="modal-description">삭제하시겠습니까?</p>
         <form onSubmit={handleSubmit}>
           <input
             type="password"
@@ -50,9 +53,6 @@ export function DeleteStudyModal({ studyId, onClose }) {
           />
           {error && <p className="error-message">{error}</p>}
           <div className="modal-buttons">
-            <button type="button" onClick={onClose}>
-              취소
-            </button>
             <button type="submit">삭제</button>
           </div>
         </form>

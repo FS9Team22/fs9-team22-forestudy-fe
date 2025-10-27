@@ -2,6 +2,7 @@ import { useMatch } from 'react-router';
 import { Point } from '../ui';
 import './StudyInfo.css';
 import { HabitButton, HomeButton, TimerButton } from '../ui/Button/NavButton';
+import { TimePhill } from '../ui/TimePhill/TimePhill';
 
 export function StudyInfo({ study }) {
   const isDetail = useMatch('/study/:studyId');
@@ -25,12 +26,12 @@ export function StudyInfo({ study }) {
           )}
           {(isDetail || isTimer) && (
             <li>
-              <HabitButton studyId={study.id} />
+              <HabitButton study={study} />
             </li>
           )}
           {(isDetail || isHabit) && (
             <li>
-              <TimerButton studyId={study.id} />
+              <TimerButton study={study} />
             </li>
           )}
         </ul>
@@ -43,7 +44,7 @@ export function StudyInfo({ study }) {
           </div>
         )}
         {(isDetail || isTimer) && <Point points={study.point} />}
-        {isHabit && <>현재 시간 컴포넌트</>}
+        {isHabit && <TimePhill />}
       </div>
     </>
   );
