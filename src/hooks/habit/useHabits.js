@@ -1,35 +1,48 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getHabitListByStudyId, updateHabit } from '@/api/HabitService.js';
 import { createHabitLog, deleteHabitLog } from '@/api/HabitLogService.js';
 import { getStudyById } from '@/api/StudyService.js';
 
 export function useHabits(studyId) {
   const [goalList, setGoalList] = useState([]);
-  const [study, setStudy] = useState([]);
+  const [study, setStudy] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchHabits = async () => {
-      if (!studyId) return null;
-      try {
-        setIsLoading(true);
-        const [studyData, habitData] = await Promise.all([
-          getStudyById({ id: studyId }),
-          getHabitListByStudyId({ studyId }),
-        ]);
-        setStudy(studyData.data);
-        setGoalList(habitData.data);
-      } catch (error) {
-        console.error('습관 조회 실패:', error);
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchHabits();
+  const fetchHabits = useCallback(async () => {
+    if (!studyId) return null;
+    try {
+      setIsLoading(true);
+      const [studyData, habitData] = await Promise.all([
+        getStudyById({ id: studyId }),
+        getHabitListByStudyId({ studyId }),
+      ]);
+      setStudy(studyData.data);
+
+      //  서버 응답 프론트상태에 맞게 가공
+      const processedHabits = habitData.data.map((habit) => {
+        // ID가 있다면 완료
+        const isCompleted = habit.habitLogs && habit.habitLogs.id;
+
+        return {
+          ...habit,
+          isDone: !!isCompleted,
+          habitLogs: isCompleted ? habit.habitLogs : null,
+        };
+      });
+
+      setGoalList(processedHabits);
+    } catch (error) {
+      console.error('습관 조회 실패:', error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }, [studyId]);
 
+  useEffect(() => {
+    fetchHabits();
+  }, [fetchHabits]);
   /**
    *
    * @param {number} habitId - 습관 ID
@@ -46,12 +59,20 @@ export function useHabits(studyId) {
           console.error('삭제 시도 실패: habitLogId가 없다.');
           return;
         }
-        await deleteHabitLog({ habitId, habitLogId });
+        const res = await deleteHabitLog({ habitId, habitLogId });
+
+        if (res && res.success === false) {
+          throw new Error('습관 로그 삭제 API 응답 실패');
+        }
 
         newGoalData = { isDone: false, habitLogs: null };
       } else {
         // 아직 완료 안 됐다면 생성
         const res = await createHabitLog({ habitId });
+
+        if (!res || res.success === false || !res.data) {
+          throw res;
+        }
         newGoalData = { isDone: true, habitLogs: res.data };
       }
       setGoalList((prev) =>
@@ -66,6 +87,11 @@ export function useHabits(studyId) {
         }),
       );
     } catch (error) {
+      if (error.code === 'P2002') {
+        console.error('습관 로그 중복: 데이터를 동기화 합니다.');
+        await fetchHabits();
+        alert('데이터 동기화 오류');
+      }
       console.error('상태 변경 실패', error);
     }
   };
@@ -74,7 +100,7 @@ export function useHabits(studyId) {
     try {
       const data = await updateHabit(studyId, newList);
       if (data.success) {
-        setGoalList(data.data);
+        await fetchHabits();
       }
     } catch (error) {
       console.error('저장 실패:', error);
