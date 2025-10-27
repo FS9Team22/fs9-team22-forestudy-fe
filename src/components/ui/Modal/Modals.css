@@ -13,57 +13,106 @@
 
 .password-modal-content {
   background: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  padding: 2.5rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15);
+  width: 25rem;
   max-width: 400px;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
 }
 
 .modal-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  color: #414141;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  margin-bottom: 28px;
 }
 
 .modal-description {
-  margin-bottom: 1.5rem;
-  color: #6b7280;
+  color: #818181;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
 }
 
 .password-modal-content form input {
   width: calc(100% - 2rem);
-  padding: 0.75rem 1rem;
+  padding: 0.625rem 0.875rem;
   margin-bottom: 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
+  border: 1px solid #ccc;
+  border-radius: 0.625rem;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #414141;
+  outline: none;
+}
+
+.password-modal-content input::placeholder {
+  color: #818181;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .error-message {
   color: #ef4444;
   margin-bottom: 1rem;
   font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 .modal-buttons {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.625rem;
+  margin-top: 1.5rem;
 }
 
 .modal-buttons button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
+  display: flex;
+  width: 140px;
+  height: 58px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
   border: none;
   cursor: pointer;
+  font-family: EF_jejudoldam;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  transition: 0.2s;
 }
 
 .modal-buttons button[type='submit'] {
-  background-color: #ef4444;
-  color: white;
+  background: #99c08e;
+  color: #fff;
 }
 
 .modal-buttons button[type='button'] {
-  background-color: #e5e7eb;
+  background: #ddd;
+  color: #818181;
+}
+
+.modal-buttons button:hover {
+  opacity: 0.9;
 }
