@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useStudies } from '@/hooks/useStudies';
 import { useBreakPoint } from '@/hooks/useBreakPoint';
 import { StudyCardList } from './components/Card/StudyCardList';
-import { DropDown } from './components/DropDown/DropDown';
+import { Dropdown } from './components/Dropdown/Dropdown';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import './home.css';
 
@@ -12,16 +12,16 @@ const MAX_STUDIES_LENGTH = 3;
 const LIMIT = 6;
 
 export default function Home() {
+  const listScreenRef = useRef(null);
   const [recentStudies, setRecentStudies] = useLocalStorage(
     'recentStudies',
     [],
     ONE_HOUR,
   );
-  const { mobile } = useBreakPoint();
   const [keyword, setKeyword] = useState('');
   const [sortType, setSortType] = useState('latest');
   const [page, setPage] = useState(1);
-
+  const { mobile } = useBreakPoint();
   const { studies, loading } = useStudies(sortType, keyword, page, LIMIT);
 
   const moreBtnPaging = () => {
@@ -41,10 +41,8 @@ export default function Home() {
 
   // sortType이나 keyword가 바뀌면 page 초기화
   useEffect(() => {
-    setPage(1);
-  }, [sortType, keyword]);
-
-  if (loading) return <div>로딩중...</div>;
+    listScreenRef.current.scrollIntoView({ behavior: 'instant' });
+  }, [sortType, keyword]); // studies가 업데이트될 때 실행
 
   return (
     <>
@@ -64,9 +62,11 @@ export default function Home() {
 
         <div className="home-main-center">
           <div className="home-study-header">
-            <h2 className="home-study-title">스터디 둘러보기</h2>
+            <h2 ref={listScreenRef} className="home-study-title">
+              스터디 둘러보기
+            </h2>
             <div className="home-study-dropdown">
-              {!mobile && <DropDown onSortType={setSortType} />}
+              {!mobile && <Dropdown onSortType={setSortType} />}
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
               className={mobile ? 'home-study-for-mobile' : 'home-study-search'}
               onSearch={setKeyword}
             />
-            {mobile && <DropDown onSortType={setSortType} />}
+            {mobile && <Dropdown onSortType={setSortType} />}
           </div>
           {!loading && studies.length > 0 ? (
             <>

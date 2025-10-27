@@ -3,12 +3,10 @@ import { getStudyList } from '@/api/StudyService';
 
 export function useStudies(sortType, keyword, page, LIMIT) {
   const [studies, setStudies] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let ignore = false;
+    const controller = new AbortController();
     const fetchData = async () => {
-      setLoading(true);
       try {
         const studyData = await getStudyList(sortType, keyword, page, LIMIT);
         if (page === 1) {
@@ -17,19 +15,20 @@ export function useStudies(sortType, keyword, page, LIMIT) {
           setStudies((prev) => [...prev, ...studyData.data]);
         }
       } catch (err) {
-        alert(`스터디 가져오기에 실패하였습니다: ${err.message}`);
-      } finally {
-        if (!ignore) setLoading(false);
+        if (controller.signal.aborted) {
+          console.log('작업이 취소되었습니다.', err.message);
+        } else {
+          console.error(`스터디 가져오기에 실패하였습니다: ${err.message}`);
+        }
       }
     };
     fetchData();
     return () => {
-      ignore = true;
+      controller.abort();
     };
   }, [sortType, keyword, page, LIMIT]);
   return {
     studies,
     setStudies,
-    loading,
   };
 }
