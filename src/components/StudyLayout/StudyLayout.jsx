@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMatch, useParams } from 'react-router';
+import { Outlet, useMatch, useParams } from 'react-router';
 import { getStudyById } from '@/api/StudyService';
 import { getHabitListByStudyId } from '@/api/HabitService';
 import { StudyInfo } from '@/components/StudyInfo';
@@ -8,7 +8,7 @@ import './Layout.css';
 
 const WEB_URL = import.meta.env.VITE_WEB_URL;
 
-export default function StudyLayout({ children }) {
+export default function StudyLayout() {
   const { studyId } = useParams();
   const isDetail = useMatch('/study/:studyId');
   const [study, setStudy] = useState(null);
@@ -49,7 +49,9 @@ export default function StudyLayout({ children }) {
         <section className="layout-section">
           {isDetail && <DetailLayoutTop studyId={study.id} />}
           <StudyInfo study={study} />
-          <section className="layout-children">{children}</section>
+          <section className="layout-children">
+            <Outlet />
+          </section>
         </section>
       </main>
     </>

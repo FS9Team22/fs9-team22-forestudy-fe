@@ -38,9 +38,5 @@ export default function DetailPage() {
   if (error) return <div>에러: {error}</div>;
   if (!study) return <div>스터디 정보를 찾을 수 없습니다.</div>;
 
-  return (
-    <StudyLayout>
-      <WeeklyHabitTable habits={habits} />
-    </StudyLayout>
-  );
+  return <WeeklyHabitTable habits={habits} />;
 }

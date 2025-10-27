@@ -46,9 +46,7 @@ export default function TimerPage() {
           onSuccess={() => setIsAuthModalOpen(false)}
         />
       )}
-      <StudyLayout>
-        <TimerCard study={study} setStudy={setStudy} />
-      </StudyLayout>
+      <TimerCard study={study} setStudy={setStudy} />
     </>
   );
 }
