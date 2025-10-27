@@ -56,7 +56,6 @@ export const createHabitLog = async function ({ habitId }) {
 
 export const deleteHabitLog = async function ({ habitId, habitLogId }) {
   const url = `${API_URL}/${habitId}/log/${habitLogId}`;
-  console.log(url);
   const res = await fetch(url, {
     method: 'DELETE',
     headers: {
