@@ -47,14 +47,9 @@ export function PasswordModal({
         className="password-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="modal-top">
-          <h2 className="modal-title">
-            {studyNickname}의 {studyTitle}
-          </h2>
-          <button type="button" onClick={onClose}>
-            나가기
-          </button>
-        </div>
+        <h2 className="modal-title">
+          {studyNickname}의 {studyTitle}
+        </h2>
         <p className="modal-description">권한이 필요합니다.</p>
         <form onSubmit={handleSubmit}>
           <input
@@ -66,7 +61,12 @@ export function PasswordModal({
           />
           {error && <p className="error-message">{error}</p>}
           <div className="modal-buttons">
-            <button type="submit">{toGo ? toGo : '현재 페이지'}로 가기</button>
+            <button className="submit-btn" type="submit">
+              {toGo ? toGo : '현재 페이지'}로 가기
+            </button>
+            <button className="exit-btn" type="button" onClick={onClose}>
+              나가기
+            </button>
           </div>
         </form>
       </div>
