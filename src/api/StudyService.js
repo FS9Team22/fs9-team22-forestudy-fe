@@ -81,24 +81,20 @@ export const loginStudy = async function ({ id, password }) {
   const url = `${BASE_URL}/${id}/login`;
   const res = await fetch(url, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ password }),
   });
-  if (!res.ok) {
-    throw new Error(
-      `리퀘스트 에러: ${res.status}, 에러 메시지: ${res.statusText}`,
-    );
-  }
-  const data = await res.json();
-  return data;
+  return res; // 응답 객체 전체를 반환하여 쿠키 설정을 보장합니다.
 };
 
 export const logoutStudy = async function ({ id, token }) {
   const url = `${BASE_URL}/${id}/logout`;
   const res = await fetch(url, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

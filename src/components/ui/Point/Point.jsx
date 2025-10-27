@@ -1,7 +1,7 @@
+import pointIcon from '@/assets/icons/ic_point.svg';
 import styles from './Point.module.css';
-import pointIcon from '../../assets/icons/ic_point.svg';
 
-const Point = ({ points }) => {
+export const Point = ({ points }) => {
   return (
     <div className={styles.pointsSection}>
       <p className={styles.smallHeader}>현재까지 획득한 포인트</p>
@@ -12,5 +12,3 @@ const Point = ({ points }) => {
     </div>
   );
 };
-
-export default Point;

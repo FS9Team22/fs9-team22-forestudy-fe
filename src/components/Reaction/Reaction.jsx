@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Picker from 'emoji-picker-react';
 import {
   fetchReactions,
   addReaction,
-} from '../../api/ReactionService/ReactionService';
+} from '@/api/ReactionService/ReactionService';
+import smileIcon from '@/assets/icons/ic_smile.svg';
 import styles from './Reaction.module.css';
-import smileIcon from '../../assets/icons/ic_smile.svg';
 
 const Reaction = ({ studyId }) => {
   const [reactions, setReactions] = useState({});

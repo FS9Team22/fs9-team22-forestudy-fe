@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Toast } from '@/components/ui';
+import { savePoint } from '@/api/PointService/PointService';
 import styles from './TimerCard.module.css';
-import Toast from '../../../../components/Toast/Toast';
-import { savePoint } from '../../../../api/PointService/PointService';
-import clockIcon from '../../../../assets/icons/ic_clock.svg';
-import stopIcon from '../../../../assets/icons/ic_stop.svg';
-import playIcon from '../../../../assets/icons/ic_play.svg';
-import pauseIcon from '../../../../assets/icons/ic_pause.svg';
+import clockIcon from '@/assets/icons/ic_clock.svg';
+import stopIcon from '@/assets/icons/ic_stop.svg';
+import playIcon from '@/assets/icons/ic_play.svg';
+import pauseIcon from '@/assets/icons/ic_pause.svg';
 
 const TimerCard = ({ study, setStudy }) => {
   const studyId = study.id;

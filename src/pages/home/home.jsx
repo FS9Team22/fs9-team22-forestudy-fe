@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { useStudies } from '../../hooks/useStudies';
-import { useBreakPoint } from '../../hooks/useBreakPoint';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useStudies } from '@/hooks/useStudies';
+import { useBreakPoint } from '@/hooks/useBreakPoint';
 import { StudyCardList } from './components/Card/StudyCardList';
 import { DropDown } from './components/DropDown/DropDown';
 import { SearchBar } from './components/SearchBar/SearchBar';
@@ -43,6 +43,8 @@ export default function Home() {
   useEffect(() => {
     setPage(1);
   }, [sortType, keyword]);
+
+  if (loading) return <div>로딩중...</div>;
 
   return (
     <>

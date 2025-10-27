@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getStudyList } from '../api/StudyService';
+import { getStudyList } from '@/api/StudyService';
 
 export function useStudies(sortType, keyword, page, LIMIT) {
   const [studies, setStudies] = useState([]);

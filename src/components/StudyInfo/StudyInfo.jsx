@@ -1,11 +1,13 @@
-import './StudyInfo.css';
-import Point from '../Point/Point';
 import { useMatch } from 'react-router';
+import { Point } from '../ui';
+import './StudyInfo.css';
+import { HabitButton, HomeButton, TimerButton } from '../ui/Button/NavButton';
 
 export function StudyInfo({ study }) {
   const isDetail = useMatch('/study/:studyId');
   const isTimer = useMatch('/study/:studyId/timer');
   const isHabit = useMatch('/study/:studyId/habit');
+  console.log(study);
 
   return (
     <>
@@ -16,9 +18,21 @@ export function StudyInfo({ study }) {
           <span className="study-title">{study.title}</span>
         </h1>
         <ul className="link-btn-list">
-          {(isHabit || isTimer) && <li>홈버튼컴포넌트</li>}
-          {(isDetail || isTimer) && <li>습관버튼컴포넌트</li>}
-          {(isDetail || isHabit) && <li>집중버튼컴포넌트</li>}
+          {(isHabit || isTimer) && (
+            <li>
+              <HomeButton />
+            </li>
+          )}
+          {(isDetail || isTimer) && (
+            <li>
+              <HabitButton studyId={study.id} />
+            </li>
+          )}
+          {(isDetail || isHabit) && (
+            <li>
+              <TimerButton studyId={study.id} />
+            </li>
+          )}
         </ul>
       </div>
       <div className="section-mid-wrap">

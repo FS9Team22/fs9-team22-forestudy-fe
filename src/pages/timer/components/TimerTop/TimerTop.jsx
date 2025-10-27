@@ -1,5 +1,5 @@
+import { StudyInfo } from '@/components/StudyInfo';
 import styles from './TimerTop.module.css';
-import { StudyInfo } from '../../../../components/StudyInfo';
 
 const TimerTop = ({ study }) => {
   if (!study) {
