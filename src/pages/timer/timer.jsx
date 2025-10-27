@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { getStudyById } from '@/api/StudyService';
-import TimerCard from './components/TimerCard/TimerCard';
-import TimerBox from './components/TimerBox/TimerBox';
-import TimerTop from './components/TimerTop/TimerTop';
+import TimerCard from './TimerCard/TimerCard';
 import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
-import styles from './timer.module.css';
+import StudyLayout from '@/components/StudyLayout/StudyLayout';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);
@@ -48,12 +46,9 @@ export default function TimerPage() {
           onSuccess={() => setIsAuthModalOpen(false)}
         />
       )}
-      <div className={styles.timerPage}>
-        <TimerBox>
-          <TimerTop study={study} />
-          <TimerCard study={study} setStudy={setStudy} />
-        </TimerBox>
-      </div>
+      <StudyLayout>
+        <TimerCard study={study} setStudy={setStudy} />
+      </StudyLayout>
     </>
   );
 }

@@ -1,87 +1,13 @@
-html {
-  font-size: 16px;
-}
-
-/* 페이지 전체 배경 및 중앙 배치 */
-.timerPage {
-  background-color: #f6f4ef;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* TimerHeader 박스 */
-.timerHeader {
-  width: 73rem;
-  height: 43.5rem;
-  padding: 2.5rem;
-  border-radius: 0.75rem;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* 상단 텍스트 */
-.timerHeader h2 {
-  color: #414141;
-  font-family: Pretendard;
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.timerHeader .description {
-  color: #818181;
-  font-family: Pretendard;
-  font-size: 1.125rem;
-  font-weight: 400;
-  margin: 1.25rem 0 0.625rem;
-}
-
-/* 알약 모양 배지 */
-.pointBadge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 6.75rem;
-  height: 1.9375rem;
-  padding: 0 0.75rem;
-  border-radius: 3.125rem;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.pointBadge .icon {
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background-color: #007bff;
-  margin-right: 0.375rem;
-}
-
-.pointBadge .pointBadgeText {
-  color: #414141;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
 /* TimerCard 박스 */
 .timerCard {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.625rem;
-  width: 70rem;
+  width: 100%;
   height: 40rem;
-  padding: 2.5rem 1.5rem;
-  border-radius: 1.25rem;
-  border: 0.0625rem solid #ddd;
   background: #fff;
-  margin: 1.5rem auto 0 auto;
+  margin: 0;
 }
 
 /* 오늘의 집중 텍스트 */
@@ -276,28 +202,8 @@ button {
 
 /* 태블릿 사이즈 */
 @media screen and (max-width: 1200px) {
-  .timerPage {
-    padding: 1rem;
-  }
-
-  .timerHeader {
-    width: 100%;
-    max-width: 60rem;
-    height: auto;
-    padding: 2rem;
-  }
-
-  .timerHeader h2 {
-    font-size: 1.75rem;
-  }
-
-  .timerHeader .description {
-    font-size: 1rem;
-  }
-
   .timerCard {
     width: 100%;
-    max-width: 55rem;
     height: auto;
     padding: 2rem 1rem;
   }
@@ -352,30 +258,6 @@ button {
 
 /* 모바일 사이즈 */
 @media screen and (max-width: 768px) {
-  .timerPage {
-    padding: 0.5rem;
-  }
-
-  .timerHeader {
-    width: 100%;
-    height: auto;
-    padding: 1.5rem;
-  }
-
-  .timerHeader h2 {
-    font-size: 1.5rem;
-  }
-
-  .timerHeader .description {
-    font-size: 0.9rem;
-  }
-
-  .pointBadge {
-    width: 5.5rem;
-    height: 1.5rem;
-    font-size: 0.8rem;
-  }
-
   .timerCard {
     width: 100%;
     height: auto;
