@@ -41,6 +41,14 @@
   gap: 1rem;
 }
 
+.layout-children {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  width: 100%;
+  border: #818181 solid 1px;
+  border-radius: 1.25rem;
+}
+
 @media screen and (max-width: 1200px) {
   .layout-section {
     width: 43.5rem;

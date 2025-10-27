@@ -49,7 +49,7 @@ export default function StudyLayout({ children }) {
         <section className="layout-section">
           {isDetail && <DetailLayoutTop studyId={study.id} />}
           <StudyInfo study={study} />
-          {children}
+          <section className="layout-children">{children}</section>
         </section>
       </main>
     </>

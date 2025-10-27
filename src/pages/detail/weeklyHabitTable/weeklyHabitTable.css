@@ -1,11 +1,3 @@
-.section-weeklyhabit-wrap {
-  margin-top: 2.5rem;
-  padding: 1.5rem;
-  width: 100%;
-  border: #818181 solid 1px;
-  border-radius: 1.25rem;
-}
-
 .weekname {
   display: flex;
   margin-top: 1.5rem;
@@ -27,10 +19,10 @@
 }
 
 @media screen and (max-width: 768px) {
-  .section-weeklyhabit-wrap {
-    overflow-x: auto;
-  }
   .weekname {
     width: 34.5rem;
+  }
+  .layout-children {
+    overflow-x: auto;
   }
 }
