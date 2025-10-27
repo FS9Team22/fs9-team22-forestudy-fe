@@ -116,3 +116,27 @@
   height: 1rem;
   padding: 0;
 }
+
+@media screen and (max-width: 768px) {
+  .password-modal-content {
+    width: 90%;
+    padding: 2rem 1.5rem;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .modal-buttons button {
+    width: calc(100% - 2rem);
+    height: 3.625rem;
+    flex-shrink: 0;
+  }
+
+  .modal-buttons button[type='submit'] {
+    order: -1;
+  }
+}
