@@ -8,6 +8,7 @@ import openEye from '@/assets/icons/btn_visibility_on.svg';
 import './create.css';
 import { useFormik } from 'formik';
 import { validationSchema } from './utils/formValidate';
+import { Toast } from '@/components/ui';
 
 export default function CreatePage() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function CreatePage() {
   const formik = useFormik({
     initialValues: INITIAL_VALUE,
     validationSchema: validationSchema,
-    onSubmit: async (values, { setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
       try {
         const res = await createStudy(
           values.nickname,
@@ -27,11 +28,22 @@ export default function CreatePage() {
           values.password,
         );
         if (res.success) {
-          alert('스터디가 성공적으로 생성되었습니다!');
-          navigate('/');
+          setStatus({
+            success: true,
+            message: res.message || '스터디를 생성 하였습니다.',
+          });
+          // navigate('/');
+        } else {
+          setStatus({
+            success: false,
+            message: res.message || '스터디 생성에 실패했습니다.',
+          });
         }
       } catch (err) {
-        alert(`스터디 생성 실패: ${err.message}`);
+        setStatus({
+          success: false,
+          message: err.message || '알 수 없는 오류 발생',
+        });
       } finally {
         setSubmitting(false);
       }
@@ -179,6 +191,22 @@ export default function CreatePage() {
             </button>
           </form>
         </div>
+
+        {/* 토스트 메시지를 띄우고 닫힌 상태일때 리다이렉트 */}
+        {formik.status && !formik.status.success && (
+          <Toast
+            message={formik.status.message}
+            type="info"
+            onClose={() => navigate('/')}
+          />
+        )}
+        {formik.status && formik.status.success && (
+          <Toast
+            message={formik.status.message}
+            type="success"
+            onClose={() => navigate('/')}
+          />
+        )}
       </main>
     </>
   );
