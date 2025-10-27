@@ -2,6 +2,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { Toast } from '@/components/ui';
 import { savePoint } from '@/api/PointService/PointService';
 import styles from './TimerCard.module.css';
+import clockIcon from '@/assets/icons/ic_clock.svg';
+import stopIcon from '@/assets/icons/ic_stop.svg';
+import playIcon from '@/assets/icons/ic_play.svg';
+import pauseIcon from '@/assets/icons/ic_pause.svg';
 
 const TimerCard = ({ study, setStudy }) => {
   const studyId = study.id;
@@ -97,7 +101,8 @@ const TimerCard = ({ study, setStudy }) => {
       <h3>오늘의 집중</h3>
       {(started || running || paused) && fixedTime != null && (
         <div className={`${styles.pointBadge} ${styles.timerBadge}`}>
-          ⏰{formatTime(fixedTime)}
+          <img src={clockIcon} alt="시계" className={styles.clockIcon} />
+          {formatTime(fixedTime)}
         </div>
       )}
 
@@ -113,7 +118,8 @@ const TimerCard = ({ study, setStudy }) => {
       {time < 0 ? (
         <div className={styles.buttonGroup}>
           <button className={styles.stop} onClick={handleStop}>
-            ◎ Stop!
+            <img src={stopIcon} alt="정지" className={styles.stopIcon} />
+            Stop!
           </button>
         </div>
       ) : !started ? (
@@ -122,7 +128,8 @@ const TimerCard = ({ study, setStudy }) => {
             className={`${styles.start} ${running || paused ? styles.running : ''}`}
             onClick={handleStart}
           >
-            ▶ Start!
+            <img src={playIcon} alt="재생" className={styles.playIcon} />
+            Start!
           </button>
         </div>
       ) : running ? (
@@ -131,14 +138,14 @@ const TimerCard = ({ study, setStudy }) => {
             className={`${styles.roundBtn} ${styles.pause}`}
             onClick={handlePause}
           >
-            <span className={styles.pauseLine}></span>
-            <span className={styles.pauseLine}></span>
+            <img src={pauseIcon} alt="일시정지" className={styles.pauseIcon} />
           </button>
           <button
             className={`${styles.start} ${styles.running}`}
             onClick={handleStart}
           >
-            ▶ Start!
+            <img src={playIcon} alt="재생" className={styles.playIcon} />
+            Start!
           </button>
           <button
             className={`${styles.roundBtn} ${styles.reset}`}
@@ -153,14 +160,14 @@ const TimerCard = ({ study, setStudy }) => {
             className={`${styles.roundBtn} ${styles.pause}`}
             onClick={handlePause}
           >
-            <span className={styles.pauseLine}></span>
-            <span className={styles.pauseLine}></span>
+            <img src={pauseIcon} alt="일시정지" className={styles.pauseIcon} />
           </button>
           <button
             className={`${styles.start} ${styles.running} ${styles.paused}`}
             onClick={handleStart}
           >
-            ▶ Start!
+            <img src={playIcon} alt="재생" className={styles.playIcon} />
+            Start!
           </button>
           <button
             className={`${styles.roundBtn} ${styles.reset}`}

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import { useHabits } from '@/hooks/habit/useHabits';
 import { HomeButton, TimerButton } from '@/components/ui';
 import { formatTimeString } from '@/utils/format';
-import { useStudyAuth } from '../../hooks/useStudyAuth';
+import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { HabitEditModal } from './components/HabitEditModal';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
 import './DailyHabit.css';

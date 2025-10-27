@@ -4,8 +4,9 @@ import { getStudyById } from '@/api/StudyService';
 import TimerCard from './components/TimerCard/TimerCard';
 import TimerBox from './components/TimerBox/TimerBox';
 import TimerTop from './components/TimerTop/TimerTop';
-import { useStudyAuth } from '../../hooks/useStudyAuth';
+import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
+import styles from './timer.module.css';
 
 export default function TimerPage() {
   const [study, setStudy] = useState(null);
@@ -47,24 +48,12 @@ export default function TimerPage() {
           onSuccess={() => setIsAuthModalOpen(false)}
         />
       )}
-      {!study ? (
-        <p>Loading...</p>
-      ) : (
-        <div
-          className="timer-page"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            marginTop: '5rem',
-          }}
-        >
-          <TimerBox>
-            <TimerTop study={study} />
-            <TimerCard study={study} setStudy={setStudy} />
-          </TimerBox>
-        </div>
-      )}
+      <div className={styles.timerPage}>
+        <TimerBox>
+          <TimerTop study={study} />
+          <TimerCard study={study} setStudy={setStudy} />
+        </TimerBox>
+      </div>
     </>
   );
 }
