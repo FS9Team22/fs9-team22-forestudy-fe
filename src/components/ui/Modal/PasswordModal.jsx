@@ -48,7 +48,9 @@ export function PasswordModal({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="modal-title">
-          {studyNickname}의 {studyTitle}
+          {studyNickname && studyTitle
+            ? studyNickname + '의 ' + studyTitle
+            : '비밀번호 입력'}
         </h2>
         <p className="modal-description">권한이 필요합니다.</p>
         <form onSubmit={handleSubmit}>
