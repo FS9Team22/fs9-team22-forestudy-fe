@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './HabitEditModal.css';
 
 export function HabitEditModal({ isOpen, onClose, initialHabits, onSave }) {
   const [editGoalList, setEditGoalList] = useState([]);
@@ -26,6 +27,7 @@ export function HabitEditModal({ isOpen, onClose, initialHabits, onSave }) {
 
   const handleSave = () => {
     onSave(editGoalList);
+    onClose();
   };
 
   if (!isOpen) return null;

@@ -1,0 +1,28 @@
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 11.25rem;
+  height: 2.625rem;
+  padding: 0.5625rem 1.625rem;
+  border: 1px solid #ddd;
+  border-radius: 0.9375rem;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdownHeaderText {
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #818181;
+}
+
+.dropdownArrow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.dropdownArrow.isOpen {
+  transform: rotate(180deg);
+}
