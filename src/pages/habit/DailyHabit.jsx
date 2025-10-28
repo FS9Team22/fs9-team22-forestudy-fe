@@ -5,7 +5,6 @@ import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { HabitEditModal } from './components/HabitEditModal';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
 import './DailyHabit.css';
-import { StudyInfo } from '@/components/StudyInfo';
 
 export default function DailyHabit() {
   const { studyId } = useParams();
@@ -16,14 +15,8 @@ export default function DailyHabit() {
     checkAuth,
   } = useStudyAuth(studyId, 'habit');
 
-  const {
-    goalList,
-    study,
-    isLoading,
-    error,
-    handleGoalStatusChange,
-    saveHabitList,
-  } = useHabits(studyId);
+  const { goalList, isLoading, error, handleGoalStatusChange, saveHabitList } =
+    useHabits(studyId);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -50,46 +43,39 @@ export default function DailyHabit() {
           onSuccess={() => setIsAuthModalOpen(false)}
         />
       )}
-      <div className="habit-container">
-        <div className="main-content">
-          <div className="content-card">
-            <StudyInfo study={study} />
 
-            <div className="habit-section">
-              <div className="habit-header">
-                <h2 className="habit-title">오늘의 습관</h2>
-                <button onClick={handleModalOpen} className="edit-button">
-                  목록 수정
-                </button>
-              </div>
-              {goalList.length > 0 ? (
-                <div className="goal-list">
-                  {goalList.map((goal) => (
-                    <button
-                      key={goal.id}
-                      onClick={() => handleGoalStatusChange(goal.id)}
-                      className={`goal-button ${goal.isDone ? 'completed' : ''}`}
-                    >
-                      {goal.name}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="empty-state">
-                  <p>안녕하세요</p>
-                  <p className="empty-subtitle">목록을 설정해주세요</p>
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="habit-section">
+        <div className="habit-header">
+          <h2 className="habit-title">오늘의 습관</h2>
+          <button onClick={handleModalOpen} className="edit-button">
+            목록 수정
+          </button>
         </div>
-        <HabitEditModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          initialHabits={goalList}
-          onSave={saveHabitList}
-        />
+        {goalList.length > 0 ? (
+          <div className="goal-list">
+            {goalList.map((goal) => (
+              <button
+                key={goal.id}
+                onClick={() => handleGoalStatusChange(goal.id)}
+                className={`goal-button ${goal.isDone ? 'completed' : ''}`}
+              >
+                {goal.name}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="empty-state">
+            <p>안녕하세요</p>
+            <p className="empty-subtitle">목록을 설정해주세요</p>
+          </div>
+        )}
       </div>
+      <HabitEditModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        initialHabits={goalList}
+        onSave={saveHabitList}
+      />
     </>
   );
 }
