@@ -1,0 +1,28 @@
+.weekname {
+  display: flex;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #818181;
+  justify-content: end;
+  text-align: center;
+}
+
+.weekname > li {
+  width: 7.375rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .weekname > li {
+    width: 4rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .weekname {
+    width: 34.5rem;
+  }
+  .layout-children {
+    overflow-x: auto;
+  }
+}

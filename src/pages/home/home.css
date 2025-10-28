@@ -1,0 +1,125 @@
+.home-main-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+.home-main-top,
+.home-main-center {
+  margin-bottom: 3rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* ------ 스터디 둘러보기 + 드롭다운   ------*/
+.home-study-header {
+  display: flex;
+  place-items: center;
+}
+
+.home-study-title {
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #414141;
+}
+
+.home-study-title-recent {
+  margin-bottom: 1.875rem;
+}
+
+.home-study-dropdown {
+  margin-left: auto;
+}
+
+.home-study-search {
+  margin: 1.5rem 0 1.5rem;
+}
+
+/*------- 더보기 버튼 ---------*/
+.home-main-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.1875rem;
+  background-color: #fff;
+}
+
+.home-card-more {
+  width: 17.5rem;
+  height: 3.3125rem;
+  border: 1px solid #ddd;
+  border-radius: 1.25rem;
+  background-color: #fff;
+  color: #578246;
+  font-weight: 500;
+  font-family: Pretendard;
+  cursor: pointer;
+}
+
+.home-card-more:hover {
+  background-color: #999;
+  color: #fff;
+}
+
+/*-------- 요소가 없을때 ------*/
+.no-studies-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Pretandard;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 5rem 0;
+  color: #b1b1b1;
+}
+
+@media screen and (max-width: 1200px) {
+  .home-main-container {
+    max-width: 768px;
+    margin: 1.5rem;
+  }
+
+  .home-study-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0 1.25rem 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-main-container {
+    max-width: 375px;
+  }
+
+  .home-study-title {
+    font-size: 1rem;
+    font-weight: 800;
+  }
+
+  .home-study-header {
+    display: flex;
+    flex-direction: column;
+    place-items: flex-start;
+  }
+
+  .home-study-search {
+    display: flex;
+    flex-direction: column;
+    align-items: self-end;
+    gap: 0.75rem;
+  }
+
+  .no-studies-message {
+    font-size: 1rem;
+  }
+
+  .home-main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem;
+    background-color: #fff;
+  }
+}

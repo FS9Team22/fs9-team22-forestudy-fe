@@ -1,0 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard';
+  font-style: normal;
+  background: #f6f4ef;
+  margin: 0 auto;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.large-header {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.middle-header {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.small-header {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #818181;
+  margin-bottom: 0.5rem;
+}

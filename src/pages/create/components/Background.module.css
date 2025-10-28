@@ -1,0 +1,53 @@
+/*-------- 배경 선택 ---------*/
+.bgOptionsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.bgOptions {
+  position: relative;
+  width: 9.375rem;
+  height: 9.375rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+
+  & input {
+    display: none;
+  }
+}
+
+.selectedContainer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+  width: 2rem;
+  height: 2rem;
+  background-image: url('../../../assets/icons/ic_bg_selected.svg');
+  /* public/icons/paw.png */
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.bgPreview {
+  position: absolute;
+  width: 9.375rem;
+  height: 9.375rem;
+  object-fit: cover;
+  -webkit-user-drag: none;
+}
+
+@media screen and (max-width: 768px) {
+  .bgOptionsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

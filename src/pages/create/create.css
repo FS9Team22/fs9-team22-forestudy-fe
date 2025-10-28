@@ -1,0 +1,123 @@
+/* 비밀번호 입력 필드의 기본 눈모양 아이콘 숨기기 */
+input[type='password']::-ms-reveal,
+input[type='text']::-ms-clear {
+  display: none;
+}
+
+.input::-webkit-contact-auto-fill-button {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+/* create page */
+.create-main {
+  max-width: 720px;
+  margin: 3rem auto;
+}
+
+.create-container {
+  margin-bottom: 3rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.create-title {
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #414141;
+  margin-bottom: 2rem;
+}
+
+.create-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  & label {
+    font-family: Pretendard;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #414141;
+  }
+
+  & input {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.9375rem;
+    border: 1px solid #ddd;
+    margin-bottom: 0.75rem;
+  }
+
+  & input::placeholder {
+    font-weight: 400;
+    color: #818181;
+  }
+}
+
+.password-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.password-check-wrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
+
+.eye-icons {
+  position: absolute;
+  display: inline-block;
+  top: -5%;
+  left: 93%;
+  margin: 12px 24px 0 0;
+  height: 24px;
+  cursor: pointer;
+  -webkit-user-drag: none;
+}
+
+.description-textarea {
+  resize: none;
+  border-radius: 0.9375rem;
+  border: 1px solid #ddd;
+  height: 6rem;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/*------- submit 버튼 ---------*/
+.create-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3.635rem;
+  background-color: #99c86e;
+  border-radius: 1rem;
+  border: 0px;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 400;
+  font-family: JejuDoldam;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background-color: #999;
+  color: #fff;
+}
+
+/*------- error input -----*/
+.error {
+  z-index: 1;
+  color: #c41013;
+}
+
+.error-input {
+  border-color: #c41013;
+}
