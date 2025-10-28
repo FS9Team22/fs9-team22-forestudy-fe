@@ -1,6 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getHabitListByStudyId, updateHabit } from '@/api/HabitService.js';
-import { createHabitLog, deleteHabitLog } from '@/api/HabitLogService.js';
+import {
+  createHabitLog,
+  deleteHabitLog,
+  getHabitCurrentDayLogListByHabitId,
+} from '@/api/HabitLogService.js';
 import { getStudyById } from '@/api/StudyService.js';
 
 export function useHabits(studyId) {
@@ -13,24 +17,30 @@ export function useHabits(studyId) {
     if (!studyId) return null;
     try {
       setIsLoading(true);
-      const [studyData, habitData] = await Promise.all([
+      const [studyData, habitListResponse] = await Promise.all([
         getStudyById({ id: studyId }),
         getHabitListByStudyId({ studyId }),
       ]);
       setStudy(studyData.data);
 
-      //  서버 응답 프론트상태에 맞게 가공
-      const processedHabits = habitData.data.map((habit) => {
-        // ID가 있다면 완료
-        const isCompleted = habit.habitLogs && habit.habitLogs.id;
+      const habits = habitListResponse.data;
 
-        return {
-          ...habit,
-          isDone: !!isCompleted,
-          habitLogs: isCompleted ? habit.habitLogs : null,
-        };
-      });
+      const processedHabits = await Promise.all(
+        habits.map(async (habit) => {
+          const dailyLogResponse = await getHabitCurrentDayLogListByHabitId({
+            habitId: habit.id,
+          });
+          const dailyLogs = dailyLogResponse.data;
+          const isCompletedToday = dailyLogs && dailyLogs.length > 0;
 
+          return {
+            ...habit,
+            isDone: isCompletedToday,
+            // 가장 최근 로그를 habitLogs로 설정
+            habitLogs: isCompletedToday ? dailyLogs[0] : null,
+          };
+        }),
+      );
       setGoalList(processedHabits);
     } catch (error) {
       console.error('습관 조회 실패:', error);
