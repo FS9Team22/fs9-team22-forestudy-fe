@@ -16,7 +16,7 @@ const TimerCard = ({ study, setStudy }) => {
   const [started, setStarted] = useState(false);
   const [fixedTime, setFixedTime] = useState(null);
   const [inputTimeStr, setInputTimeStr] = useState(`${TIMER_MIN}:00`);
-  const point = 100;
+  const earnedPoint = 100;
 
   const [showPauseToast, setShowPauseToast] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
@@ -75,14 +75,14 @@ const TimerCard = ({ study, setStudy }) => {
 
   const handleStop = async () => {
     setRunning(false);
-    console.log('Stop 클릭', { studyId, point });
+    console.log('Stop 클릭', { studyId, point: earnedPoint });
     try {
-      const data = await savePoint(studyId, point);
+      const data = await savePoint(studyId, earnedPoint);
       console.log('포인트 저장 성공', { data });
 
       setStudy((prevStudy) => ({
         ...prevStudy,
-        point: prevStudy.point + point,
+        point: prevStudy.point + earnedPoint,
       }));
 
       setShowSuccessToast(true);
@@ -187,7 +187,7 @@ const TimerCard = ({ study, setStudy }) => {
       )}
       {showSuccessToast && (
         <Toast
-          message={`🎉${point}포인트를 획득했습니다!`}
+          message={`🎉100포인트를 획득했습니다!`}
           type="success"
           onClose={() => setShowSuccessToast(false)}
         />
