@@ -55,13 +55,7 @@ export default function DailyHabit() {
             {goalList.map((goal) => (
               <button
                 key={goal.id}
-                onClick={() =>
-                  handleGoalStatusChange(
-                    goal.id,
-                    goal.habitLogs?.id,
-                    goal.isDone,
-                  )
-                }
+                onClick={() => handleGoalStatusChange(goal.id)}
                 className={`goal-button ${goal.isDone ? 'completed' : ''}`}
               >
                 {goal.name}
@@ -75,24 +69,6 @@ export default function DailyHabit() {
           </div>
         )}
       </div>
-      {goalList.length > 0 ? (
-        <div className="goal-list">
-          {goalList.map((goal) => (
-            <button
-              key={goal.id}
-              onClick={() => handleGoalStatusChange(goal.id)}
-              className={`goal-button ${goal.isDone ? 'completed' : ''}`}
-            >
-              {goal.name}
-            </button>
-          ))}
-        </div>
-      ) : (
-        <div className="empty-state">
-          <p>안녕하세요</p>
-          <p className="empty-subtitle">목록을 설정해주세요</p>
-        </div>
-      )}
       <HabitEditModal
         isOpen={isModalOpen}
         onClose={handleModalClose}
