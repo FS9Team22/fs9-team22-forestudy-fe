@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { useHabits } from '@/hooks/habit/useHabits';
+import { useHabits } from '@/hooks/habit/useHabits.js';
 import { useStudyAuth } from '@/hooks/useStudyAuth';
 import { HabitEditModal } from './components/HabitEditModal';
 import { PasswordModal } from '@/components/ui/Modal/PasswordModal';
@@ -33,7 +33,6 @@ export default function DailyHabit() {
 
   if (isLoading) return <div className="habit-container">로딩 중...</div>;
   if (error) return <div className="habit-container">에러...</div>;
-
   return (
     <>
       {isAuthModalOpen && (
@@ -56,7 +55,13 @@ export default function DailyHabit() {
             {goalList.map((goal) => (
               <button
                 key={goal.id}
-                onClick={() => handleGoalStatusChange(goal.id)}
+                onClick={() =>
+                  handleGoalStatusChange(
+                    goal.id,
+                    goal.habitLogs?.id,
+                    goal.isDone,
+                  )
+                }
                 className={`goal-button ${goal.isDone ? 'completed' : ''}`}
               >
                 {goal.name}
@@ -70,6 +75,24 @@ export default function DailyHabit() {
           </div>
         )}
       </div>
+      {goalList.length > 0 ? (
+        <div className="goal-list">
+          {goalList.map((goal) => (
+            <button
+              key={goal.id}
+              onClick={() => handleGoalStatusChange(goal.id)}
+              className={`goal-button ${goal.isDone ? 'completed' : ''}`}
+            >
+              {goal.name}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="empty-state">
+          <p>안녕하세요</p>
+          <p className="empty-subtitle">목록을 설정해주세요</p>
+        </div>
+      )}
       <HabitEditModal
         isOpen={isModalOpen}
         onClose={handleModalClose}
