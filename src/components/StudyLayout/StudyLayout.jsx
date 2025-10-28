@@ -50,7 +50,7 @@ export default function StudyLayout() {
           {isDetail && <DetailLayoutTop studyId={study.id} />}
           <StudyInfo study={study} />
           <section className="layout-children">
-            <Outlet />
+            <Outlet context={{ study, setStudy }} />
           </section>
         </section>
       </main>
