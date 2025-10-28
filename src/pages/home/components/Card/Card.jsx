@@ -4,6 +4,7 @@ import patternImg from '@/assets/card/images/pattern.png';
 import leavesImg from '@/assets/card/images/leaves.png';
 import pointIcon from '@/assets/icons/ic_point.svg';
 import styles from './Card.module.css';
+import { truncateText } from '@/utils/textUtils';
 
 const BACKGROUND_MAP = {
   1: {
@@ -51,12 +52,19 @@ const BACKGROUND_MAP = {
     nicknameColor: '#fff',
   },
 };
+
+const NICKNAME_MAX = 6;
+const TITLE_MAX = 10;
 export function Card({ card }) {
   const overlayStyle = BACKGROUND_MAP[card.background] || {
     backgroundColor: '#000',
     nicknameColor: '#fff',
     otherColor: '#111',
   };
+
+  // 예외상황으로 인한 글자길이가 길어질경우
+  const truncatedNickname = truncateText(card.nickname, NICKNAME_MAX);
+  const truncatedTitle = truncateText(card.title, TITLE_MAX);
 
   return (
     <div className={styles.card}>
@@ -67,13 +75,13 @@ export function Card({ card }) {
               className={styles.title}
               style={{ color: overlayStyle.nicknameColor }}
             >
-              {card.nickname}의
+              {truncatedNickname}의
             </h2>
             <h2
               className={styles.title}
               style={{ color: overlayStyle.otherColor }}
             >
-              {card.title}
+              {truncatedTitle}
             </h2>
           </div>
           <span
@@ -90,12 +98,17 @@ export function Card({ card }) {
         </p>
         {card.reactions?.length > 0 && (
           <ul className={styles.footer}>
-            {card.reactions.map((reaction) => (
+            {card.reactions.slice(0, 3).map((reaction) => (
               <li key={reaction.id} className={styles.reaction}>
                 <span className={styles.icon}>{reaction.emoji}</span>
                 <span className={styles.count}>{reaction.count}</span>
               </li>
             ))}
+            {card.reactions.length > 3 && (
+              <li className={styles.overflowCount}>
+                +{card.reactions.length - 3}
+              </li>
+            )}
           </ul>
         )}
       </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { useHabits } from '@/hooks/habit/useHabits';
+import { useHabits } from '@/hooks/habit/useHabits.js';
 import { HomeButton, TimerButton } from '@/components/ui';
 import { formatTimeString } from '@/utils/format';
 import { useStudyAuth } from '@/hooks/useStudyAuth';
@@ -52,7 +52,6 @@ export default function DailyHabit() {
 
   if (isLoading) return <div className="habit-container">로딩 중...</div>;
   if (error) return <div className="habit-container">에러...</div>;
-
   return (
     <>
       {isAuthModalOpen && (
@@ -94,7 +93,13 @@ export default function DailyHabit() {
                   {goalList.map((goal) => (
                     <button
                       key={goal.id}
-                      onClick={() => handleGoalStatusChange(goal.id)}
+                      onClick={() =>
+                        handleGoalStatusChange(
+                          goal.id,
+                          goal.habitLogs?.id,
+                          goal.isDone,
+                        )
+                      }
                       className={`goal-button ${goal.isDone ? 'completed' : ''}`}
                     >
                       {goal.name}
