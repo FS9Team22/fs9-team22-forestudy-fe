@@ -22,14 +22,15 @@ export default function TimerPage() {
 
   return (
     <>
-      {isAuthModalOpen && (
+      {isAuthModalOpen ? (
         <PasswordModal
           studyId={studyId}
           onClose={() => navigate('/')}
           onSuccess={() => setIsAuthModalOpen(false)}
         />
+      ) : (
+        <TimerCard study={study} setStudy={setStudy} />
       )}
-      <TimerCard study={study} setStudy={setStudy} />
     </>
   );
 }
